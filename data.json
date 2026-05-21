@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-21T22:00:00Z",
+  "last_updated": "2026-05-21T14:04:22Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -22,17 +22,37 @@
       "date": "2026-05-20",
       "markets": {
         "ten_year": 4.67,
-        "thirty_year": 5.20,
+        "thirty_year": 5.2,
         "brent": 110.5,
         "wti": 102.0
       },
-      "probabilities": {"bull": 15, "base": 45, "bear": 40},
+      "probabilities": {
+        "bull": 15,
+        "base": 45,
+        "bear": 40
+      },
       "summary": "이란 전쟁·호르무즈 봉쇄로 10Y 16개월 고점·30Y 18년 고점. IB들의 작년 말 4% 전망은 사실상 사망.",
       "key_drivers": [
-        {"name": "Brent", "value": "$110.5", "direction": "bear"},
-        {"name": "30Y yield", "value": "5.20% (18년 고점)", "direction": "bear"},
-        {"name": "Fed Dec hike odds", "value": "~50%", "direction": "bear"},
-        {"name": "Goldman recession odds", "value": "30%", "direction": "bull"}
+        {
+          "name": "Brent",
+          "value": "$110.5",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield",
+          "value": "5.20% (18년 고점)",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Dec hike odds",
+          "value": "~50%",
+          "direction": "bear"
+        },
+        {
+          "name": "Goldman recession odds",
+          "value": "30%",
+          "direction": "bull"
+        }
       ],
       "trigger_today": "FOMC 의사록 대기 (5/20 발표 예정)",
       "bear_steelman": "골드만/JPM의 경기침체 확률 30-40%가 현실화되면 Fed가 결국 인하로 선회, Bull 시나리오 부활 가능"
@@ -41,21 +61,55 @@
       "date": "2026-05-21",
       "markets": {
         "ten_year": 4.63,
-        "thirty_year": 5.20,
-        "brent": 105.0,
-        "wti": 99.85
+        "thirty_year": 5.15,
+        "brent": 107.46,
+        "wti": 101.08
       },
-      "probabilities": {"bull": 13, "base": 40, "bear": 47},
-      "summary": "FOMC 의사록 매파 surprise — 다수 위원이 인플레 지속 시 인상 고려. 30Y 19년 고점 갱신.",
+      "probabilities": {
+        "bull": 8,
+        "base": 35,
+        "bear": 57
+      },
+      "summary": "미-이란 협상 교착 지속과 유가 $107대 재진입으로 Bear 확률 57%로 상승. 4월 CPI 3.8% 급등과 Fed 의사록 대기로 금리 상승 압력 증가.",
       "key_drivers": [
-        {"name": "FOMC minutes", "value": "다수 위원 인상 시사", "direction": "bear"},
-        {"name": "30Y", "value": "5.20% (19년 고점)", "direction": "bear"},
-        {"name": "Brent", "value": "$105 (-5%)", "direction": "bull"},
-        {"name": "Iran 협상", "value": "슈퍼탱커 3척 호르무즈 통과", "direction": "bull"},
-        {"name": "ADNOC CEO", "value": "회복 2027년 이후", "direction": "bear"}
+        {
+          "name": "미-이란 협상",
+          "value": "교착(5/11 이란 '미국 요구 불합리' 발언, 핵 의제 연기 제안)",
+          "direction": "bear"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "사실상 봉쇄 지속(5/19 상선 5% 수준만 통과)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent 유가",
+          "value": "$107.46 (+2.46, 5/20 일시 $105로 하락 후 반등)",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 CPI",
+          "value": "3.8% YoY(3월 3.3%→ 5개월래 최고), 에너지 +17.9%, Core 2.8%",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y 금리",
+          "value": "4.63% 유지(5/20 장중 4.67% 기록, 16개월 최고 근접)",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed 정책",
+          "value": "4/29 동결(3.5-3.75%), 12월 인상 확률 시장 50%, 의사록 5/21 공개 예정",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y 금리",
+          "value": "5.15% (-5bp, 장기물 상대 약세)",
+          "direction": "base"
+        }
       ],
-      "trigger_today": "FOMC 의사록 hawkish surprise — 4명 반대표 (1992년 이래 최다)",
-      "bear_steelman": "이란 합의 시그널이 진짜라면 유가 급락 → 헤드라인 인플레 안정 → Fed 매파성 약화 가능"
+      "trigger_today": "유가 재급등($107.46)과 Trump '2-3일 내 공격 재개 가능' 경고로 에너지 인플레 우려 지배",
+      "bear_steelman": "5/20 Trump '협상 최종단계' 발언과 위성 데이터 상 수퍼탱커 3척 통과 확인으로 단기 타결 기대감은 여전히 존재"
     }
   ]
 }
