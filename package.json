@@ -1,0 +1,16 @@
+{
+  "name": "samsungda-us10y",
+  "version": "1.0.0",
+  "description": "US 10Y Treasury yield scenario probability tracker",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
