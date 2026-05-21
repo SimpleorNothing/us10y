@@ -203,8 +203,55 @@ h2 {
   height: 280px;
 }
 
-.summary-section, .drivers-section, .bear-steelman-section {
-  margin-bottom: 1.75rem;
+.daily-feed {
+  display: flex;
+  flex-direction: column;
+}
+
+.daily-card {
+  padding: 1.5rem 0 0.5rem;
+}
+
+.daily-card + .daily-card {
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+}
+
+.daily-date {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+  margin-bottom: 0.85rem;
+  letter-spacing: -0.01em;
+  text-transform: none;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.today-marker {
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  background: var(--bg-secondary);
+  padding: 2px 8px;
+  border-radius: 100px;
+  letter-spacing: 0.02em;
+}
+
+.daily-section-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+  margin-top: 1.25rem;
+  margin-bottom: 0.65rem;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.daily-card .summary-text {
+  margin-bottom: 0.25rem;
 }
 
 .summary-text, .steelman-text {

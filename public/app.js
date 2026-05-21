@@ -57,25 +57,53 @@
     document.getElementById("p-bear").textContent = latest.probabilities.bear + "%";
   }
 
-  function renderSummary(latest) {
-    document.getElementById("summary-text").textContent = latest.summary || "—";
-    document.getElementById("trigger-text").textContent = latest.trigger_today || "—";
-    document.getElementById("steelman-text").textContent = latest.bear_steelman || "—";
+  function escapeHtml(str) {
+    if (str === null || str === undefined) return "";
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;")
+      .replace(/'/g, "&#39;");
   }
 
-  function renderDrivers(latest) {
-    const list = document.getElementById("drivers-list");
-    list.innerHTML = "";
-    (latest.key_drivers || []).forEach(d => {
-      const row = document.createElement("div");
-      row.className = "driver-row";
-      row.innerHTML = `
-        <span class="driver-name">${d.name}</span>
-        <span class="driver-value">
-          ${d.value}
-          <span class="driver-tag ${d.direction || 'base'}"></span>
-        </span>`;
-      list.appendChild(row);
+  function renderDailyFeed(history) {
+    const feed = document.getElementById("daily-feed");
+    if (!feed) return;
+    feed.innerHTML = "";
+
+    [...history].reverse().forEach((day, idx) => {
+      const [, mo, d] = day.date.split("-");
+      const dateLabel = `${parseInt(mo)}/${parseInt(d)}`;
+      const todayMarker = idx === 0 ? ` <span class="today-marker">오늘</span>` : "";
+
+      const driversHtml = (day.key_drivers || []).map(dr => `
+        <div class="driver-row">
+          <span class="driver-name">${escapeHtml(dr.name)}</span>
+          <span class="driver-value">
+            ${escapeHtml(dr.value)}
+            <span class="driver-tag ${dr.direction || "base"}"></span>
+          </span>
+        </div>`).join("");
+
+      const card = document.createElement("article");
+      card.className = "daily-card";
+      card.innerHTML = `
+        <h2 class="daily-date">${dateLabel}${todayMarker}</h2>
+        ${day.summary ? `<p class="summary-text">${escapeHtml(day.summary)}</p>` : ""}
+        ${day.trigger_today ? `
+          <div class="trigger">
+            <strong>트리거:</strong>
+            <span>${escapeHtml(day.trigger_today)}</span>
+          </div>` : ""}
+        ${(day.key_drivers || []).length > 0 ? `
+          <h3 class="daily-section-label">주요 다이얼</h3>
+          <div class="drivers-list">${driversHtml}</div>` : ""}
+        ${day.bear_steelman ? `
+          <h3 class="daily-section-label">반대 시각 (Steelman)</h3>
+          <p class="steelman-text">${escapeHtml(day.bear_steelman)}</p>` : ""}
+      `;
+      feed.appendChild(card);
     });
   }
 
@@ -197,9 +225,8 @@
     renderLastUpdated(data.last_updated);
     renderMetrics(latest, prev);
     renderProbabilities(latest);
-    renderSummary(latest);
-    renderDrivers(latest);
     renderTrendChart(history);
+    renderDailyFeed(history);
   } catch (e) {
     console.error(e);
     document.body.innerHTML += '<p style="text-align:center;padding:2rem;color:#999;">데이터 로드 실패. 잠시 후 다시 시도해주세요.</p>';
