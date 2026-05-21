@@ -35,11 +35,13 @@
     document.getElementById("m-30y").textContent = fmt(m.thirty_year, 2) + "%";
     document.getElementById("m-brent").textContent = "$" + fmt(m.brent, 2);
     document.getElementById("m-wti").textContent = "$" + fmt(m.wti, 2);
+    document.getElementById("m-fedff").textContent = fmt(m.fed_funds_implied, 2) + "%";
 
     const d10y = document.getElementById("d-10y");
     const d30y = document.getElementById("d-30y");
     const dBrent = document.getElementById("d-brent");
     const dWti = document.getElementById("d-wti");
+    const dFedff = document.getElementById("d-fedff");
 
     d10y.textContent = deltaLabel(m.ten_year, p.ten_year, "%", "yield");
     d10y.className = "metric-delta " + deltaClass(m.ten_year, p.ten_year);
@@ -49,6 +51,8 @@
     dBrent.className = "metric-delta " + deltaClass(m.brent, p.brent);
     dWti.textContent = deltaLabel(m.wti, p.wti, "$");
     dWti.className = "metric-delta " + deltaClass(m.wti, p.wti);
+    dFedff.textContent = deltaLabel(m.fed_funds_implied, p.fed_funds_implied, "%", "yield");
+    dFedff.className = "metric-delta " + deltaClass(m.fed_funds_implied, p.fed_funds_implied);
   }
 
   function renderProbabilities(latest) {

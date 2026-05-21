@@ -31,6 +31,7 @@ TICKERS = {
     "thirty_year": "^TYX",
     "brent": "BZ=F",
     "wti": "CL=F",
+    "fed_funds_implied": "ZQ=F",  # CME 30-Day Fed Funds Futures (FedWatch primitive)
 }
 
 SYSTEM_PROMPT = """당신은 미국 10년 국채금리 연말 시나리오 확률을 과거 일자 기준으로 재구성하는 전문 트래커입니다. 투자적정성판단 에이전트 가이드 v0.2의 원칙을 따릅니다.
@@ -41,6 +42,7 @@ SYSTEM_PROMPT = """당신은 미국 10년 국채금리 연말 시나리오 확�
 - 모든 수치 변화에 출처/이유 명시
 - Bear Steelman(반대 시각) 1개 포함
 - web_search로 해당 일자 헤드라인 확인
+- 'Fed Funds 30D 함의금리'는 CME 30-Day Fed Funds 선물(ZQ=F)에서 100-선물가로 도출한 시장 단기 정책금리 예상치(=CME FedWatch 기초 인풋)
 
 # 시나리오 정의 (연말 10Y 기준)
 - Bull: 3.75-4.0% (호르무즈 완전 재개 + 유가 $70대 + Fed 인하)
@@ -70,6 +72,7 @@ USER_PROMPT_TEMPLATE = """[과거 일자 재구성] 분석 기준일: {date}
 - 30Y yield: {thirty_year}% ({thirty_year_delta})
 - Brent: ${brent} ({brent_delta})
 - WTI: ${wti} ({wti_delta})
+- Fed Funds 30D 함의금리: {fed_funds_implied}% ({fed_funds_implied_delta})  [= CME FedWatch 기초]
 
 전 거래일 확률: Bull {prev_bull}% / Base {prev_base}% / Bear {prev_bear}%
 
@@ -78,6 +81,7 @@ USER_PROMPT_TEMPLATE = """[과거 일자 재구성] 분석 기준일: {date}
 2. Fed 인사 발언 / FOMC / CPI·PCE·고용 등 지표
 3. Brent/WTI 가격 변동 원인
 4. IB 금리 전망 업데이트
+5. 해당일 CME FedWatch 다음 FOMC 확률 분포 (위 함의금리 변화 해석)
 
 해당 일자 이후 사건 인용 금지. JSON만 응답."""
 
@@ -107,7 +111,11 @@ def fetch_history(start: datetime, end: datetime) -> dict[str, dict[str, float]]
             continue
         for idx, row in hist.iterrows():
             d = idx.strftime("%Y-%m-%d")
-            out.setdefault(d, {})[key] = round(float(row["Close"]), 2)
+            close = float(row["Close"])
+            if key == "fed_funds_implied":
+                out.setdefault(d, {})[key] = round(100 - close, 3)
+            else:
+                out.setdefault(d, {})[key] = round(close, 2)
         print(f"✓ {ticker}: {len(hist)} rows")
     return out
 
@@ -146,6 +154,8 @@ def call_claude(date_str: str, markets: dict, prev_snapshot: dict | None) -> dic
         brent_delta=fmt_delta(markets.get("brent"), prev_markets.get("brent")),
         wti=markets.get("wti", "n/a"),
         wti_delta=fmt_delta(markets.get("wti"), prev_markets.get("wti")),
+        fed_funds_implied=markets.get("fed_funds_implied", "n/a"),
+        fed_funds_implied_delta=fmt_delta(markets.get("fed_funds_implied"), prev_markets.get("fed_funds_implied"), "yield"),
         prev_bull=prev_probs.get("bull", 33),
         prev_base=prev_probs.get("base", 34),
         prev_bear=prev_probs.get("bear", 33),
