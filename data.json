@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-21T15:31:45Z",
+  "last_updated": "2026-05-21T23:10:29Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -384,57 +384,52 @@
     {
       "date": "2026-05-22",
       "markets": {
-        "ten_year": 4.61,
-        "thirty_year": 5.13,
-        "brent": 107.95,
-        "wti": 101.62,
-        "fed_funds_implied": 3.635
+        "ten_year": 4.59,
+        "thirty_year": 5.11,
+        "brent": 104.63,
+        "wti": 97.73,
+        "fed_funds_implied": 3.73
       },
       "probabilities": {
-        "bull": 5,
-        "base": 28,
-        "bear": 67
+        "bull": 12,
+        "base": 33,
+        "bear": 55
       },
-      "summary": "이란-미국 협상 '거의 타결' 발언에도 호르무즈 재차 봉쇄로 유가 급등 지속, Fed 인상 논의 부상",
+      "summary": "유가 급락(-3~4달러)과 미-이란 협상 진전 기대에도 함의금리 +10bp 급등이 Fed 인상 우려 증폭. FOMC 의사록은 다수가 인플레 지속 시 추가 인상 필요 명시, 12월 인상 확률 40~50%로 상승.",
       "key_drivers": [
         {
-          "name": "호르무즈 해협 상황",
-          "value": "이란이 5/18 재봉쇄 선언, 미국은 5/13부터 이란 항구 봉쇄 유지. 협상은 '최종 단계'이나 반복된 재격화로 신뢰 붕괴",
-          "direction": "bear"
-        },
-        {
-          "name": "Brent 유가",
-          "value": "$107.95 (+0.49), 전일 $105 수준에서 반등. 트럼프 '최종 협상' 발언에 5/20 -5% 급락했으나 다시 상승. Wood Mac은 연말까지 봉쇄 시 $200 경고",
-          "direction": "bear"
-        },
-        {
-          "name": "10Y 금리",
-          "value": "4.61% (-2bp). 5/15 4.59%에서 5/20 4.67%(16개월 고점) 터치 후 소폭 하락. 30Y는 5.13%로 2007년 6월 이후 최고",
-          "direction": "bear"
-        },
-        {
-          "name": "Fed 정책 기조",
-          "value": "4/29 FOMC 3.5~3.75% 동결. Miran은 즉시 인하 주장, Hammack·Kashkari·Logan은 완화 편향 반대. 6월 인하 확률 6~8%, 연내 인하 <10%",
-          "direction": "bear"
-        },
-        {
-          "name": "CME FedWatch (6월)",
-          "value": "동결 93.8%, 인하 6.2%, 인상 2% 미만. 4월 CPI 3.8%로 고착화 우려",
-          "direction": "bear"
+          "name": "Brent/WTI",
+          "value": "$104.6/$97.7 (-3.32/-3.89)",
+          "direction": "bull"
         },
         {
           "name": "Fed Funds 30D 함의금리",
-          "value": "3.635% (변동 없음). 현재 목표 3.5~3.75% 하단 대비 +13.5bp 시장 가격. 인하 기대 거의 소멸, 오히려 인상 논의 부상 중",
+          "value": "3.73% (+10bp)",
           "direction": "bear"
         },
         {
-          "name": "IB 전망",
-          "value": "Citi: Brent $120 예상. Schwab: 연말 10Y 3.75~4.5%. Transamerica: 3.75%. Long Forecast: 5.17%. 시장은 장기 공급 차질 과소평가",
+          "name": "FOMC 의사록 (최신)",
+          "value": "다수 위원 추가 인상 언급, 인플레 지속 우려",
+          "direction": "bear"
+        },
+        {
+          "name": "CME FedWatch 12월 인상 확률",
+          "value": "~40~51% (vs 동결)",
+          "direction": "bear"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "협상 계속되나 실질 재개 없음, 사우디 CEO '27년말까지 회복 불가'",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y yield 고점",
+          "value": "4.59% (2025년 2월 이후 최고)",
           "direction": "bear"
         }
       ],
-      "trigger_today": "이란, 18일 호르무즈 재봉쇄 선언 → 트럼프 '거의 타결' 발언에도 유가 반등 → 10Y는 16개월 고점 부근 유지, 인플레 재점화·Fed 인상 논의 부상",
-      "bear_steelman": "트럼프가 '최종 협상 단계'라 발언하고 5/20 유가가 -5% 급락했듯, 돌발 합의 시 Brent는 연말 $80까지, 10Y는 3.75% 근처로 급락 가능(Wood Mac 시나리오)"
+      "trigger_today": "함의금리 +10bp 급등 + FOMC 의사록 '인상 가능성' 명기 → 시장이 처음으로 '다음 움직임=인상' 가격화",
+      "bear_steelman": "유가 하락과 협상 진전으로 2~3주 내 호르무즈 일부 재개 시 인플레 압력 완화되고 Fed 인상 기대 급반전 가능. 함의금리 3.73%는 현 정책금리 3.625% 대비 여전히 높아 시장이 인하 여지 남겼다고 해석 가능"
     }
   ]
 }
