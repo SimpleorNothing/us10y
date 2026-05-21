@@ -1,0 +1,61 @@
+{
+  "last_updated": "2026-05-21T22:00:00Z",
+  "scenarios": {
+    "bull": {
+      "label": "Bull",
+      "range": "3.75-4.0%",
+      "description": "호르무즈 완전 재개 + 유가 $70대 복귀 + Fed 인하"
+    },
+    "base": {
+      "label": "Base",
+      "range": "4.3-4.6%",
+      "description": "점진적 정상화, Fed 동결 유지, 인플레 끈적"
+    },
+    "bear": {
+      "label": "Bear",
+      "range": "5.0%+",
+      "description": "호르무즈 분쟁 지속·재격화 + Fed 인상 재개"
+    }
+  },
+  "history": [
+    {
+      "date": "2026-05-20",
+      "markets": {
+        "ten_year": 4.67,
+        "thirty_year": 5.20,
+        "brent": 110.5,
+        "wti": 102.0
+      },
+      "probabilities": {"bull": 15, "base": 45, "bear": 40},
+      "summary": "이란 전쟁·호르무즈 봉쇄로 10Y 16개월 고점·30Y 18년 고점. IB들의 작년 말 4% 전망은 사실상 사망.",
+      "key_drivers": [
+        {"name": "Brent", "value": "$110.5", "direction": "bear"},
+        {"name": "30Y yield", "value": "5.20% (18년 고점)", "direction": "bear"},
+        {"name": "Fed Dec hike odds", "value": "~50%", "direction": "bear"},
+        {"name": "Goldman recession odds", "value": "30%", "direction": "bull"}
+      ],
+      "trigger_today": "FOMC 의사록 대기 (5/20 발표 예정)",
+      "bear_steelman": "골드만/JPM의 경기침체 확률 30-40%가 현실화되면 Fed가 결국 인하로 선회, Bull 시나리오 부활 가능"
+    },
+    {
+      "date": "2026-05-21",
+      "markets": {
+        "ten_year": 4.63,
+        "thirty_year": 5.20,
+        "brent": 105.0,
+        "wti": 99.85
+      },
+      "probabilities": {"bull": 13, "base": 40, "bear": 47},
+      "summary": "FOMC 의사록 매파 surprise — 다수 위원이 인플레 지속 시 인상 고려. 30Y 19년 고점 갱신.",
+      "key_drivers": [
+        {"name": "FOMC minutes", "value": "다수 위원 인상 시사", "direction": "bear"},
+        {"name": "30Y", "value": "5.20% (19년 고점)", "direction": "bear"},
+        {"name": "Brent", "value": "$105 (-5%)", "direction": "bull"},
+        {"name": "Iran 협상", "value": "슈퍼탱커 3척 호르무즈 통과", "direction": "bull"},
+        {"name": "ADNOC CEO", "value": "회복 2027년 이후", "direction": "bear"}
+      ],
+      "trigger_today": "FOMC 의사록 hawkish surprise — 4명 반대표 (1992년 이래 최다)",
+      "bear_steelman": "이란 합의 시그널이 진짜라면 유가 급락 → 헤드라인 인플레 안정 → Fed 매파성 약화 가능"
+    }
+  ]
+}
