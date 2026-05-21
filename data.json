@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-21T23:10:29Z",
+  "last_updated": "2026-05-21T23:19:41Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -386,50 +386,45 @@
       "markets": {
         "ten_year": 4.59,
         "thirty_year": 5.11,
-        "brent": 104.63,
-        "wti": 97.73,
+        "brent": 104.82,
+        "wti": 97.85,
         "fed_funds_implied": 3.73
       },
       "probabilities": {
-        "bull": 12,
-        "base": 33,
-        "bear": 55
+        "bull": 18,
+        "base": 37,
+        "bear": 45
       },
-      "summary": "유가 급락(-3~4달러)과 미-이란 협상 진전 기대에도 함의금리 +10bp 급등이 Fed 인상 우려 증폭. FOMC 의사록은 다수가 인플레 지속 시 추가 인상 필요 명시, 12월 인상 확률 40~50%로 상승.",
+      "summary": "미국-이란 협상 진전 기대로 유가 급락했으나, FOMC 의사록 매파 시그널(연내 인상 가능성 언급)과 호르무즈 재개 불확실성이 Bear 확률 유지",
       "key_drivers": [
         {
-          "name": "Brent/WTI",
-          "value": "$104.6/$97.7 (-3.32/-3.89)",
+          "name": "이란 협상 진전",
+          "value": "트럼프 '최종 단계' 발언, 이란 검토 중",
           "direction": "bull"
         },
         {
-          "name": "Fed Funds 30D 함의금리",
-          "value": "3.73% (+10bp)",
+          "name": "FOMC 의사록 5/20 공개",
+          "value": "다수가 인플레 지속 시 인상 가능 명시",
           "direction": "bear"
         },
         {
-          "name": "FOMC 의사록 (최신)",
-          "value": "다수 위원 추가 인상 언급, 인플레 지속 우려",
+          "name": "Brent 유가",
+          "value": "$104.82 (+0.19), 전일 5% 급락 후 반등",
+          "direction": "base"
+        },
+        {
+          "name": "CME FedWatch 6월",
+          "value": "동결 99.2%, 연말 인상 확률 40-50%",
           "direction": "bear"
         },
         {
-          "name": "CME FedWatch 12월 인상 확률",
-          "value": "~40~51% (vs 동결)",
-          "direction": "bear"
-        },
-        {
-          "name": "호르무즈 해협",
-          "value": "협상 계속되나 실질 재개 없음, 사우디 CEO '27년말까지 회복 불가'",
-          "direction": "bear"
-        },
-        {
-          "name": "10Y yield 고점",
-          "value": "4.59% (2025년 2월 이후 최고)",
+          "name": "10Y yield",
+          "value": "4.59% 변동 없음, 2월 이후 최고치 근처",
           "direction": "bear"
         }
       ],
-      "trigger_today": "함의금리 +10bp 급등 + FOMC 의사록 '인상 가능성' 명기 → 시장이 처음으로 '다음 움직임=인상' 가격화",
-      "bear_steelman": "유가 하락과 협상 진전으로 2~3주 내 호르무즈 일부 재개 시 인플레 압력 완화되고 Fed 인상 기대 급반전 가능. 함의금리 3.73%는 현 정책금리 3.625% 대비 여전히 높아 시장이 인하 여지 남겼다고 해석 가능"
+      "trigger_today": "FOMC 의사록(5/20 공개)에서 '인플레 2% 상회 지속 시 추가 인상 적절' 다수 견해 확인 + 이란 협상 낙관론 유가 일시 급락",
+      "bear_steelman": "이란 협상 타결 시 유가 $70대 복귀로 인플레 완화, Fed가 연말 인하 전환해 Bull 시나리오 가능하나 협상 역사적으로 반복 실패하며 호르무즈 재개 2027년 후 예상"
     }
   ]
 }
