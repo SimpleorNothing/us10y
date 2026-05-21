@@ -134,11 +134,12 @@
         maintainAspectRatio: false,
         plugins: {
           legend: {
-            position: "top",
+            position: "bottom",
             labels: {
               color: tickColor,
               boxWidth: 10,
               boxHeight: 10,
+              padding: 12,
               font: { size: 12 },
               usePointStyle: true,
               pointStyle: "rectRounded"
@@ -159,7 +160,7 @@
           y: {
             stacked: history.length <= 3,
             beginAtZero: true,
-            max: history.length <= 3 ? 100 : 70,
+            max: history.length <= 3 ? 100 : 80,
             grid: { color: gridColor },
             ticks: {
               color: tickColor,
