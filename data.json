@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-21T14:04:22Z",
+  "last_updated": "2026-05-21T15:15:15Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -18,6 +18,276 @@
     }
   },
   "history": [
+    {
+      "date": "2026-05-13",
+      "markets": {
+        "ten_year": 4.48,
+        "thirty_year": 5.05,
+        "brent": 105.63,
+        "wti": 101.02
+      },
+      "probabilities": {
+        "bull": 20,
+        "base": 30,
+        "bear": 50
+      },
+      "summary": "5월13일 호르무즈 인도선박 피격, 협상 교착 지속·유가 $105선 급등락, 4월 CPI 3.8%(3년 최고) 직후 Bear 확률 급등",
+      "key_drivers": [
+        {
+          "name": "호르무즈 해협",
+          "value": "5/13 인도 화물선 Haji Ali 피격, Operation Project Freedom(5/4 시작) 일시중단 후 재개 불확실, 듀얼 봉쇄 지속",
+          "direction": "bear"
+        },
+        {
+          "name": "미-이란 협상",
+          "value": "5/11 이란 외무부 미국 제안 '일방적·불합리' 비난, 트럼프 5/11 이란 조건 totally unacceptable, 교착 심화",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 CPI",
+          "value": "5/12 발표 YoY 3.8%(2023.5 이후 최고), 에너지 YoY +17.9%, 시장 rate cut 기대 사실상 소멸",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y 금리",
+          "value": "5/13 종가 4.48% (+2bp), 5/12 기준 16개월 고점 4.7% 근접, 50% rate hike 확률 대두",
+          "direction": "bear"
+        },
+        {
+          "name": "유가",
+          "value": "5/13 Brent $105.63(-2.14), WTI $101.02(-1.16), 전일 대비 하락하나 전쟁 전 대비 +50% 고수준 유지",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed",
+          "value": "4/29 FOMC 금리 동결(3.5~3.75%), Jerome Powell 마지막 회의(임기 5/15 종료), Kevin Warsh 후임 지명 임박",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "5/13 호르무즈 인도선 피격 사건 발생, 교착된 협상·고착화된 유가·CPI 충격 복합 작용으로 연말 5%+ Bear 시나리오 우세 전환",
+      "bear_steelman": "유가 일중 2달러 하락은 공급 복원 기대 신호이며, 협상 결렬 시 트럼프가 2~3일 내 타격 재개 경고는 역설적으로 조기 합의 압박 강화로 Bull 시나리오 재점화 가능성 존재"
+    },
+    {
+      "date": "2026-05-14",
+      "markets": {
+        "ten_year": 4.46,
+        "thirty_year": 5.01,
+        "brent": 105.72,
+        "wti": 101.17
+      },
+      "probabilities": {
+        "bull": 15,
+        "base": 30,
+        "bear": 55
+      },
+      "summary": "미·이란 협상 교착 속 우호적 대화 지속, CPI 3.8%로 3년래 최고, 유가는 횡보. 연말 금리 인상 가능성 50%로 확대",
+      "key_drivers": [
+        {
+          "name": "미·이란 협상",
+          "value": "Abbas Araghchi '협상 교착 상태, 핵농축 문제 연기' 발언(5/14)",
+          "direction": "bear"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "조건부 휴전 연장 중, 실질 통행 5% 수준, 해상 봉쇄 지속",
+          "direction": "bear"
+        },
+        {
+          "name": "April CPI",
+          "value": "전년비 3.8%, 3년래 최고(5/12 발표), 에너지 +17.9% YoY",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "$105.72/$101.17(+0.09/+0.15), 트럼프-시진핑 호르무즈 논의로 횡보",
+          "direction": "base"
+        },
+        {
+          "name": "FOMC(4/29)",
+          "value": "3.50-3.75% 동결, Powell '중동 불확실성 높음' 언급, 최종 기자회견",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed 인하 기대",
+          "value": "CME FedWatch 2027년말까지 인하 확률 거의 제로, 12월 인상 50%",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y yield",
+          "value": "4.46%(-2bp), 5월 초 최고 대비 소폭 하락, 30Y 5.01%(-4bp)",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "5/14 이란 외무장관 '핵농축 문제 교착, 추후 단계 연기' 발언 + 트럼프-시진핑 호르무즈 논의로 유가 미세 상승",
+      "bear_steelman": "트럼프-시 전화통화 이후 중국이 호르무즈 재개 압박 가세하면 협상 급진전 가능, 유가 $70대 복귀 시나리오 여전히 존재"
+    },
+    {
+      "date": "2026-05-15",
+      "markets": {
+        "ten_year": 4.59,
+        "thirty_year": 5.13,
+        "brent": 109.26,
+        "wti": 105.42
+      },
+      "probabilities": {
+        "bull": 8,
+        "base": 22,
+        "bear": 70
+      },
+      "summary": "10Y 4.59%, 30Y 5.13%로 급등하며 2025년 2월 이후 최고치 기록. 호르무즈 분쟁 지속에 유가는 Brent $109, WTI $105 돌파. 이란 외무장관 '미국 불신' 발언, 협상 진전 미미.",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.59% (+13bp, 2025년 2월 이후 최고)",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield",
+          "value": "5.13% (+12bp, 거의 1년래 최고)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent crude",
+          "value": "$109.26 (+$3.54), 호르무즈 봉쇄 지속",
+          "direction": "bear"
+        },
+        {
+          "name": "WTI crude",
+          "value": "$105.42 (+$4.25), 공급 차단 우려",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 CPI",
+          "value": "전월비 +0.6%, 전년비 +3.8% (5/12 발표)",
+          "direction": "bear"
+        },
+        {
+          "name": "Iran Foreign Minister",
+          "value": "5/15 '미국 전혀 신뢰 불가' 발언",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed 금리 인상 기대",
+          "value": "연내 인상 확률 60% 반영 (5/15 시점)",
+          "direction": "bear"
+        },
+        {
+          "name": "Kevin Warsh 취임",
+          "value": "5/15 파월 임기 종료, 신임 의장 매파 우려",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "5/15 이란 외무장관 '미국 불신' 재확인 + 파월 퇴임·Warsh 취임 + 유가 폭등에 10Y 13bp 급등",
+      "bear_steelman": "5/6 트럼프의 Project Freedom 일시 중단 발표로 협상 진전 기대가 일부 존재했으나, 5/15 이란의 강경 발언과 실질 해협 통행 재개 부재로 Bear 시나리오가 압도적 우세"
+    },
+    {
+      "date": "2026-05-18",
+      "markets": {
+        "ten_year": 4.62,
+        "thirty_year": 5.15,
+        "brent": 112.1,
+        "wti": 108.66
+      },
+      "probabilities": {
+        "bull": 6,
+        "base": 18,
+        "bear": 76
+      },
+      "summary": "트럼프가 5월18일(월) 계획된 이란 공습을 취소하며 협상 진전 시사했으나, 호르무즈는 여전히 폐쇄되고 유가는 Brent $112.1(+2.84), WTI $108.66(+3.24)로 급등. 10Y 금리 4.62%(+3bp), 30Y 5.15%로 상승.",
+      "key_drivers": [
+        {
+          "name": "트럼프 공습 취소 발표",
+          "value": "5월18일 공습 중단, 걸프국 요청·협상 진전 이유",
+          "direction": "bull"
+        },
+        {
+          "name": "호르무즈 실질 상황",
+          "value": "여전히 대부분 폐쇄, 3월 이후 탱커 흐름 중단 지속",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "$112.1/$108.66, 전주 대비 상승 지속, 3월 고점($116/$115) 근접",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y 금리",
+          "value": "4.62%(+3bp), 16개월 최고치 4.7% 근접, 인플레 우려",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 FOMC 결과",
+          "value": "4월29일 3.5~3.75% 동결, 4명 반대(Miran 인하 선호, 3명 긴축 편향)",
+          "direction": "base"
+        },
+        {
+          "name": "IB 전망 변화",
+          "value": "BofA, 2026년 인하 전망 철회→2027년 7·9월로 연기(5월11일)",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "트럼프 공습 취소 발표로 단기 완화 기대감 부상했으나, 유가는 급등·금리는 상승하며 Bear 시나리오 고착화 지속",
+      "bear_steelman": "협상 진전 시그널로 6월 중 호르무즈 부분 재개 시 유가 $70대 복귀 가능, 이 경우 Fed 9월 인하 재개 및 10Y 4.0% 하회 가능"
+    },
+    {
+      "date": "2026-05-19",
+      "markets": {
+        "ten_year": 4.67,
+        "thirty_year": 5.18,
+        "brent": 111.28,
+        "wti": 107.77
+      },
+      "probabilities": {
+        "bull": 8,
+        "base": 24,
+        "bear": 68
+      },
+      "summary": "트럼프, 이란 공격 취소하며 협상 진전 시사했으나 호르무즈 해협 실질 폐쇄 지속. 10Y 4.67%로 16개월 최고, 유가는 $111로 소폭 하락하며 협상 불확실성 지속",
+      "key_drivers": [
+        {
+          "name": "10Y Yield",
+          "value": "4.67% (+5bp, 16개월 최고)",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y Yield",
+          "value": "5.18% (+3bp, 18년 최고)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent",
+          "value": "$111.28 (-0.82, 전일비 소폭 하락)",
+          "direction": "base"
+        },
+        {
+          "name": "이란 협상",
+          "value": "트럼프 화요일 공격 취소, 14-point 제안 평가 중",
+          "direction": "base"
+        },
+        {
+          "name": "호르무즈",
+          "value": "정전협정 연장했으나 실질 폐쇄(3척 수퍼탱커만 통과)",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed 정책",
+          "value": "4월 FOMC '인플레 상승, 중동 불확실성', 동결 유지",
+          "direction": "bear"
+        },
+        {
+          "name": "인플레 전망",
+          "value": "Q2 CPI 6% 예상(Survey of Professional Forecasters)",
+          "direction": "bear"
+        },
+        {
+          "name": "PCE",
+          "value": "3월 YoY 3.5%, Core 3.2%로 2% 목표 대비 고착",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "트럼프, 계획된 이란 공격 취소하며 '진지한 협상 진행 중'이라 밝혔으나 호르무즈 해협 실질 폐쇄 유지되며 금리 16개월 최고 경신",
+      "bear_steelman": "유가가 3월 $118 대비 -6% 하락하고 3척 탱커가 통과했으며 트럼프가 공격을 취소한 점은 협상 타결 가능성을 시사하므로 Bear 확률 과대 평가일 수 있음"
+    },
     {
       "date": "2026-05-20",
       "markets": {
