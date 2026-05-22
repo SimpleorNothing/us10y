@@ -11,6 +11,12 @@ on:
 permissions:
   contents: write
 
+# Serialize with any other workflow that writes data.json (e.g. backfill)
+# so two runs never race each other's push.
+concurrency:
+  group: us10y-data-write
+  cancel-in-progress: false
+
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -39,11 +45,23 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [[ -n "$(git status --porcelain data.json)" ]]; then
-            git add data.json
-            git commit -m "chore: daily update $(TZ=Asia/Seoul date +%Y-%m-%d)"
-            git push
-            echo "✓ Pushed update"
-          else
+          if [[ -z "$(git status --porcelain data.json)" ]]; then
             echo "No changes to commit"
+            exit 0
           fi
+          git add data.json
+          git commit -m "chore: daily update $(TZ=Asia/Seoul date +%Y-%m-%d)"
+          # Push with rebase-retry: if the remote advanced while we ran, replay
+          # our data.json on top (preferring our fresh values) and retry.
+          for attempt in 1 2 3 4 5; do
+            if git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "✓ Pushed update (attempt ${attempt})"
+              exit 0
+            fi
+            echo "Push rejected; rebasing onto latest (attempt ${attempt})"
+            git fetch origin "${GITHUB_REF_NAME}"
+            git rebase -X theirs "origin/${GITHUB_REF_NAME}" || git rebase --abort
+            sleep $((attempt * 2))
+          done
+          echo "✗ Push failed after retries"
+          exit 1
