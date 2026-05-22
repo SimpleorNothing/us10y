@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-21T23:19:41Z",
+  "last_updated": "2026-05-22T22:44:18Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -425,6 +425,56 @@
       ],
       "trigger_today": "FOMC 의사록(5/20 공개)에서 '인플레 2% 상회 지속 시 추가 인상 적절' 다수 견해 확인 + 이란 협상 낙관론 유가 일시 급락",
       "bear_steelman": "이란 협상 타결 시 유가 $70대 복귀로 인플레 완화, Fed가 연말 인하 전환해 Bull 시나리오 가능하나 협상 역사적으로 반복 실패하며 호르무즈 재개 2027년 후 예상"
+    },
+    {
+      "date": "2026-05-23",
+      "markets": {
+        "ten_year": 4.56,
+        "thirty_year": 5.06,
+        "brent": 103.94,
+        "wti": 97.0,
+        "fed_funds_implied": 3.67
+      },
+      "probabilities": {
+        "bull": 22,
+        "base": 40,
+        "bear": 38
+      },
+      "summary": "<cite index=\"4-2,4-7\">미국-이란 협상에서 호르무즈 해협 통행료 및 농축우라늄 이슈로 교착 상태</cite>가 지속되며 <cite index=\"16-6,16-7\">이란 최고지도자가 농축우라늄 해외 반출을 거부하고 호르무즈 통제 기구 설립을 선언</cite>했으나, <cite index=\"19-8\">Rubio 국무장관이 협상 진전 조짐을 언급</cite>하며 양면적 신호 발생. 유가는 전일 대비 소폭 하락했으나 <cite index=\"16-3,19-13\">전쟁 전 대비 약 50% 상승 유지</cite>. <cite index=\"12-15,26-7\">FOMC 의사록은 인플레이션 지속 시 추가 인상 가능성을 언급하며 시장은 12월 25bp 인상 확률을 약 40%로 평가</cite>.",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.56% (-3bp)",
+          "direction": "base"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.67% (-6bp, 목표금리 3.5~3.75% 하단 근접)",
+          "direction": "bull"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "$103.94/$97.0 (-0.88/-0.85, 전쟁 전 대비 +50%)",
+          "direction": "bear"
+        },
+        {
+          "name": "호르무즈 협상",
+          "value": "교착: 이란 통제권 주장 vs 미국 자유 통행 요구",
+          "direction": "bear"
+        },
+        {
+          "name": "FOMC 의사록",
+          "value": "인플레 지속 시 추가 인상 언급, 12월 인상 확률 40%",
+          "direction": "bear"
+        },
+        {
+          "name": "EIA 전망",
+          "value": "2Q26 Brent $106/b, 4Q26 $89/b 예상 (호르무즈 5월말 부분 재개 가정)",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "<cite index=\"4-2,4-8,16-6,16-7\">이란 최고지도자 농축우라늄 반출 거부 지시 및 호르무즈 통제 기구(Persian Gulf Strait Authority) 설립 발표로 협상 난항 심화</cite>, 동시에 <cite index=\"19-8\">Rubio '긍정 신호' 언급으로 양면 신호</cite>",
+      "bear_steelman": "<cite index=\"12-16\">Desk 서베이 중앙값은 2026년 내 25bp 인하 2회를 3~4분기에 예상</cite>하며, <cite index=\"22-9,22-10\">EIA는 호르무즈 점진 재개 시 4Q26 Brent $89/b, 2027년 $79/b로 하락 전망</cite>해 연말 Bull 시나리오(3.75~4.0%)도 가능하다는 시각 존재"
     }
   ]
 }
