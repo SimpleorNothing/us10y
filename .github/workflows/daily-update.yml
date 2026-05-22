@@ -2,10 +2,13 @@ name: Daily US10Y Update
 
 on:
   schedule:
-    # KST 06:50 = UTC 21:50. Minute offset from :00 is deliberate — GitHub
-    # drops/delays top-of-hour cron under peak load, so :50 is far more
-    # reliable. US market closes ~UTC 20:00-21:00, so the close is fresh.
+    # Twice daily. Minute offset from :00 is deliberate — GitHub drops/delays
+    # top-of-hour cron under peak load, so :50 is far more reliable.
+    # KST 06:50 = UTC 21:50 (prev day). US market closes ~UTC 20:00-21:00, so
+    # the close is fresh for the morning run.
     - cron: "50 21 * * *"
+    # KST 18:50 = UTC 09:50, an intraday refresh during the KST evening.
+    - cron: "50 9 * * *"
   workflow_dispatch: # Allow manual trigger from Actions tab
 
 permissions:
