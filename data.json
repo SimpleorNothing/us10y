@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-22T22:44:18Z",
+  "last_updated": "2026-05-25T22:45:38Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -475,6 +475,61 @@
       ],
       "trigger_today": "<cite index=\"4-2,4-8,16-6,16-7\">이란 최고지도자 농축우라늄 반출 거부 지시 및 호르무즈 통제 기구(Persian Gulf Strait Authority) 설립 발표로 협상 난항 심화</cite>, 동시에 <cite index=\"19-8\">Rubio '긍정 신호' 언급으로 양면 신호</cite>",
       "bear_steelman": "<cite index=\"12-16\">Desk 서베이 중앙값은 2026년 내 25bp 인하 2회를 3~4분기에 예상</cite>하며, <cite index=\"22-9,22-10\">EIA는 호르무즈 점진 재개 시 4Q26 Brent $89/b, 2027년 $79/b로 하락 전망</cite>해 연말 Bull 시나리오(3.75~4.0%)도 가능하다는 시각 존재"
+    },
+    {
+      "date": "2026-05-26",
+      "markets": {
+        "ten_year": 4.56,
+        "thirty_year": 5.06,
+        "brent": 93.78,
+        "wti": 90.56,
+        "fed_funds_implied": 3.675
+      },
+      "probabilities": {
+        "bull": 30,
+        "base": 42,
+        "bear": 28
+      },
+      "summary": "유가 급락(-10% 이상)과 미국-이란 협상 진전 기대감으로 Bull 시나리오 확률 상승, 하지만 FOMC 의사록에서 다수 위원이 인플레 지속시 정책긴축(인상) 가능성 명시하며 Bear 리스크 잔존",
+      "key_drivers": [
+        {
+          "name": "Brent 유가",
+          "value": "$93.78 (-10.16, 1주간 -6%)",
+          "direction": "bull"
+        },
+        {
+          "name": "WTI 유가",
+          "value": "$90.56 (-6.44, ~6% 하락)",
+          "direction": "bull"
+        },
+        {
+          "name": "호르무즈 협상",
+          "value": "Trump '대체로 협상 완료' 발언, 이란 부인, Rubio '진전중'",
+          "direction": "base"
+        },
+        {
+          "name": "4월 FOMC 의사록",
+          "value": "다수 참여자: 인플레 2% 초과 지속시 추가 인상 필요 / easing bias 제거 선호",
+          "direction": "bear"
+        },
+        {
+          "name": "CME 6월 FOMC",
+          "value": "동결 99.9% / 인하 0% / 12월 인상 확률 40% (일부 출처 25bp 인상 프라이싱)",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.675% (불변), 현재 밴드 3.50-3.75% 대비 중립~약간 인하 함의",
+          "direction": "base"
+        },
+        {
+          "name": "10Y 금리",
+          "value": "4.56% (불변), IB 연말 전망 3.75-4.25% 범위",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "Brent/WTI 10% 급락으로 인플레 완화 기대 고조, 동시에 4월 FOMC 의사록 공개로 Fed 매파 전환(인상 가능성) 우려 부각되며 시나리오 확률 재조정",
+      "bear_steelman": "유가가 급락했으나 여전히 전쟁 전 대비 50% 높은 수준이고, FOMC 의사록은 '다수가 2% 초과 인플레 지속시 인상 필요' 명시—시장은 12월 인상 확률을 40%로 프라이싱 중이며, 협상 결렬시 유가 재급등과 Fed 인상 재개 시나리오가 현실화될 수 있다"
     }
   ]
 }
