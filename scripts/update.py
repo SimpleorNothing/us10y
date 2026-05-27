@@ -235,7 +235,8 @@ def update_data_file(markets: dict, analysis: dict) -> None:
 def main() -> int:
     print(f"=== US 10Y Tracker Update — {datetime.now(KST).strftime('%Y-%m-%d %H:%M KST')} ===")
 
-    markets = fetch_market_data()
+    today = datetime.now(KST).strftime("%Y-%m-%d")
+    force = os.environ.get("FORCE_UPDATE", "").strip().lower() in ("1", "true", "yes")
 
     # Load previous snapshot for context
     prev_snapshot = None
@@ -243,9 +244,15 @@ def main() -> int:
         with DATA_FILE.open("r", encoding="utf-8") as f:
             data = json.load(f)
             history = data.get("history", [])
+            # Backup cron runs fire even after the primary already landed
+            # today's snapshot. Skip the (paid) API call unless forced.
+            if not force and any(h.get("date") == today for h in history):
+                print(f"Snapshot for {today} already exists; skipping (set FORCE_UPDATE=1 to override).")
+                return 0
             if history:
                 prev_snapshot = history[-1]
 
+    markets = fetch_market_data()
     analysis = call_claude(markets, prev_snapshot)
     update_data_file(markets, analysis)
     print("=== Done ===")
