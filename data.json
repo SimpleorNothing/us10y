@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-27T03:10:57Z",
+  "last_updated": "2026-05-27T23:47:33Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -585,6 +585,51 @@
       ],
       "trigger_today": "트럼프 '협상 대부분 타결' 발표 후 U.S. CENTCOM이 이란 남부 미사일 기지 '자위 공습' 단행, 이란 보복 천명으로 유가 재상승·금리 낙폭 축소",
       "bear_steelman": "10Y -7bp 급락은 호르무즈 재개 낙관을 과도하게 반영; 미-이란 핵 문제 이견 지속 + 4월 의사록의 매파적 톤 + Fed Funds 함의금리 3.65%는 여전히 현 목표(3.5-3.75%) 하단 아래로 인하 0회 프라이싱이며, 유가 재반등시 연말 인상 재개(5%+) 시나리오가 재부상할 가능성"
+    },
+    {
+      "date": "2026-05-28",
+      "markets": {
+        "ten_year": 4.48,
+        "thirty_year": 5.01,
+        "brent": 93.49,
+        "wti": 89.98,
+        "fed_funds_implied": 3.63
+      },
+      "probabilities": {
+        "bull": 42,
+        "base": 35,
+        "bear": 23
+      },
+      "summary": "미-이란 협상 진전 기대감에 유가 급락(-2~5%) 및 10Y 금리 하락 지속. Fed는 인플레 지속시 인상 검토 시사하나 6월 동결 99% 확실",
+      "key_drivers": [
+        {
+          "name": "Brent/WTI",
+          "value": "$93.49/$89.98 (-2~5% 급락)",
+          "direction": "bull"
+        },
+        {
+          "name": "미-이란 협상",
+          "value": "30일內 호르무즈 재개 합의 임박",
+          "direction": "bull"
+        },
+        {
+          "name": "Fed 함의금리",
+          "value": "3.63% (-2bp, 6월 동결 99%)",
+          "direction": "base"
+        },
+        {
+          "name": "FOMC 의사록",
+          "value": "과반이 인플레 지속시 인상 언급",
+          "direction": "bear"
+        },
+        {
+          "name": "12월 인상확률",
+          "value": "CME 54.1% vs 현 3.5~3.75%",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "이란 국영TV가 30일內 호르무즈 상선통행 재개 비공식 합의 보도, WTI 6% 급락하며 5주래 최저",
+      "bear_steelman": "유가 하락으로 Bull 확률 상승했으나, FOMC 의사록이 '인플레 끈적 → 인상 가능성' 명시했고 12월 인상 확률 54%는 Fed Funds 함의금리(3.63%)와 괴리되어 시장 혼선 반영"
     }
   ]
 }
