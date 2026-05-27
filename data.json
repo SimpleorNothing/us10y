@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-25T22:45:38Z",
+  "last_updated": "2026-05-27T03:10:57Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -530,6 +530,61 @@
       ],
       "trigger_today": "Brent/WTI 10% 급락으로 인플레 완화 기대 고조, 동시에 4월 FOMC 의사록 공개로 Fed 매파 전환(인상 가능성) 우려 부각되며 시나리오 확률 재조정",
       "bear_steelman": "유가가 급락했으나 여전히 전쟁 전 대비 50% 높은 수준이고, FOMC 의사록은 '다수가 2% 초과 인플레 지속시 인상 필요' 명시—시장은 12월 인상 확률을 40%로 프라이싱 중이며, 협상 결렬시 유가 재급등과 Fed 인상 재개 시나리오가 현실화될 수 있다"
+    },
+    {
+      "date": "2026-05-27",
+      "markets": {
+        "ten_year": 4.49,
+        "thirty_year": 5.03,
+        "brent": 95.37,
+        "wti": 92.35,
+        "fed_funds_implied": 3.65
+      },
+      "probabilities": {
+        "bull": 38,
+        "base": 37,
+        "bear": 25
+      },
+      "summary": "미국-이란 협상 '대부분 타결' 보도에 10Y -7bp 급락했으나 U.S. 재공습과 이란 반발로 호르무즈 재개 불확실성 지속; 4월 FOMC 의사록은 인플레 지속시 인상 가능성 시사",
+      "key_drivers": [
+        {
+          "name": "미-이란 협상",
+          "value": "60일 MOU 협의 중이나 U.S. 공습 재개로 합의 지연",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "$95/$92 (+1.59/+1.79) 재반등, 호르무즈 재개 낙관 후퇴",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 FOMC 의사록",
+          "value": "과반 위원 인플레 2% 이상 지속시 추가 인상 지지",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.65% (-2bp), 6월 FOMC 99.9% 동결 유지",
+          "direction": "base"
+        },
+        {
+          "name": "10Y yield",
+          "value": "4.49% (-7bp), 협상 진전 기대에 급락",
+          "direction": "bull"
+        },
+        {
+          "name": "30Y yield",
+          "value": "5.03% (-3bp), 장기물도 하락",
+          "direction": "bull"
+        },
+        {
+          "name": "UBS 재고 분석",
+          "value": "3-4월 246M배럴 감소, 시장 '강한 공급부족' 경고",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "트럼프 '협상 대부분 타결' 발표 후 U.S. CENTCOM이 이란 남부 미사일 기지 '자위 공습' 단행, 이란 보복 천명으로 유가 재상승·금리 낙폭 축소",
+      "bear_steelman": "10Y -7bp 급락은 호르무즈 재개 낙관을 과도하게 반영; 미-이란 핵 문제 이견 지속 + 4월 의사록의 매파적 톤 + Fed Funds 함의금리 3.65%는 여전히 현 목표(3.5-3.75%) 하단 아래로 인하 0회 프라이싱이며, 유가 재반등시 연말 인상 재개(5%+) 시나리오가 재부상할 가능성"
     }
   ]
 }
