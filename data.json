@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-27T23:47:33Z",
+  "last_updated": "2026-05-28T23:53:33Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -630,6 +630,56 @@
       ],
       "trigger_today": "이란 국영TV가 30일內 호르무즈 상선통행 재개 비공식 합의 보도, WTI 6% 급락하며 5주래 최저",
       "bear_steelman": "유가 하락으로 Bull 확률 상승했으나, FOMC 의사록이 '인플레 끈적 → 인상 가능성' 명시했고 12월 인상 확률 54%는 Fed Funds 함의금리(3.63%)와 괴리되어 시장 혼선 반영"
+    },
+    {
+      "date": "2026-05-29",
+      "markets": {
+        "ten_year": 4.45,
+        "thirty_year": 4.98,
+        "brent": 92.29,
+        "wti": 88.38,
+        "fed_funds_implied": 3.65
+      },
+      "probabilities": {
+        "bull": 48,
+        "base": 32,
+        "bear": 20
+      },
+      "summary": "미국-이란 임시 합의 보도로 유가 급락(-1.2~1.6$)하며 10Y 금리는 4.45%(-3bp)로 하락. 그러나 함의금리 +2bp 상승은 Fed 인하 기대 후퇴를 시사하며 Bear 시나리오를 지지.",
+      "key_drivers": [
+        {
+          "name": "US-Iran MoU (tentative)",
+          "value": "트럼프 서명 대기, 호르무즈 30일내 개방 포함",
+          "direction": "bull"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "$92.29/$88.38 (주간 2연속 하락세), 협상 진전 반영",
+          "direction": "bull"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.65% (+2bp), 6월 FOMC 동결 99.9% (CME FedWatch 5/25)",
+          "direction": "bear"
+        },
+        {
+          "name": "12월 FOMC 인상 확률",
+          "value": "54.1% (CME), Kalshi는 27년7월까지 인상 확률 63%",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield 5/19 peak",
+          "value": "5.19% (2007년 이후 최고), BofA 서베이 62%가 6% 예상",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 FOMC 의사록",
+          "value": "다수 위원이 인플레 지속시 인상 적절 언급, 완화 편향 제거 압력",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "CNN: 미국-이란 잠정 합의 (트럼프 미서명), 이란은 쿠웨이트향 미사일 발사 지속 → 유가 하락에도 재격화 리스크 상존",
+      "bear_steelman": "유가가 $90대 초반까지 하락했지만, 이란 미사일 공격 재발과 Fed 내부 매파 우세(12월 인상 확률 54%)를 감안하면 5% 돌파 시나리오가 과소평가됐을 수 있다."
     }
   ]
 }
