@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-28T23:53:33Z",
+  "last_updated": "2026-05-29T23:00:51Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -680,6 +680,61 @@
       ],
       "trigger_today": "CNN: 미국-이란 잠정 합의 (트럼프 미서명), 이란은 쿠웨이트향 미사일 발사 지속 → 유가 하락에도 재격화 리스크 상존",
       "bear_steelman": "유가가 $90대 초반까지 하락했지만, 이란 미사일 공격 재발과 Fed 내부 매파 우세(12월 인상 확률 54%)를 감안하면 5% 돌파 시나리오가 과소평가됐을 수 있다."
+    },
+    {
+      "date": "2026-05-30",
+      "markets": {
+        "ten_year": 4.45,
+        "thirty_year": 4.99,
+        "brent": 91.7,
+        "wti": 87.76,
+        "fed_funds_implied": 3.645
+      },
+      "probabilities": {
+        "bull": 52,
+        "base": 30,
+        "bear": 18
+      },
+      "summary": "미-이란 잠정 합의 진전으로 유가 급락(-17% 월간), 10Y 4.45% 안정되며 Bull 시나리오 확률 상승. 단, 트럼프 최종 승인 미결로 불확실성 잔존.",
+      "key_drivers": [
+        {
+          "name": "호르무즈 해협 협상",
+          "value": "60일 정전+무제한 통행 MoU 잠정 합의, 트럼프/이란 최고지도자 승인 대기",
+          "direction": "bull"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "$91.7/$87.76 (전일 대비 -0.6), 5월 -17% 월간 최대 낙폭",
+          "direction": "bull"
+        },
+        {
+          "name": "April PCE",
+          "value": "헤드라인 3.8%, 코어 3.3% (예상 하회, 5/28 발표)",
+          "direction": "bull"
+        },
+        {
+          "name": "CME FedWatch Jun",
+          "value": "동결 70%, 인하 28%, 인상 2% (5/25 기준)",
+          "direction": "base"
+        },
+        {
+          "name": "Fed Funds 30D 함의",
+          "value": "3.645% (0bp 변동), 현 목표 3.50-3.75% 대비 인하 반영 미미",
+          "direction": "base"
+        },
+        {
+          "name": "April FOMC Minutes",
+          "value": "5/20 발표, 다수 위원 '추가 인상 필요 가능' 매파 기조 (13-7)",
+          "direction": "bear"
+        },
+        {
+          "name": "Deutsche Bank 전망",
+          "value": "연말 10Y 4.70% 상향 (기존 4.45%), Warsh 시대 인하 종료 예상 (24-2,3)",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "미-이란 잠정 MoU 보도 후 유가 6주래 최저, 10Y 4.44%까지 하락. 단 이란 강경파 '행동 우선' 발언+트럼프 미승인으로 합의 불투명",
+      "bear_steelman": "유가가 내렸지만 4월 FOMC 의사록이 '추가 인상 가능' 매파 기조를 담았고, 새 Fed 의장 Warsh가 인하 중단을 신호하면 오히려 연말 10Y 4.70%+ 재상승 가능"
     }
   ]
 }
