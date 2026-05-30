@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-29T23:00:51Z",
+  "last_updated": "2026-05-30T22:42:14Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -735,6 +735,56 @@
       ],
       "trigger_today": "미-이란 잠정 MoU 보도 후 유가 6주래 최저, 10Y 4.44%까지 하락. 단 이란 강경파 '행동 우선' 발언+트럼프 미승인으로 합의 불투명",
       "bear_steelman": "유가가 내렸지만 4월 FOMC 의사록이 '추가 인상 가능' 매파 기조를 담았고, 새 Fed 의장 Warsh가 인하 중단을 신호하면 오히려 연말 10Y 4.70%+ 재상승 가능"
+    },
+    {
+      "date": "2026-05-31",
+      "markets": {
+        "ten_year": 4.45,
+        "thirty_year": 4.99,
+        "brent": 92.05,
+        "wti": 87.36,
+        "fed_funds_implied": 3.63
+      },
+      "probabilities": {
+        "bull": 58,
+        "base": 28,
+        "bear": 14
+      },
+      "summary": "이란 IRGC 재공격 위협에도 불구, 미·이란 60일 휴전연장 합의 임박 보도로 유가 급락(Brent $92.05→월초 $114대) 및 인플레 압력 둔화 기대 우세",
+      "key_drivers": [
+        {
+          "name": "호르무즈 협상",
+          "value": "60일 휴전연장 합의 임박 보도, 5/25 美군 이란 타격 후 IRGC 재공격 위협(5/30)",
+          "direction": "bull"
+        },
+        {
+          "name": "Brent 유가",
+          "value": "$92.05, 월간 -17% (4월말 $114.66 대비)",
+          "direction": "bull"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.63% (-2bp), 6월FOMC 인하확률 28%(CME), 동결 70%",
+          "direction": "bull"
+        },
+        {
+          "name": "FOMC 4월 의사록",
+          "value": "5/20 발표, 다수 위원 인상 필요성 언급(인플레 2% 이상 지속시)",
+          "direction": "bear"
+        },
+        {
+          "name": "PCE(5/28)",
+          "value": "헤드라인 3.8%, 코어 3.3%, 예상치 하회했으나 Fed 목표 2% 크게 상회",
+          "direction": "base"
+        },
+        {
+          "name": "Deutsche Bank 전망(5/29)",
+          "value": "10Y 연말 4.70%로 상향(기존 4.45%), Fed 인하 종료 전제",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "이란 IRGC 5/30 '트럼프 배신시 해협 재봉쇄 공격' 발언에도, 60일 휴전연장 合意 임박 관측 강화로 유가 월간 17% 급락",
+      "bear_steelman": "함의금리 3.63%는 현행 Fed 목표(3.50~3.75%)보다 낮지만, 4월 의사록상 다수 위원의 '인상 필요성' 언급과 PCE 3.3%를 고려하면 시장이 인하 과대평가 중; 협상 결렬시 유가 재등반→Fed 인상 리스크"
     }
   ]
 }
