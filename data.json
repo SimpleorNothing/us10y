@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-30T22:42:14Z",
+  "last_updated": "2026-05-31T22:44:01Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -785,6 +785,61 @@
       ],
       "trigger_today": "이란 IRGC 5/30 '트럼프 배신시 해협 재봉쇄 공격' 발언에도, 60일 휴전연장 合意 임박 관측 강화로 유가 월간 17% 급락",
       "bear_steelman": "함의금리 3.63%는 현행 Fed 목표(3.50~3.75%)보다 낮지만, 4월 의사록상 다수 위원의 '인상 필요성' 언급과 PCE 3.3%를 고려하면 시장이 인하 과대평가 중; 협상 결렬시 유가 재등반→Fed 인상 리스크"
+    },
+    {
+      "date": "2026-06-01",
+      "markets": {
+        "ten_year": 4.45,
+        "thirty_year": 4.99,
+        "brent": 92.96,
+        "wti": 89.38,
+        "fed_funds_implied": 3.65
+      },
+      "probabilities": {
+        "bull": 38,
+        "base": 42,
+        "bear": 20
+      },
+      "summary": "미-이란 협상 '매우 근접' 했으나 트럼프 조건 강화로 타결 무산, 유가 재차 등락. Fed는 인플레 지속 시 인상 시나리오 논의 중",
+      "key_drivers": [
+        {
+          "name": "호르무즈 해협 MoU",
+          "value": "트럼프 추가 조건·이란 불신으로 서명 보류",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent/WTI 스프레드",
+          "value": "$3.58 (92.96-89.38), 전일 대비 확대",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 PCE YoY",
+          "value": "3.8% (전월 3.5%)",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 Core PCE YoY",
+          "value": "3.3%",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 FOMC 의사록",
+          "value": "다수 위원 '전쟁 지속 시 인상 필요' 언급",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.65% (+2bp), 시장 인하 기대 축소",
+          "direction": "base"
+        },
+        {
+          "name": "Deutsche Bank 전망",
+          "value": "10Y 연말 4.70% (기존 4.45%→상향)",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "5/29~30 협상 '매우 근접'→트럼프 금요 최종결정 회의 후 무발표, 호르무즈 재개 불확실성 재부상",
+      "bear_steelman": "오늘 10Y 4.45% 유지는 '피로도 균형'일 뿐, Fed 의사록 인상 언급+유가 재상승+협상 지연이 6~7월 4.6~4.8% 돌파 시나리오를 뒷받침"
     }
   ]
 }
