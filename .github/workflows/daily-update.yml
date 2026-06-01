@@ -2,10 +2,10 @@ name: Daily US10Y Update
 
 on:
   schedule:
-    # KST 06:50 = UTC 21:50. Minute offset from :00 is deliberate — GitHub
-    # drops/delays top-of-hour cron under peak load, so :50 is far more
-    # reliable. US market closes ~UTC 20:00-21:00, so the close is fresh.
-    - cron: "50 21 * * *"
+    # KST 06:13 = UTC 21:13. Minute offset from :00 is deliberate — GitHub
+    # drops/delays top-of-hour cron under peak load, so an off-hour minute is
+    # far more reliable. US market closes ~UTC 20:00-21:00, so the close is fresh.
+    - cron: "13 21 * * *"
     # Backup runs: GitHub silently drops scheduled cron under load, so a
     # single daily trigger regularly misses. These retries land the update
     # if the primary was dropped. update.py skips re-calling the API when

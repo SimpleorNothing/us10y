@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 US 10Y Treasury Yield Tracker - Daily Update Script
-Runs daily at KST 07:00 (UTC 22:00 previous day) via GitHub Actions.
+Runs daily at KST 06:13 (UTC 21:13 previous day) via GitHub Actions.
 
 Workflow:
   1. Fetch market data (10Y, 30Y yields + Brent/WTI crude) via yfinance
