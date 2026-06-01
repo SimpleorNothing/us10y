@@ -2,7 +2,7 @@
 
 미국 10년 국채금리 연말 시나리오 확률 일별 추적 대시보드.
 
-매일 KST 07:00 (미국장 마감 후, 한국장 개장 전)에 GitHub Actions가:
+매일 KST 06:13 (미국장 마감 후, 한국장 개장 전)에 GitHub Actions가:
 1. yfinance로 시장 데이터 수집 (10Y, 30Y yields + Brent, WTI)
 2. Claude API + web_search로 가이드 v0.2 기반 확률 추정
 3. `data.json`에 누적 → push → Railway 자동 재배포
@@ -22,7 +22,7 @@ samsungda-us10y/
 │   ├── update.py                 # 데일리 업데이트 (yfinance + Claude API)
 │   └── requirements.txt
 ├── .github/workflows/
-│   └── daily-update.yml          # cron: UTC 22:00 = KST 07:00
+│   └── daily-update.yml          # cron: UTC 21:13 = KST 06:13
 ├── server.js                     # Railway용 Express 서버
 ├── package.json                  # Node 의존성
 └── README.md
