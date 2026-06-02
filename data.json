@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-05-31T22:44:01Z",
+  "last_updated": "2026-06-02T01:42:37Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -840,6 +840,51 @@
       ],
       "trigger_today": "5/29~30 협상 '매우 근접'→트럼프 금요 최종결정 회의 후 무발표, 호르무즈 재개 불확실성 재부상",
       "bear_steelman": "오늘 10Y 4.45% 유지는 '피로도 균형'일 뿐, Fed 의사록 인상 언급+유가 재상승+협상 지연이 6~7월 4.6~4.8% 돌파 시나리오를 뒷받침"
+    },
+    {
+      "date": "2026-06-02",
+      "markets": {
+        "ten_year": 4.47,
+        "thirty_year": 4.99,
+        "brent": 94.79,
+        "wti": 91.84,
+        "fed_funds_implied": 3.645
+      },
+      "probabilities": {
+        "bull": 28,
+        "base": 44,
+        "bear": 28
+      },
+      "summary": "이란, 미국과 협상 중단 발표 및 호르무즈 완전 봉쇄 위협으로 유가 7% 급등. 연말 Bear 시나리오 확률 20%→28% 상향.",
+      "key_drivers": [
+        {
+          "name": "이란-미 협상 상태",
+          "value": "중단(이란 발표, 6/2 오전)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent 유가",
+          "value": "$94.79 (+1.94%), 장중 $97 돌파",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y yield",
+          "value": "4.47% (+2bp), 3주 저점서 반등",
+          "direction": "base"
+        },
+        {
+          "name": "CME FedWatch 6월 FOMC",
+          "value": "동결 99.9%, 연말 인상 확률 60%+",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.645% (0bp 변화), 목표 3.625% 대비 +2bp",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "이란 국영통신 타스님, 협상 중단·호르무즈 완전 봉쇄·Bab al-Mandeb까지 활성화 선언 → 유가 7%+ 급등",
+      "bear_steelman": "트럼프는 오늘 'Israel과 헤즈볼라 레바논 공격 중단 합의' 및 '이란과 협상 계속 진행 중'이라고 발표, 유가는 장중 고점 대비 일부 반락해 시장은 외교적 돌파구 가능성을 여전히 반영 중."
     }
   ]
 }
