@@ -874,7 +874,7 @@
         },
         {
           "name": "CME FedWatch 6월 FOMC",
-          "value": "동결 99.9%, 연말 인상 확률 60%+",
+          "value": "6월 동결 98.6%, 연말(12월) 인상 확률 ~51%(CME FedWatch 6/2)",
           "direction": "bear"
         },
         {
@@ -919,7 +919,7 @@
         },
         {
           "name": "Fed Funds 30D",
-          "value": "3.62%(-2bp), 6월 동결 99%, 12월 인상 확률 60%+",
+          "value": "3.62%(-2bp), 6월 동결 98.6%, 12월 인상 확률 ~51%(CME FedWatch 6/2)",
           "direction": "bear"
         },
         {
