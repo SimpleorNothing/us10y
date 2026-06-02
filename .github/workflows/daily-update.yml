@@ -2,14 +2,27 @@ name: Daily US10Y Update
 
 on:
   schedule:
-    # Twice daily. Minute offset from :00 is deliberate — GitHub drops/delays
-    # top-of-hour cron under peak load, so :50 is far more reliable.
-    # KST 06:50 = UTC 21:50 (prev day). US market closes ~UTC 20:00-21:00, so
-    # the close is fresh for the morning run.
-    - cron: "50 21 * * *"
-    # KST 18:50 = UTC 09:50, an intraday refresh during the KST evening.
+    # Morning run. KST 06:13 = UTC 21:13. Minute offset from :00 is deliberate
+    # — GitHub drops/delays top-of-hour cron under peak load, so an off-hour
+    # minute is far more reliable. US market closes ~UTC 20:00-21:00, so the
+    # close is fresh.
+    - cron: "13 21 * * *"
+    # Backup runs: GitHub silently drops scheduled cron under load, so a
+    # single daily trigger regularly misses. These retries land the update
+    # if the primary was dropped. update.py skips re-calling the API when
+    # today's snapshot already exists, so backups are free no-ops once the
+    # day is done.
+    - cron: "40 22 * * *" # KST 07:40
+    - cron: "30 23 * * *" # KST 08:30
+    # Evening run. KST 18:50 = UTC 09:50, an intraday refresh during the
+    # KST evening so the tracker updates twice daily.
     - cron: "50 9 * * *"
   workflow_dispatch: # Allow manual trigger from Actions tab
+    inputs:
+      force:
+        description: "Re-run even if today's snapshot already exists"
+        type: boolean
+        default: true
 
 permissions:
   contents: write
@@ -42,6 +55,7 @@ jobs:
       - name: Run daily update
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          FORCE_UPDATE: ${{ inputs.force }}
         run: python scripts/update.py
 
       - name: Commit and push if changed
