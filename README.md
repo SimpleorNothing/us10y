@@ -1,4 +1,4 @@
-# samsungda.net/us10y
+# us10y.simpleornothing.com
 
 미국 10년 국채금리 연말 시나리오 확률 일별 추적 대시보드.
 
@@ -12,8 +12,8 @@
 ## 디렉토리 구조
 
 ```
-samsungda-us10y/
-├── public/                       # 정적 대시보드 (Railway가 /us10y로 서빙)
+us10y/
+├── public/                       # 정적 대시보드 (Railway가 루트 /로 서빙)
 │   ├── index.html
 │   ├── style.css
 │   └── app.js
@@ -36,17 +36,17 @@ Claude Code 터미널에서:
 
 ```bash
 # 1) 이 폴더 안에서 git 초기화
-cd samsungda-us10y
+cd us10y
 git init
 git add .
 git commit -m "feat: initial US10Y tracker setup"
 
 # 2) GitHub에 새 repo 생성 후 연결 (gh CLI 사용 예)
-gh repo create samsungda-us10y --public --source=. --remote=origin
+gh repo create us10y --public --source=. --remote=origin
 git push -u origin main
 
 # 또는 수동: https://github.com/new 에서 repo 생성 후
-# git remote add origin https://github.com/<your-user>/samsungda-us10y.git
+# git remote add origin https://github.com/<your-user>/us10y.git
 # git push -u origin main
 ```
 
@@ -65,14 +65,17 @@ repo의 **Settings → Secrets and variables → Actions → New repository secr
 ## Railway 배포
 
 1. railway.app에서 새 프로젝트 생성
-2. **Deploy from GitHub repo** 선택 → `samsungda-us10y` 연결
+2. **Deploy from GitHub repo** 선택 → `us10y` 연결
 3. Railway가 `package.json` 감지하고 `npm start` 자동 실행
-4. **Settings → Networking** 에서 도메인 연결:
-   - 옵션 A) Railway 도메인 그대로 사용
-   - 옵션 B) **custom domain**으로 `us10y.samsungda.net` 추가 후 DNS CNAME 설정
-   - 옵션 C) 메인 `samsungda.net` 서비스에서 `/us10y` reverse proxy로 라우팅
+4. **Settings → Networking** 에서 **custom domain**으로 `us10y.simpleornothing.com` 추가
+5. Railway가 표시하는 `CNAME` 대상값을 DNS에 등록:
 
-> **권장**: 메인 `samsungda.net` 서비스가 따로 운영 중이라면, 그 서비스 안에 `/us10y/*` 요청을 이 Railway 서비스(또는 그 도메인)로 reverse proxy. 그러면 URL이 정확히 `samsungda.net/us10y`가 됩니다.
+| Type | Name | Value |
+|---|---|---|
+| `CNAME` | `us10y` | (Railway가 발급한 `*.up.railway.app` 대상) |
+
+> 앱은 서브도메인 루트(`/`)에서 서빙됩니다 (`server.js`). 따라서 최종 URL은 `https://us10y.simpleornothing.com` 입니다.
+> 기존 `/us10y/*` 경로는 루트로 301 리다이렉트되므로 전환 기간에도 깨지지 않습니다.
 
 ---
 

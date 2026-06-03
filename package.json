@@ -1,5 +1,5 @@
 {
-  "name": "samsungda-us10y",
+  "name": "us10y",
   "version": "1.0.0",
   "description": "US 10Y Treasury yield scenario probability tracker",
   "type": "module",
