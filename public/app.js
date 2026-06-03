@@ -302,7 +302,7 @@ function applyGate(){
   renderAll();
 }
 function chart(){
-  var W=840,H=380,L=46,R=58,T=24,B=42;
+  var W=840,H=380,L=46,R=76,T=24,B=42;
   var xL=L,xR=W-R,yT=T,yB=H-B;
   var yMin=4.0,yMax=5.10;
   var pts=state.length+1;
@@ -312,11 +312,11 @@ function chart(){
   var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
   for(var v=4.0;v<=5.0001;v+=0.2){var y=yAt(v);
     s+='<line x1="'+xL+'" y1="'+y+'" x2="'+xR+'" y2="'+y+'" stroke="'+COL.grid+'" stroke-width="1"/>';
-    s+='<text x="'+(xL-8)+'" y="'+(y+4)+'" fill="'+COL.axis+'" font-size="11" text-anchor="end" font-family="monospace">'+v.toFixed(1)+'</text>';
+    s+='<text x="'+(xL-8)+'" y="'+(y+4)+'" fill="'+COL.axis+'" font-size="14" text-anchor="end" font-family="monospace">'+v.toFixed(1)+'</text>';
   }
   THRESHOLDS.forEach(function(t){if(t.y<yMin||t.y>yMax)return;var y=yAt(t.y);var c=COL[t.t]||COL.faint;
     s+='<line x1="'+xL+'" y1="'+y+'" x2="'+xR+'" y2="'+y+'" stroke="'+c+'" stroke-width="1.4" stroke-dasharray="2,3" opacity="0.85"/>';
-    s+='<text x="'+(xR+4)+'" y="'+(y+3.5)+'" fill="'+c+'" font-size="9.5" font-family="monospace">'+t.lab+'</text>';
+    s+='<text x="'+(xR+4)+'" y="'+(y+3.5)+'" fill="'+c+'" font-size="12" font-family="monospace">'+t.lab+'</text>';
   });
   var top='';
   xs.forEach(function(m,i){var x=xAt(i);var hi=(i===0)?ANCHOR.y:m.hawk.y;top+=(i?'L':'M')+x+' '+yAt(hi)+' ';});
@@ -334,8 +334,8 @@ function chart(){
     }
     var wv=(i===0)?ANCHOR.y:weighted(m);
     s+='<circle cx="'+x+'" cy="'+yAt(wv)+'" r="4.5" fill="'+COL.cardbg+'" stroke="'+COL.txt+'" stroke-width="2.2"><title>'+((i===0)?'현재':m.label)+' 가중: '+f2(wv)+'%</title></circle>';
-    s+='<text x="'+x+'" y="'+(yAt(wv)-11)+'" fill="'+COL.txt+'" font-size="10.5" text-anchor="middle" font-family="monospace" font-weight="700">'+f2(wv)+'</text>';
-    s+='<text x="'+x+'" y="'+(yB+18)+'" fill="'+COL.axis+'" font-size="11" text-anchor="middle">'+((i===0)?'현재':m.label)+'</text>';
+    s+='<text x="'+x+'" y="'+(yAt(wv)-12)+'" fill="'+COL.txt+'" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">'+f2(wv)+'</text>';
+    s+='<text x="'+x+'" y="'+(yB+20)+'" fill="'+COL.axis+'" font-size="14" text-anchor="middle">'+((i===0)?'현재':m.label)+'</text>';
   });
   s+='</svg>';
   el('chart').innerHTML=s;
