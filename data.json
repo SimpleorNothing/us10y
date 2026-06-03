@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-02T21:26:50Z",
+  "last_updated": "2026-06-03T23:12:33Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -935,6 +935,56 @@
       ],
       "trigger_today": "이란 Tasnim 보도: 협상 중단+호르무즈 완전 봉쇄 예고, 유가 5%+ 급등",
       "bear_steelman": "Trump은 '협상 계속 진행 중'이라 반박했고, 과거에도 협상 재개 패턴 반복 - 유가 급등은 단기 헤드페이크일 수 있음"
+    },
+    {
+      "date": "2026-06-04",
+      "markets": {
+        "ten_year": 4.49,
+        "thirty_year": 4.99,
+        "brent": 97.17,
+        "wti": 95.18,
+        "fed_funds_implied": 3.622
+      },
+      "probabilities": {
+        "bull": 18,
+        "base": 35,
+        "bear": 47
+      },
+      "summary": "이란 협상 결렬과 호르무즈 완전 봉쇄 선언으로 유가 3일 연속 급등, 시장은 연말 25bp 인상 70% 가격화 중",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.49% (+4bp)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent crude",
+          "value": "$97.17 (+1.39, 3일 연속 상승)",
+          "direction": "bear"
+        },
+        {
+          "name": "Iran-US talks",
+          "value": "6/1 협상 중단, 호르무즈 완전 봉쇄 선언",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.622% (변화 없음). 6월 FOMC 동결 ~99% (CME 5/31), 연말 인상 확률 ~70% (시장 가격)",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield",
+          "value": "4.99% (+2bp), 커브 bull-flatten",
+          "direction": "base"
+        },
+        {
+          "name": "US crude stocks",
+          "value": "6주 연속 감소 (API -6.8M배럴)",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "이란 국영매체 협상 중단·호르무즈 완전 봉쇄 발표, 미군-이란 상호 공격 재개로 유가 $97 돌파",
+      "bear_steelman": "트럼프는 '협상 진행 중'이라 주장하고 있으며, 과거에도 이란 강경 발언 후 며칠 내 전격 합의한 전례가 있어 Bear 시나리오가 과도할 수 있음"
     }
   ]
 }
