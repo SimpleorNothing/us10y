@@ -398,6 +398,69 @@ function renderFactors(){
   if(!tb)return;
   tb.innerHTML=FACTORS.map(function(r){return '<tr><td><b>'+r[0]+'</b></td><td class="bp">'+r[1]+'</td><td class="ev">'+r[2]+'</td><td class="ev">'+r[3]+'</td></tr>';}).join('');
 }
+/* ----- 10Y 분해 뷰: 실질 + BEI ----- */
+var DC={ realBase:2.05, beiBase:2.44, levers:{
+  oil:    {comp:'bei',  v:0, label:'유가'},
+  infl:   {comp:'bei',  v:0, label:'인플레 ex-oil'},
+  fed:    {comp:'real', v:0, label:'Fed 정책경로'},
+  tp:     {comp:'real', v:0, label:'기간프리미엄·재정'},
+  growth: {comp:'real', v:0, label:'성장·노동'}
+}};
+function sumComp(c){var s=0;for(var k in DC.levers){if(DC.levers[k].comp===c)s+=DC.levers[k].v;}return s;}
+function dReal(){return DC.realBase+sumComp('real')/100;}
+function dBei(){return DC.beiBase+sumComp('bei')/100;}
+function dbar(real,bei,label,emph){
+  var SCALE=5.4;
+  var rw=Math.max(0,real)/SCALE*100, bw=Math.max(0,bei)/SCALE*100;
+  return '<div class="dbarrow"><div class="dblab">'+label+'</div><div class="dbar">'
+    +'<div class="dseg real" style="width:'+rw+'%">'+(rw>9?real.toFixed(2):'')+'</div>'
+    +'<div class="dseg bei" style="width:'+bw+'%">'+(bw>9?bei.toFixed(2):'')+'</div>'
+    +'</div><div class="dbtot'+(emph?' emph':'')+'">'+(real+bei).toFixed(2)+'%</div></div>';
+}
+function renderDecomp(){
+  if(!el('dbars'))return;
+  var rb=DC.realBase,bb=DC.beiBase,nb=rb+bb;
+  var r=dReal(),b=dBei(),n=r+b;
+  el('dbars').innerHTML=dbar(rb,bb,'기준',false)+dbar(r,b,'조정',true);
+  for(var k in DC.levers){
+    var e=el('v_'+k); if(!e)continue;
+    var v=DC.levers[k].v; e.textContent=(v>0?'+':'')+v+'bp';
+    e.style.color = v===0 ? 'var(--text-secondary)' : (DC.levers[k].comp==='bei'?'var(--dbei)':'var(--dreal)');
+  }
+  var dN=Math.round((n-nb)*100);
+  var tabs=0; for(var k2 in DC.levers) tabs+=Math.abs(DC.levers[k2].v);
+  var chips='';
+  if(tabs>0){
+    for(var k3 in DC.levers){var l=DC.levers[k3]; if(l.v===0)continue;
+      var sh=Math.round(Math.abs(l.v)/tabs*100);
+      chips+='<span class="dchip '+l.comp+'">'+l.label+' '+(l.v>0?'+':'')+l.v+'bp · '+sh+'%</span>';
+    }
+  } else { chips='<span style="color:var(--text-tertiary)">레버를 움직이면 각 드라이버의 기여 비중이 표시됩니다.</span>'; }
+  el('dout').innerHTML=
+    '명목 10Y = <b>'+n.toFixed(2)+'%</b> ('+(dN>=0?'Δ +':'Δ ')+dN+'bp) · 실질 <b>'+r.toFixed(2)+'</b> · BEI <b>'+b.toFixed(2)+'</b><br>'
+    +'<span style="font-size:11.5px">드라이버 기여 비중: </span>'+chips;
+}
+function bindLevers(){
+  document.querySelectorAll('#rates-engine .lvr').forEach(function(s){
+    s.addEventListener('input',function(e){
+      DC.levers[e.target.dataset.k].v=parseInt(e.target.value,10);
+      renderDecomp();
+    });
+  });
+  var dr=el('decompReset');
+  if(dr)dr.addEventListener('click',function(){
+    for(var k in DC.levers)DC.levers[k].v=0;
+    document.querySelectorAll('#rates-engine .lvr').forEach(function(s){s.value=0;});
+    renderDecomp();
+  });
+  var go=el('gateOilBtn');
+  if(go)go.addEventListener('click',function(){
+    var map={holds:-20,fragile:0,breaks:45};
+    DC.levers.oil.v=map[gateHz];
+    var so=el('s_oil'); if(so)so.value=DC.levers.oil.v;
+    renderDecomp();
+  });
+}
 function renderAll(){renderStats();chart();renderTable();renderGate();}
 
 function reapplySeed(){
@@ -424,7 +487,7 @@ function bind(){
   if(applyBtn)applyBtn.addEventListener('click',applyGate);
   if(resetBtn)resetBtn.addEventListener('click',function(){state=clone(DEFAULTS);if(seedApplied)reapplySeed();renderAll();});
   var foot=el('foot');
-  if(foot)foot.innerHTML='출처: FRED(DGS10·DFII10·T10YIE·ACMTP10) · NY Fed ACM term premium · CME FedWatch · US Treasury 분기 리펀딩 · FOMC SEP · Dallas Fed Trimmed-Mean PCE · BLS/BEA · Bloomberg/Reuters/CNBC. 현재 10Y·연말 시나리오 확률은 이 사이트의 data.json에서 시드됩니다.<br>※ 추정 보조도구이며 방향 처방이 아닌 조건부 리스크사이징 입력값입니다. 시나리오 입력값은 새로고침 시 기본값으로 초기화됩니다.';
+  if(foot)foot.innerHTML='출처: FRED(DGS10·DFII10·T10YIE·ACMTP10) · NY Fed ACM term premium · CME FedWatch · US Treasury 분기 리펀딩(2026-05) · FOMC SEP · Dallas Fed Trimmed-Mean PCE · BLS CPI · BEA PCE · Bloomberg/Reuters/CNBC/CNN · Moody\'s · Yale Budget Lab. 현재 10Y·연말 시나리오 확률은 이 사이트의 data.json에서 시드됩니다.<br>※ 이 페이지는 추정 보조도구이며 방향 처방이 아닌 조건부 리스크사이징 입력값입니다. 시나리오 입력값은 새로고침 시 기본값으로 초기화됩니다.';
   if(window.matchMedia){
     try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){loadColors();renderAll();});}catch(e){}
   }
@@ -434,6 +497,7 @@ function init(){
   if(!el('rates-engine'))return;
   bind();
   renderFactors();renderAll();
+  bindLevers();renderDecomp();
   fetch('./data.json?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(d&&d.history&&d.history.length){
       var h=d.history[d.history.length-1];

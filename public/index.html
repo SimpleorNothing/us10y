@@ -84,7 +84,7 @@
 
   <section class="engine-section" id="rates-engine">
     <h2>월별 경로 추정 엔진</h2>
-    <p class="engine-sub">시나리오 확률·레벨을 직접 조정하면 가중 기대치와 팬차트가 실시간 재계산됩니다. 현재 10Y·연말 시나리오 확률은 위 data.json에서 매일 시드됩니다.</p>
+    <p class="engine-sub">시나리오 확률·조건부 레벨을 직접 조정하면 가중 기대치와 팬차트가 실시간 재계산됩니다. 매크로 게이트 토글로 6개월 시나리오 가중치를 일괄 재편향할 수 있습니다. 현재 10Y·연말 시나리오 확률은 위 data.json에서 매일 시드됩니다.</p>
 
     <div class="eng-card">
       <div class="eng-label">현황 요약 (연말 기준)<span class="upd" id="updStat"></span></div>
@@ -111,16 +111,16 @@
         <div class="gctl">
           <div class="gatebadge" id="gateBadge"><span class="dot"></span><div><div class="t"></div><div class="dsc"></div></div></div>
           <div class="btnrow">
-            <button class="btn" id="applyBtn">이 게이트로 재편향</button>
+            <button class="btn" id="applyBtn">이 게이트로 시나리오 가중치 재편향</button>
             <button class="btn ghost" id="resetBtn">기본값 복원</button>
           </div>
-          <div class="note">재편향 버튼은 hawkish↔dovish 확률 질량을 최대 ±18%p 이동시켜 표·차트에 반영합니다.</div>
+          <div class="note">게이트 배지는 토글에 따라 즉시 갱신됩니다. <b>재편향</b> 버튼을 누르면 hawkish↔dovish 확률 질량을 이동(최대 ±18%p)시켜 아래 표·차트에 반영합니다.</div>
         </div>
       </div>
     </div>
 
     <div class="eng-card">
-      <div class="eng-label">월별 경로 &amp; 분포 (팬차트)</div>
+      <div class="eng-label">확률가중 경로 &amp; 분포 (팬차트)</div>
       <div id="chart"></div>
       <div class="lg">
         <span><i class="bx" style="background:var(--text);opacity:.12"></i>분포대</span>
@@ -144,7 +144,38 @@
     </div>
 
     <div class="eng-card">
-      <div class="eng-label">팩터 민감도 레퍼런스</div>
+      <div class="eng-label">10Y 분해 뷰 · 실질 + BEI<span class="upd">드라이버 → 부품 매핑</span></div>
+      <div class="decomp">
+        <div class="dlegend">
+          <span><i style="background:var(--dreal)"></i>실질금리 (TIPS)</span>
+          <span><i style="background:var(--dbei)"></i>BEI (기대인플레)</span>
+          <span class="dim">명목 10Y = 실질 + BEI</span>
+        </div>
+        <div class="dbars" id="dbars"></div>
+        <div class="dlevers">
+          <div class="dgrp">
+            <div class="dgh bei">→ BEI(기대인플레) 칸에만 작용</div>
+            <div class="lv"><div class="lvtop"><span class="lvname">유가 / 에너지</span><span class="lvval" id="v_oil">+0bp</span></div><input type="range" class="lvr" id="s_oil" min="-40" max="60" value="0" data-k="oil"></div>
+            <div class="lv"><div class="lvtop"><span class="lvname">인플레 (ex-oil, CPI/PCE 추세)</span><span class="lvval" id="v_infl">+0bp</span></div><input type="range" class="lvr" id="s_infl" min="-30" max="50" value="0" data-k="infl"></div>
+          </div>
+          <div class="dgrp">
+            <div class="dgh real">→ 실질(real) 칸에만 작용</div>
+            <div class="lv"><div class="lvtop"><span class="lvname">Fed 정책경로 (FedWatch)</span><span class="lvval" id="v_fed">+0bp</span></div><input type="range" class="lvr" id="s_fed" min="-50" max="50" value="0" data-k="fed"></div>
+            <div class="lv"><div class="lvtop"><span class="lvname">기간프리미엄 · 재정/공급</span><span class="lvval" id="v_tp">+0bp</span></div><input type="range" class="lvr" id="s_tp" min="-30" max="80" value="0" data-k="tp"></div>
+            <div class="lv"><div class="lvtop"><span class="lvname">성장 · 노동</span><span class="lvval" id="v_growth">+0bp</span></div><input type="range" class="lvr" id="s_growth" min="-40" max="40" value="0" data-k="growth"></div>
+          </div>
+        </div>
+        <div class="dout" id="dout"></div>
+        <div class="btnrow">
+          <button class="btn" id="gateOilBtn">Hormuz 게이트 → 유가 반영</button>
+          <button class="btn ghost" id="decompReset">분해 초기화</button>
+        </div>
+        <div class="note">유가 레버를 움직이면 <b>BEI 칸만</b> 변하고 실질 칸은 고정됩니다 — 유가가 10Y에 닿는 경로가 BEI뿐임을 시각화한 구조입니다. 장기 BEI는 앵커링돼 있어 공급충격(이란)일 때만 비중이 커집니다. 기준값: 실질 2.05 + BEI 2.44 = 명목 4.49%.</div>
+      </div>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-label">팩터 민감도 레퍼런스 (조건부 rule-of-thumb)</div>
       <div class="scroll"><table class="ft" id="ftbl"><thead><tr><th>드라이버</th><th>전형적 10Y 충격</th><th>지속성</th><th>레짐 주의</th></tr></thead><tbody></tbody></table></div>
     </div>
 
@@ -152,9 +183,9 @@
       <div class="eng-label">한계 &amp; 반대 논거 (Steelman)</div>
       <div class="caveat">
         <b>· 점추정은 신뢰구간이 매우 넓다.</b> 경로는 base 가중치의 산물이며 실제 분포는 이산·점프적(전쟁 헤드라인·FOMC에 하룻밤 ±20~30bp). 월별 수치를 "목표가"로 읽지 말 것.<br>
-        <b>· 하방:</b> 휴전 정착·유가 정상화·노동 둔화 시 Warsh의 trimmed-mean PCE 논리가 동결·2027 인하를 정당화 → 10Y 4.2~4.3%, 성장 둔화 시 4.0% 시험 가능.<br>
-        <b>· 상방:</b> 기간프리미엄 구조적 고착 + 인플레 2차 파동 시 12월 인상 + 5%+ 재시험이 base가 될 수 있다.<br>
-        <b>· 데이터 주의:</b> 12월 인상 가격은 출처·시점별 46~60%로 변동 — 단일 수치 고정 금지.
+        <b>· 하방 steelman:</b> 휴전 정착·유가 정상화·노동시장 둔화 시 Warsh의 trimmed-mean PCE(2026.4 = 2.3%) 논리가 동결 지속·2027 인하를 정당화 → 10Y 4.2~4.3%, 성장 둔화 시 4.0% 시험 가능.<br>
+        <b>· 상방 steelman:</b> 기간프리미엄 구조적 고착($2조 적자·debt/GDP 100%+·2027 쿠폰 증액 임박) + 인플레 2차 파동 고착 시 12월 인상 + 5%+ 재시험이 base가 될 수 있다.<br>
+        <b>· 데이터 주의:</b> ACM 기간프리미엄은 관측 불가 모델 추정치(0.6~0.8% 레인지). 12월 인상 가격은 출처·시점별 46~60%로 변동 — 단일 수치 고정 금지.
       </div>
     </div>
 

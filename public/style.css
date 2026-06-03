@@ -465,3 +465,38 @@ h2::before {
 #rates-engine .eng-foot { font-size: 11px; color: var(--text-tertiary); line-height: 1.6; margin-top: 10px; }
 #rates-engine .scroll { overflow-x: auto; }
 @media (max-width: 600px) { #rates-engine table { min-width: 560px; } }
+
+/* ===== 10Y 분해 뷰 · 실질 + BEI (decomposition) ===== */
+#rates-engine { --dreal: var(--brand); --dbei: #b8860b; }
+@media (prefers-color-scheme: dark) { #rates-engine { --dbei: #d4a017; } }
+#rates-engine .decomp { display: flex; flex-direction: column; gap: 14px; }
+#rates-engine .dlegend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--text-secondary); }
+#rates-engine .dlegend span { display: inline-flex; align-items: center; gap: 5px; }
+#rates-engine .dlegend i { width: 11px; height: 11px; border-radius: 3px; display: inline-block; }
+#rates-engine .dlegend .dim { color: var(--text-tertiary); }
+#rates-engine .dbars { display: flex; flex-direction: column; gap: 8px; }
+#rates-engine .dbarrow { display: flex; align-items: center; gap: 10px; }
+#rates-engine .dblab { width: 34px; font-size: 11px; color: var(--text-secondary); text-align: right; flex: none; }
+#rates-engine .dbar { flex: 1; display: flex; height: 30px; border-radius: 7px; overflow: hidden; background: var(--bg); border: 1px solid var(--border); }
+#rates-engine .dseg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; color: #fff; font-variant-numeric: tabular-nums; transition: width .18s ease; min-width: 0; white-space: nowrap; }
+#rates-engine .dseg.real { background: var(--dreal); }
+#rates-engine .dseg.bei { background: var(--dbei); }
+#rates-engine .dbtot { width: 52px; font-weight: 800; font-size: 14px; text-align: right; flex: none; font-variant-numeric: tabular-nums; }
+#rates-engine .dbtot.emph { color: var(--brand); }
+#rates-engine .dlevers { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 600px) { #rates-engine .dlevers { grid-template-columns: 1fr; } }
+#rates-engine .dgrp { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 12px; }
+#rates-engine .dgh { font-size: 11px; font-weight: 700; margin-bottom: 10px; padding-bottom: 7px; border-bottom: 1px solid var(--border); }
+#rates-engine .dgh.bei { color: var(--dbei); }
+#rates-engine .dgh.real { color: var(--dreal); }
+#rates-engine .lv { margin-bottom: 11px; }
+#rates-engine .lv:last-child { margin-bottom: 0; }
+#rates-engine .lvtop { display: flex; justify-content: space-between; font-size: 12px; margin-bottom: 4px; }
+#rates-engine .lvname { color: var(--text); }
+#rates-engine .lvval { color: var(--text-secondary); font-size: 11px; font-variant-numeric: tabular-nums; }
+#rates-engine .lvr { width: 100%; accent-color: var(--brand); height: 4px; margin: 0; }
+#rates-engine .dout { font-size: 12.5px; color: var(--text-secondary); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; line-height: 1.7; }
+#rates-engine .dout b { color: var(--text); font-variant-numeric: tabular-nums; }
+#rates-engine .dchip { display: inline-block; font-size: 10.5px; padding: 1px 6px; border-radius: 5px; margin: 3px 4px 0 0; }
+#rates-engine .dchip.bei { background: rgba(184, 134, 11, 0.14); color: var(--dbei); }
+#rates-engine .dchip.real { background: rgba(18, 87, 214, 0.12); color: var(--brand); }
