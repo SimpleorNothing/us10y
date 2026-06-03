@@ -1,0 +1,48 @@
+name: Claude PR Gate
+
+# Validates Claude-authored PRs and auto-merges them once the checks pass.
+# Mirrors the ten-bagger pipeline, adapted to the us10y layout
+# (public/index.html + data.json).
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches: [claude/init-samsungda-repo-shgrq]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: index.html / JSON integrity
+        run: |
+          SIZE=$(stat -c%s public/index.html); echo "public/index.html size: $SIZE"
+          # 1) Fail if index.html shrinks abnormally (e.g. a truncated write).
+          [ "$SIZE" -gt 5000 ] || { echo "::error::public/index.html abnormally small ($SIZE)"; exit 1; }
+          # 2) Core structural anchors must survive any edit.
+          grep -q "<main" public/index.html || { echo "::error::<main> anchor missing"; exit 1; }
+          grep -q "id=\"metrics\"" public/index.html || { echo "::error::metrics anchor missing"; exit 1; }
+          grep -q "</html>" public/index.html || { echo "::error::closing </html> missing"; exit 1; }
+          # 3) Data/config JSON must parse.
+          for f in data.json package.json; do
+            if [ -f "$f" ]; then
+              python3 -c "import json;json.load(open('$f'))" || { echo "::error::$f JSON broken"; exit 1; }
+            fi
+          done
+          echo "✓ Integrity checks passed"
+
+  auto-merge:
+    needs: validate
+    runs-on: ubuntu-latest
+    if: startsWith(github.event.pull_request.head.ref, 'claude/')
+    steps:
+      - run: gh pr merge "$PR" --squash --delete-branch
+        env:
+          GH_TOKEN: ${{ secrets.AUTO_MERGE_TOKEN }}
+          PR: ${{ github.event.pull_request.number }}
+          GH_REPO: ${{ github.repository }}
