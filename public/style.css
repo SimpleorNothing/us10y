@@ -1,39 +1,43 @@
 :root {
   --bg: #ffffff;
-  --bg-secondary: #f5f4ef;
-  --text: #1a1a1a;
-  --text-secondary: #6b6b66;
-  --text-tertiary: #9a9a95;
-  --border: rgba(0, 0, 0, 0.08);
-  --border-strong: rgba(0, 0, 0, 0.15);
-  --bull: #1D9E75;
-  --bull-bg: #E1F5EE;
-  --bull-text: #0F6E56;
-  --base: #888780;
-  --base-bg: #F1EFE8;
-  --base-text: #444441;
-  --bear: #D85A30;
-  --bear-bg: #FAECE7;
-  --bear-text: #993C1D;
-  --radius: 12px;
-  --radius-sm: 8px;
+  --bg-secondary: #f4f4f6;
+  --card: #ffffff;
+  --text: #131316;
+  --text-secondary: #5f6168;
+  --text-tertiary: #9aa0a6;
+  --border: rgba(17, 17, 20, 0.09);
+  --border-strong: rgba(17, 17, 20, 0.16);
+  --accent: #131316;
+  --bull: #1f9d6b;
+  --bull-bg: #e7f6ef;
+  --bull-text: #107a52;
+  --base: #8a8a90;
+  --base-bg: #f0f0f1;
+  --base-text: #4a4a50;
+  --bear: #e0612e;
+  --bear-bg: #fcebe3;
+  --bear-text: #a8431c;
+  --radius: 14px;
+  --radius-sm: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #1a1a1a;
-    --bg-secondary: #232323;
-    --text: #f5f5f5;
-    --text-secondary: #a8a8a3;
-    --text-tertiary: #6b6b66;
-    --border: rgba(255, 255, 255, 0.1);
+    --bg: #101012;
+    --bg-secondary: #1b1b1f;
+    --card: #161619;
+    --text: #f4f4f6;
+    --text-secondary: #a1a1aa;
+    --text-tertiary: #71717a;
+    --border: rgba(255, 255, 255, 0.10);
     --border-strong: rgba(255, 255, 255, 0.18);
-    --bull-bg: rgba(29, 158, 117, 0.15);
-    --bull-text: #5DCAA5;
-    --base-bg: rgba(136, 135, 128, 0.18);
-    --base-text: #B4B2A9;
-    --bear-bg: rgba(216, 90, 48, 0.15);
-    --bear-text: #F0997B;
+    --accent: #f4f4f6;
+    --bull-bg: rgba(31, 157, 107, 0.16);
+    --bull-text: #54d39e;
+    --base-bg: rgba(138, 138, 144, 0.18);
+    --base-text: #b8b8c0;
+    --bear-bg: rgba(224, 97, 46, 0.16);
+    --bear-text: #f0926b;
   }
 }
 
@@ -44,7 +48,7 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, "Segoe UI", "Apple SD Gothic Neo", "Malgun Gothic", system-ui, sans-serif;
   background: var(--bg);
   color: var(--text);
   line-height: 1.6;
@@ -52,8 +56,46 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* ===== 상단 브랜드 바 (알파맵 스타일) ===== */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: saturate(1.6) blur(10px);
+  backdrop-filter: saturate(1.6) blur(10px);
+  border-bottom: 1px solid var(--border);
+}
+@media (prefers-color-scheme: dark) {
+  .topbar { background: rgba(16, 16, 18, 0.82); }
+}
+.topbar-inner {
+  max-width: 820px;
+  margin: 0 auto;
+  padding: 13px 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.topbar .brand {
+  font-weight: 800;
+  font-size: 18px;
+  letter-spacing: -0.03em;
+  color: var(--text);
+  text-decoration: none;
+}
+.topbar .tab {
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--bg);
+  background: var(--accent);
+  padding: 5px 12px;
+  border-radius: 100px;
+}
+
 .container {
-  max-width: 720px;
+  max-width: 820px;
   margin: 0 auto;
   padding: 2rem 1.25rem 3rem;
 }
@@ -68,9 +110,9 @@ body {
 }
 
 .header-title h1 {
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
+  font-size: 27px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
   margin: 0;
 }
 
@@ -91,12 +133,23 @@ body {
 }
 
 h2 {
-  font-size: 14px;
-  font-weight: 500;
-  color: var(--text-secondary);
-  margin-bottom: 0.75rem;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 0.9rem;
+  letter-spacing: -0.02em;
+  text-transform: none;
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+h2::before {
+  content: "";
+  width: 4px;
+  height: 17px;
+  border-radius: 2px;
+  background: var(--accent);
+  flex: none;
 }
 
 .metrics {
@@ -119,7 +172,8 @@ h2 {
 }
 
 .metric-card {
-  background: var(--bg-secondary);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 12px 14px;
 }
@@ -202,7 +256,8 @@ h2 {
 }
 
 .chart-wrapper {
-  background: var(--bg-secondary);
+  background: var(--card);
+  border: 1px solid var(--border);
   border-radius: var(--radius);
   padding: 1.25rem;
   position: relative;
@@ -351,11 +406,11 @@ h2 {
 /* ===== 월별 경로 추정 엔진 (engine-section) ===== */
 .engine-section { margin-bottom: 2rem; }
 .engine-sub { font-size: 13px; color: var(--text-secondary); margin: -0.25rem 0 1rem; line-height: 1.6; }
-#rates-engine .eng-card { background: var(--bg-secondary); border-radius: var(--radius); padding: 1.1rem 1.15rem; margin-bottom: 12px; }
+#rates-engine .eng-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: 1.1rem 1.15rem; margin-bottom: 12px; }
 #rates-engine .eng-label { font-size: 13px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 8px; }
 #rates-engine .eng-label .upd { margin-left: auto; font-size: 11px; color: var(--text-tertiary); text-transform: none; letter-spacing: 0; font-weight: 400; font-variant-numeric: tabular-nums; }
 #rates-engine .estats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
-#rates-engine .estat { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 12px; }
+#rates-engine .estat { background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 12px; }
 #rates-engine .estat .lab { font-size: 11px; color: var(--text-secondary); margin-bottom: 3px; }
 #rates-engine .estat .val { font-size: 21px; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
 #rates-engine .estat .val .pct { font-size: 12px; color: var(--text-secondary); }
