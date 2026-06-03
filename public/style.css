@@ -437,7 +437,7 @@ h2::before {
 #rates-engine .btn.ghost { color: var(--text-secondary); }
 #rates-engine .note { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.5; }
 #rates-engine svg { width: 100%; height: auto; display: block; }
-#rates-engine .lg { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; font-size: 11px; color: var(--text-secondary); }
+#rates-engine .lg { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; font-size: 13px; color: var(--text-secondary); }
 #rates-engine .lg span { display: inline-flex; align-items: center; gap: 5px; }
 #rates-engine .lg i { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
 #rates-engine .lg i.bx { width: 11px; height: 11px; border-radius: 2px; }
