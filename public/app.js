@@ -251,6 +251,7 @@ function loadColors(){
   COL.hawk=cssv('--bear','#D85A30');
   COL.base=cssv('--base','#888780');
   COL.dove=cssv('--bull','#1D9E75');
+  COL.brand=cssv('--brand','#1257d6');
 }
 loadColors();
 
@@ -461,6 +462,49 @@ function bindLevers(){
     renderDecomp();
   });
 }
+/* ----- CME FedWatch 내재 정책금리 경로 ----- */
+var FW=[["6/26",3.621,0.031],["7/26",3.643,0.076],["9/26",3.694,0.126],["10/26",3.733,0.156],["12/26",3.813,0.195],["1/27",3.853,0.215],["3/27",3.918,0.241],["4/27",3.950,0.256],["6/27",3.953,0.257],["7/27",3.953,0.257],["9/27",3.929,0.267],["10/27",3.904,0.276],["12/27",3.838,0.297]];
+var FWCUR=3.625;
+function fwChart(){
+  if(!el('fwchart'))return;
+  var W=840,H=360,L=44,R=18,T=26,B=48;
+  var xL=L,xR=W-R,yT=T,yB=H-B;
+  var yMin=3.2,yMax=4.4;
+  var n=FW.length;
+  var xAt=function(i){return xL+(xR-xL)*i/(n-1);};
+  var yAt=function(v){return yB-(v-yMin)/(yMax-yMin)*(yB-yT);};
+  var s='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg">';
+  for(var v=3.25;v<=4.4001;v+=0.25){var y=yAt(v);
+    s+='<line x1="'+xL+'" y1="'+y+'" x2="'+xR+'" y2="'+y+'" stroke="'+COL.grid+'"/>';
+    s+='<text x="'+(xL-7)+'" y="'+(y+4)+'" fill="'+COL.axis+'" font-size="14" text-anchor="end" font-family="monospace">'+v.toFixed(2)+'</text>';
+  }
+  var yc=yAt(FWCUR);
+  s+='<line x1="'+xL+'" y1="'+yc+'" x2="'+xR+'" y2="'+yc+'" stroke="'+COL.faint+'" stroke-width="1.4" stroke-dasharray="3,3"/>';
+  s+='<text x="'+(xR-2)+'" y="'+(yc-5)+'" fill="'+COL.axis+'" font-size="12" text-anchor="end" font-family="monospace">현재 3.625</text>';
+  var top='',bot='';
+  FW.forEach(function(d,i){top+=(i?'L':'M')+xAt(i)+' '+yAt(d[1]+d[2])+' ';});
+  for(var i=FW.length-1;i>=0;i--){bot+='L'+xAt(i)+' '+yAt(FW[i][1]-FW[i][2])+' ';}
+  s+='<path d="'+top+bot+'Z" fill="'+COL.brand+'" opacity="0.13"/>';
+  var ml='';FW.forEach(function(d,i){ml+=(i?'L':'M')+xAt(i)+' '+yAt(d[1])+' ';});
+  s+='<path d="'+ml+'" fill="none" stroke="'+COL.brand+'" stroke-width="2.4"/>';
+  var pk=0;FW.forEach(function(d,i){if(d[1]>FW[pk][1])pk=i;});
+  FW.forEach(function(d,i){var x=xAt(i),y=yAt(d[1]);
+    s+='<circle cx="'+x+'" cy="'+y+'" r="3.4" fill="'+COL.cardbg+'" stroke="'+COL.brand+'" stroke-width="2"><title>'+d[0]+': '+d[1].toFixed(3)+'% (±'+Math.round(d[2]*100)+'bp)</title></circle>';
+    s+='<text x="'+x+'" y="'+(yB+15)+'" fill="'+COL.axis+'" font-size="11" text-anchor="end" font-family="monospace" transform="rotate(-42 '+x+' '+(yB+15)+')">'+d[0]+'</text>';
+  });
+  var px=xAt(pk),py=yAt(FW[pk][1]);
+  s+='<text x="'+px+'" y="'+(py-10)+'" fill="'+COL.txt+'" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">피크 '+FW[pk][1].toFixed(2)+'</text>';
+  s+='</svg>';
+  el('fwchart').innerHTML=s;
+}
+function fwReadout(){
+  if(!el('fwout'))return;
+  var pk=0;FW.forEach(function(d,i){if(d[1]>FW[pk][1])pk=i;});
+  var cur=FW[0][1],peak=FW[pk][1],last=FW[FW.length-1][1];
+  el('fwout').innerHTML=
+    '현재 <b>'+cur.toFixed(2)+'%</b> → 피크 <b>'+peak.toFixed(2)+'%</b> ('+FW[pk][0]+', '+Math.round((peak-cur)*100)+'bp) → \'27말 <b>'+last.toFixed(2)+'%</b><br>'
+    +'<span style="font-size:11.5px">시장은 향후 ~1회 인상을 2027 중반까지 가격화 후 소폭 되돌림. σ 0.03→0.30%로 확산(불확실성 콘).</span>';
+}
 function renderAll(){renderStats();chart();renderTable();renderGate();}
 
 function reapplySeed(){
@@ -489,7 +533,7 @@ function bind(){
   var foot=el('foot');
   if(foot)foot.innerHTML='출처: FRED(DGS10·DFII10·T10YIE·ACMTP10) · NY Fed ACM term premium · CME FedWatch · US Treasury 분기 리펀딩(2026-05) · FOMC SEP · Dallas Fed Trimmed-Mean PCE · BLS CPI · BEA PCE · Bloomberg/Reuters/CNBC/CNN · Moody\'s · Yale Budget Lab. 현재 10Y·연말 시나리오 확률은 이 사이트의 data.json에서 시드됩니다.<br>※ 이 페이지는 추정 보조도구이며 방향 처방이 아닌 조건부 리스크사이징 입력값입니다. 시나리오 입력값은 새로고침 시 기본값으로 초기화됩니다.';
   if(window.matchMedia){
-    try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){loadColors();renderAll();});}catch(e){}
+    try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){loadColors();renderAll();fwChart();});}catch(e){}
   }
 }
 
@@ -498,6 +542,7 @@ function init(){
   bind();
   renderFactors();renderAll();
   bindLevers();renderDecomp();
+  fwChart();fwReadout();
   fetch('./data.json?t='+Date.now()).then(function(r){return r.ok?r.json():null;}).then(function(d){
     if(d&&d.history&&d.history.length){
       var h=d.history[d.history.length-1];

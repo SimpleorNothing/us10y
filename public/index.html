@@ -144,6 +144,18 @@
     </div>
 
     <div class="eng-card">
+      <div class="eng-label">CME FedWatch 내재 정책금리 경로<span class="upd">회의별 확률가중 평균</span></div>
+      <div id="fwchart"></div>
+      <div class="lg">
+        <span><i style="background:var(--brand);height:3px"></i>가중평균 내재금리</span>
+        <span><i class="bx" style="background:rgba(18,87,214,0.20);border:1px solid var(--brand)"></i>±1σ (분포 확산)</span>
+        <span><i style="background:var(--text-tertiary);height:2px"></i>현재 3.625%</span>
+      </div>
+      <div class="dout" id="fwout"></div>
+      <div class="note">각 회의의 8개 목표금리 구간 확률 × 구간 중간값을 가중평균한 값입니다. 이 경로는 분해 뷰의 <b>Fed 정책경로(실질 칸)</b> 입력 — 10Y = 이 단기경로 + 기간프리미엄이므로 FedWatch는 10Y의 <b>앞단만</b> 설명합니다.</div>
+    </div>
+
+    <div class="eng-card">
       <div class="eng-label">10Y 분해 뷰 · 실질 + BEI<span class="upd">드라이버 → 부품 매핑</span></div>
       <div class="decomp">
         <div class="dlegend">
