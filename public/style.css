@@ -347,3 +347,62 @@ h2 {
 .source {
   font-size: 11px;
 }
+
+/* ===== 월별 경로 추정 엔진 (engine-section) ===== */
+.engine-section { margin-bottom: 2rem; }
+.engine-sub { font-size: 13px; color: var(--text-secondary); margin: -0.25rem 0 1rem; line-height: 1.6; }
+#rates-engine .eng-card { background: var(--bg-secondary); border-radius: var(--radius); padding: 1.1rem 1.15rem; margin-bottom: 12px; }
+#rates-engine .eng-label { font-size: 13px; font-weight: 500; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 0.02em; margin-bottom: 0.7rem; display: flex; align-items: center; gap: 8px; }
+#rates-engine .eng-label .upd { margin-left: auto; font-size: 11px; color: var(--text-tertiary); text-transform: none; letter-spacing: 0; font-weight: 400; font-variant-numeric: tabular-nums; }
+#rates-engine .estats { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px; }
+#rates-engine .estat { background: var(--bg); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 12px; }
+#rates-engine .estat .lab { font-size: 11px; color: var(--text-secondary); margin-bottom: 3px; }
+#rates-engine .estat .val { font-size: 21px; font-weight: 500; font-variant-numeric: tabular-nums; letter-spacing: -0.01em; }
+#rates-engine .estat .val .pct { font-size: 12px; color: var(--text-secondary); }
+#rates-engine .estat .d { font-size: 11px; color: var(--text-tertiary); margin-top: 2px; }
+@media (max-width: 600px) { #rates-engine .estats { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+#rates-engine .gate { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+@media (max-width: 600px) { #rates-engine .gate { grid-template-columns: 1fr; } }
+#rates-engine .gctl label { display: block; font-size: 12px; color: var(--text-secondary); margin-bottom: 6px; }
+#rates-engine .seg { display: flex; border: 1px solid var(--border-strong); border-radius: var(--radius-sm); overflow: hidden; }
+#rates-engine .seg button { flex: 1; background: var(--bg); border: 0; color: var(--text-secondary); padding: 8px 6px; font-size: 12px; cursor: pointer; font-family: inherit; border-right: 1px solid var(--border); transition: .12s; }
+#rates-engine .seg button:last-child { border-right: 0; }
+#rates-engine .seg button.on { background: var(--bg-secondary); color: var(--text); font-weight: 600; box-shadow: inset 0 -2px 0 var(--text); }
+#rates-engine .gatebadge { margin-top: 12px; border-radius: var(--radius-sm); padding: 11px 13px; border: 1px solid var(--border-strong); display: flex; align-items: center; gap: 10px; }
+#rates-engine .gatebadge .dot { width: 10px; height: 10px; border-radius: 50%; background: var(--base); }
+#rates-engine .gatebadge .t { font-weight: 600; font-size: 14px; }
+#rates-engine .gatebadge .dsc { font-size: 12px; color: var(--text-secondary); }
+#rates-engine .btnrow { display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap; }
+#rates-engine .btn { background: var(--bg); border: 1px solid var(--border-strong); color: var(--text); border-radius: var(--radius-sm); padding: 8px 13px; font-size: 12px; cursor: pointer; font-family: inherit; font-weight: 500; }
+#rates-engine .btn:hover { border-color: var(--text); }
+#rates-engine .btn.ghost { color: var(--text-secondary); }
+#rates-engine .note { font-size: 11px; color: var(--text-tertiary); margin-top: 8px; line-height: 1.5; }
+#rates-engine svg { width: 100%; height: auto; display: block; }
+#rates-engine .lg { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 8px; font-size: 11px; color: var(--text-secondary); }
+#rates-engine .lg span { display: inline-flex; align-items: center; gap: 5px; }
+#rates-engine .lg i { width: 12px; height: 3px; border-radius: 2px; display: inline-block; }
+#rates-engine .lg i.bx { width: 11px; height: 11px; border-radius: 2px; }
+#rates-engine table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+#rates-engine th, #rates-engine td { padding: 7px 6px; text-align: center; border-bottom: 1px solid var(--border); }
+#rates-engine th { color: var(--text-secondary); font-weight: 500; font-size: 11px; }
+#rates-engine td.lft, #rates-engine th.lft { text-align: left; }
+#rates-engine input.np { width: 42px; background: var(--bg); border: 1px solid var(--border-strong); color: var(--text); border-radius: 6px; padding: 4px; font-family: inherit; font-size: 12px; text-align: center; font-variant-numeric: tabular-nums; }
+#rates-engine input.np:focus { outline: none; border-color: var(--text); }
+#rates-engine input.ny { width: 48px; }
+#rates-engine .pp { color: var(--text-tertiary); font-size: 10px; }
+#rates-engine .sumbad { font-variant-numeric: tabular-nums; font-weight: 600; }
+#rates-engine .sumbad.bad { color: var(--bear-text); }
+#rates-engine .wexp { font-weight: 600; font-size: 14px; font-variant-numeric: tabular-nums; }
+#rates-engine .hcol { color: var(--bear-text); }
+#rates-engine .dcol { color: var(--bull-text); }
+#rates-engine .bcol { color: var(--base-text); }
+#rates-engine .ev { font-size: 11px; color: var(--text-secondary); }
+#rates-engine .fomc { font-size: 10px; padding: 1px 6px; border-radius: 5px; background: var(--bg); border: 1px solid var(--border); color: var(--text-secondary); }
+#rates-engine .fomc.none { opacity: 0.5; }
+#rates-engine .ft td, #rates-engine .ft th { text-align: left; font-size: 12px; }
+#rates-engine .ft .bp { color: var(--text); white-space: nowrap; font-variant-numeric: tabular-nums; }
+#rates-engine .caveat { font-size: 13px; color: var(--text-secondary); line-height: 1.7; }
+#rates-engine .caveat b { color: var(--text); font-weight: 500; }
+#rates-engine .eng-foot { font-size: 11px; color: var(--text-tertiary); line-height: 1.6; margin-top: 10px; }
+#rates-engine .scroll { overflow-x: auto; }
+@media (max-width: 600px) { #rates-engine table { min-width: 560px; } }

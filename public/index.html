@@ -73,6 +73,85 @@
     </div>
   </section>
 
+  <section class="engine-section" id="rates-engine">
+    <h2>월별 경로 추정 엔진</h2>
+    <p class="engine-sub">시나리오 확률·레벨을 직접 조정하면 가중 기대치와 팬차트가 실시간 재계산됩니다. 현재 10Y·연말 시나리오 확률은 위 data.json에서 매일 시드됩니다.</p>
+
+    <div class="eng-card">
+      <div class="eng-label">현황 요약 (연말 기준)<span class="upd" id="updStat"></span></div>
+      <div class="estats" id="statRow"></div>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-label">매크로 게이트 · 두 토글</div>
+      <div class="gate">
+        <div class="gctl">
+          <label>① 이란 / Hormuz 휴전 상태</label>
+          <div class="seg" id="segHz">
+            <button data-v="holds">정착</button>
+            <button data-v="fragile" class="on">불안정</button>
+            <button data-v="breaks">붕괴</button>
+          </div>
+          <label style="margin-top:12px">② 12월 FOMC 인상 가격</label>
+          <div class="seg" id="segHk">
+            <button data-v="low">&lt;30%</button>
+            <button data-v="mid" class="on">30–70%</button>
+            <button data-v="high">&gt;70%</button>
+          </div>
+        </div>
+        <div class="gctl">
+          <div class="gatebadge" id="gateBadge"><span class="dot"></span><div><div class="t"></div><div class="dsc"></div></div></div>
+          <div class="btnrow">
+            <button class="btn" id="applyBtn">이 게이트로 재편향</button>
+            <button class="btn ghost" id="resetBtn">기본값 복원</button>
+          </div>
+          <div class="note">재편향 버튼은 hawkish↔dovish 확률 질량을 최대 ±18%p 이동시켜 표·차트에 반영합니다.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-label">월별 경로 &amp; 분포 (팬차트)</div>
+      <div id="chart"></div>
+      <div class="lg">
+        <span><i class="bx" style="background:var(--text);opacity:.12"></i>분포대</span>
+        <span><i style="background:var(--text);height:3px"></i>가중 경로</span>
+        <span><i class="bx" style="background:var(--bear)"></i>Hawkish</span>
+        <span><i class="bx" style="background:var(--base)"></i>Base</span>
+        <span><i class="bx" style="background:var(--bull)"></i>Dovish</span>
+      </div>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-label">시나리오 입력 · 월별 (확률 % / 레벨 %)</div>
+      <div class="scroll">
+      <table id="tbl"><thead><tr>
+        <th class="lft">월</th><th>FOMC</th>
+        <th class="bcol">Base p·y</th><th class="hcol">Hawkish p·y</th><th class="dcol">Dovish p·y</th>
+        <th>Σp</th><th>가중</th>
+      </tr></thead><tbody id="tbody"></tbody></table>
+      </div>
+      <div class="note">Σp≠100%여도 가중은 자동 정규화됩니다(불일치 시 색 표시). 12월 확률은 data.json 연말 시나리오로 시드됩니다.</div>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-label">팩터 민감도 레퍼런스</div>
+      <div class="scroll"><table class="ft" id="ftbl"><thead><tr><th>드라이버</th><th>전형적 10Y 충격</th><th>지속성</th><th>레짐 주의</th></tr></thead><tbody></tbody></table></div>
+    </div>
+
+    <div class="eng-card">
+      <div class="eng-label">한계 &amp; 반대 논거 (Steelman)</div>
+      <div class="caveat">
+        <b>· 점추정은 신뢰구간이 매우 넓다.</b> 경로는 base 가중치의 산물이며 실제 분포는 이산·점프적(전쟁 헤드라인·FOMC에 하룻밤 ±20~30bp). 월별 수치를 "목표가"로 읽지 말 것.<br>
+        <b>· 하방:</b> 휴전 정착·유가 정상화·노동 둔화 시 Warsh의 trimmed-mean PCE 논리가 동결·2027 인하를 정당화 → 10Y 4.2~4.3%, 성장 둔화 시 4.0% 시험 가능.<br>
+        <b>· 상방:</b> 기간프리미엄 구조적 고착 + 인플레 2차 파동 시 12월 인상 + 5%+ 재시험이 base가 될 수 있다.<br>
+        <b>· 데이터 주의:</b> 12월 인상 가격은 출처·시점별 46~60%로 변동 — 단일 수치 고정 금지.
+      </div>
+    </div>
+
+    <p class="eng-foot" id="foot"></p>
+  </section>
+
   <section class="daily-feed" id="daily-feed"></section>
 
   <footer class="footer">
