@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-04T22:46:29Z",
+  "last_updated": "2026-06-05T22:36:06Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -1030,6 +1030,51 @@
       ],
       "trigger_today": "이란 6/1 협상 중단+호르무즈 완전봉쇄 재위협 vs. 유가는 $2 하락 – 단기 공급우려보다 협상 재개 기대 반영 가능성도 혼재",
       "bear_steelman": "유가가 $95 근처 급락한 것은 시장이 실제론 협상 조기 재개(Trump 6/3 '이번 주말 진전 가능' 발언)나 사우디 증산 예상을 암묵적으로 가격에 반영 중이며, Fed도 고용·인플레 잔존으로 인상 필요성 낮다는 판단이 깔려 있을 수 있음"
+    },
+    {
+      "date": "2026-06-06",
+      "markets": {
+        "ten_year": 4.54,
+        "thirty_year": 5.0,
+        "brent": 92.87,
+        "wti": 90.25,
+        "fed_funds_implied": 3.655
+      },
+      "probabilities": {
+        "bull": 8,
+        "base": 34,
+        "bear": 58
+      },
+      "summary": "이란 협상 중단에도 유가 급락(-2~3%)했으나 10Y는 +6bp 상승. 노동지표 호조로 연말 Fed 인상 확률 85%까지 상승하며 Bear 시나리오 강화.",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.54% (+6bp, 전일 대비)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent crude",
+          "value": "$92.87 (-2.33), 주간 +4% 유지",
+          "direction": "base"
+        },
+        {
+          "name": "Iran-US talks",
+          "value": "6/1 중단, Trump '1주내 타결' 주장으로 혼재",
+          "direction": "base"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.655% (+1bp). 6월 FOMC 동결 99.4% (CME 5/31), 연말 인상 85% (TradingEcon 6/4)",
+          "direction": "bear"
+        },
+        {
+          "name": "Labor market",
+          "value": "ADP 5월 122K, 예상 상회로 긴축 기대 강화",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "노동시장 강세 데이터가 유가 하락을 압도하며 Fed 연말 인상 확률 85%로 상승, 10Y +6bp 급등",
+      "bear_steelman": "유가가 $90대 초반까지 하락한 것은 호르무즈 부분 재개 기대를 반영하며, 연말까지 추가 하락 시 인플레 압력 완화로 Fed 인상 회피 가능."
     }
   ]
 }
