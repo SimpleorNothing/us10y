@@ -125,7 +125,7 @@
     const bearData = history.map(h => h.probabilities.bear);
 
     const gridColor = isDark ? "rgba(255,255,255,0.06)" : "rgba(0,0,0,0.06)";
-    const tickColor = isDark ? "#a8a8a3" : "#6b6b66";
+    const tickColor = isDark ? "#b3a89a" : "#6d6a62";
 
     new Chart(ctx, {
       type: history.length <= 3 ? "bar" : "line",
@@ -135,8 +135,8 @@
           {
             label: "Bull",
             data: bullData,
-            backgroundColor: "#1D9E75",
-            borderColor: "#1D9E75",
+            backgroundColor: "#6f9c7a",
+            borderColor: "#6f9c7a",
             borderWidth: 2,
             tension: 0.3,
             pointRadius: 3
@@ -144,8 +144,8 @@
           {
             label: "Base",
             data: baseData,
-            backgroundColor: "#888780",
-            borderColor: "#888780",
+            backgroundColor: "#a99b8c",
+            borderColor: "#a99b8c",
             borderWidth: 2,
             tension: 0.3,
             pointRadius: 3
@@ -153,8 +153,8 @@
           {
             label: "Bear",
             data: bearData,
-            backgroundColor: "#D85A30",
-            borderColor: "#D85A30",
+            backgroundColor: "#c49a3c",
+            borderColor: "#c49a3c",
             borderWidth: 2,
             tension: 0.3,
             pointRadius: 3
@@ -244,14 +244,14 @@ function cssv(n,f){var v=getComputedStyle(document.documentElement).getPropertyV
 var COL={};
 function loadColors(){
   COL.grid=cssv('--border','rgba(0,0,0,0.08)');
-  COL.axis=cssv('--text-secondary','#6b6b66');
-  COL.txt=cssv('--text','#1a1a1a');
-  COL.faint=cssv('--text-tertiary','#9a9a95');
-  COL.cardbg=cssv('--bg-secondary','#f5f4ef');
-  COL.hawk=cssv('--bear','#D85A30');
-  COL.base=cssv('--base','#888780');
-  COL.dove=cssv('--bull','#1D9E75');
-  COL.brand=cssv('--brand','#1257d6');
+  COL.axis=cssv('--text-secondary','#6d6a62');
+  COL.txt=cssv('--text','#3d403e');
+  COL.faint=cssv('--text-tertiary','#a99b8c');
+  COL.cardbg=cssv('--bg-secondary','#f1efe6');
+  COL.hawk=cssv('--bear','#c49a3c');
+  COL.base=cssv('--base','#a99b8c');
+  COL.dove=cssv('--bull','#6f9c7a');
+  COL.brand=cssv('--brand','#46788c');
 }
 loadColors();
 

@@ -1,47 +1,51 @@
 :root {
-  --bg: #ffffff;
-  --surface: #f6f7f9;
-  --bg-secondary: #f6f7f9;
-  --card: #f6f7f9;
-  --text: #1a1d21;
-  --text-secondary: #5b6470;
-  --text-tertiary: #9aa3ad;
-  --border: #e6e9ee;
-  --border-strong: #d4d9e0;
-  --brand: #1257d6;
-  --accent: #1257d6;
-  --bull: #1f9d6b;
-  --bull-bg: #e7f6ef;
-  --bull-text: #107a52;
-  --base: #8a8a90;
-  --base-bg: #eef0f3;
-  --base-text: #4a4a50;
-  --bear: #e0612e;
-  --bear-bg: #fcebe3;
-  --bear-text: #a8431c;
+  /* Pantone 팔레트 기반 컬러 시스템
+     Cloud Dancer 11-4201 / Veiled Vista 12-6000 / Baltic Sea 14-4320
+     Golden Mist 13-0624 / Quiet Violet 16-3610 / Cloud Cover 16-1523
+     Hematite 17-5800 / Blue Fusion 18-4218 */
+  --bg: #faf9f3;          /* Cloud Dancer tint */
+  --surface: #f1efe6;     /* Cloud Dancer */
+  --bg-secondary: #f1efe6;
+  --card: #f1efe6;
+  --text: #3d403e;        /* Hematite (deepened) */
+  --text-secondary: #6d6a62;
+  --text-tertiary: #a99b8c; /* Cloud Cover */
+  --border: #e4ded2;
+  --border-strong: #cfc7b8;
+  --brand: #46788c;       /* Blue Fusion */
+  --accent: #46788c;
+  --bull: #6f9c7a;        /* Veiled Vista (deepened) */
+  --bull-bg: #e4ece0;
+  --bull-text: #4d7a5a;
+  --base: #a99b8c;        /* Cloud Cover */
+  --base-bg: #ece8e1;
+  --base-text: #6b6256;
+  --bear: #c49a3c;        /* Golden Mist (caution) */
+  --bear-bg: #f4eed9;
+  --bear-text: #8c6c1c;
   --radius: 14px;
   --radius-sm: 10px;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --bg: #101012;
-    --surface: #1b1b1f;
-    --bg-secondary: #1b1b1f;
-    --card: #161619;
-    --text: #f4f4f6;
-    --text-secondary: #a1a1aa;
-    --text-tertiary: #71717a;
+    --bg: #16181a;          /* Hematite-tinted dark */
+    --surface: #212327;
+    --bg-secondary: #212327;
+    --card: #1c1e21;
+    --text: #f1efe9;        /* Cloud Dancer */
+    --text-secondary: #b3a89a; /* Cloud Cover (light) */
+    --text-tertiary: #82786b;
     --border: rgba(255, 255, 255, 0.10);
     --border-strong: rgba(255, 255, 255, 0.18);
-    --brand: #5b8def;
-    --accent: #5b8def;
-    --bull-bg: rgba(31, 157, 107, 0.16);
-    --bull-text: #54d39e;
-    --base-bg: rgba(138, 138, 144, 0.18);
-    --base-text: #b8b8c0;
-    --bear-bg: rgba(224, 97, 46, 0.16);
-    --bear-text: #f0926b;
+    --brand: #6e9ec0;       /* Baltic Sea */
+    --accent: #6e9ec0;
+    --bull-bg: rgba(111, 156, 122, 0.18);
+    --bull-text: #8fc09a;
+    --base-bg: rgba(169, 155, 140, 0.18);
+    --base-text: #c4b8a8;
+    --bear-bg: rgba(196, 154, 60, 0.18);
+    --bear-text: #d9b45e;
   }
 }
 
@@ -65,13 +69,13 @@ body {
   position: sticky;
   top: 0;
   z-index: 20;
-  background: rgba(255, 255, 255, 0.82);
+  background: rgba(250, 249, 243, 0.82);
   -webkit-backdrop-filter: saturate(1.6) blur(10px);
   backdrop-filter: saturate(1.6) blur(10px);
   border-bottom: 1px solid var(--border);
 }
 @media (prefers-color-scheme: dark) {
-  .topbar { background: rgba(16, 16, 18, 0.82); }
+  .topbar { background: rgba(22, 24, 26, 0.82); }
 }
 .topbar-inner {
   max-width: 860px;
@@ -467,8 +471,8 @@ h2::before {
 @media (max-width: 600px) { #rates-engine table { min-width: 560px; } }
 
 /* ===== 10Y 분해 뷰 · 실질 + BEI (decomposition) ===== */
-#rates-engine { --dreal: var(--brand); --dbei: #b8860b; }
-@media (prefers-color-scheme: dark) { #rates-engine { --dbei: #d4a017; } }
+#rates-engine { --dreal: var(--brand); --dbei: #9789a8; } /* Blue Fusion / Quiet Violet */
+@media (prefers-color-scheme: dark) { #rates-engine { --dbei: #b0a0c2; } }
 #rates-engine .decomp { display: flex; flex-direction: column; gap: 14px; }
 #rates-engine .dlegend { display: flex; flex-wrap: wrap; gap: 14px; font-size: 12px; color: var(--text-secondary); }
 #rates-engine .dlegend span { display: inline-flex; align-items: center; gap: 5px; }
@@ -498,5 +502,5 @@ h2::before {
 #rates-engine .dout { font-size: 12.5px; color: var(--text-secondary); background: var(--bg-secondary); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 11px 13px; line-height: 1.7; }
 #rates-engine .dout b { color: var(--text); font-variant-numeric: tabular-nums; }
 #rates-engine .dchip { display: inline-block; font-size: 10.5px; padding: 1px 6px; border-radius: 5px; margin: 3px 4px 0 0; }
-#rates-engine .dchip.bei { background: rgba(184, 134, 11, 0.14); color: var(--dbei); }
-#rates-engine .dchip.real { background: rgba(18, 87, 214, 0.12); color: var(--brand); }
+#rates-engine .dchip.bei { background: rgba(151, 137, 168, 0.16); color: var(--dbei); }
+#rates-engine .dchip.real { background: rgba(70, 120, 140, 0.14); color: var(--brand); }
