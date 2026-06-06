@@ -273,6 +273,7 @@ function clone(o){return JSON.parse(JSON.stringify(o));}
 var state = clone(DEFAULTS);
 var gateHz = 'fragile', gateHk = 'mid';
 var seedApplied = false, _seed = null;
+var _prevSeed = null; // 1주일 전 스냅샷(현재10Y·연말확률)
 
 function wsum(m){return m.base.p+m.hawk.p+m.dove.p;}
 function weighted(m){var s=wsum(m);if(s<=0)return 0;return (m.base.p*m.base.y+m.hawk.p*m.hawk.y+m.dove.p*m.dove.y)/s;}
@@ -324,6 +325,24 @@ function chart(){
   var bot='';
   for(var i=xs.length-1;i>=0;i--){var m=xs[i],x=xAt(i);var lo=(i===0)?ANCHOR.y:m.dove.y;bot+='L'+x+' '+yAt(lo)+' ';}
   s+='<path d="'+top+bot+'Z" fill="'+COL.txt+'" opacity="0.07"/>';
+  // 1주일 전 가중 경로 (밴드 없이 가중평균 수치만)
+  if(_prevSeed){
+    var pst=clone(DEFAULTS), pdec=pst[pst.length-1];
+    if(_prevSeed.p){
+      if(typeof _prevSeed.p.bull==='number')pdec.dove.p=_prevSeed.p.bull;
+      if(typeof _prevSeed.p.base==='number')pdec.base.p=_prevSeed.p.base;
+      if(typeof _prevSeed.p.bear==='number')pdec.hawk.p=_prevSeed.p.bear;
+    }
+    var pAnchor=(typeof _prevSeed.y10==='number')?_prevSeed.y10:ANCHOR.y;
+    var pPath=[pAnchor].concat(pst.map(weighted));
+    var pl='';
+    pPath.forEach(function(v,i){pl+=(i?'L':'M')+xAt(i)+' '+yAt(v)+' ';});
+    s+='<path d="'+pl+'" fill="none" stroke="'+COL.faint+'" stroke-width="1.8" stroke-dasharray="4,3" opacity="0.9"/>';
+    pPath.forEach(function(v,i){var x=xAt(i);
+      s+='<circle cx="'+x+'" cy="'+yAt(v)+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+((i===0)?'현재':pst[i-1].label)+' 1주일 전 가중: '+f2(v)+'%</title></circle>';
+      s+='<text x="'+x+'" y="'+(yAt(v)+18)+'" fill="'+COL.faint+'" font-size="12" text-anchor="middle" font-family="monospace">'+f2(v)+'</text>';
+    });
+  }
   var wl='';
   xs.forEach(function(m,i){var x=xAt(i);var v=(i===0)?ANCHOR.y:weighted(m);wl+=(i?'L':'M')+x+' '+yAt(v)+' ';});
   s+='<path d="'+wl+'" fill="none" stroke="'+COL.txt+'" stroke-width="2.2"/>';
@@ -548,6 +567,11 @@ function init(){
       var h=d.history[d.history.length-1];
       _seed={y10:(h.markets&&h.markets.ten_year),p:h.probabilities,date:h.date};
       reapplySeed();seedApplied=true;
+      // 1주일 전(7일 영업기준) 스냅샷 — 가중 경로 비교용
+      if(d.history.length>=8){
+        var hp=d.history[d.history.length-8];
+        _prevSeed={y10:(hp.markets&&hp.markets.ten_year),p:hp.probabilities,date:hp.date};
+      }
       var us=el('updStat');if(us)us.textContent='data.json '+h.date+' · 현재10Y·연말확률 시드';
     }
     renderAll();
