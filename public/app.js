@@ -483,6 +483,9 @@ function bindLevers(){
 }
 /* ----- CME FedWatch 내재 정책금리 경로 ----- */
 var FW=[["6/26",3.621,0.031],["7/26",3.643,0.076],["9/26",3.694,0.126],["10/26",3.733,0.156],["12/26",3.813,0.195],["1/27",3.853,0.215],["3/27",3.918,0.241],["4/27",3.950,0.256],["6/27",3.953,0.257],["7/27",3.953,0.257],["9/27",3.929,0.267],["10/27",3.904,0.276],["12/27",3.838,0.297]];
+// 1주일 전(2026-05-28) 회의별 가중평균 내재금리 — CME FedWatch History 분포 기반.
+// 9 Jun 2027(6/27) 이후 회의는 당시 분포 데이터가 없어 라인 미표시.
+var FW_PREV={"6/26":3.626,"7/26":3.643,"9/26":3.690,"10/26":3.713,"12/26":3.775,"1/27":3.798,"3/27":3.851,"4/27":3.873,"6/27":3.873};
 var FWCUR=3.625;
 function fwChart(){
   if(!el('fwchart'))return;
@@ -504,6 +507,16 @@ function fwChart(){
   FW.forEach(function(d,i){top+=(i?'L':'M')+xAt(i)+' '+yAt(d[1]+d[2])+' ';});
   for(var i=FW.length-1;i>=0;i--){bot+='L'+xAt(i)+' '+yAt(FW[i][1]-FW[i][2])+' ';}
   s+='<path d="'+top+bot+'Z" fill="'+COL.brand+'" opacity="0.13"/>';
+  // 1주일 전 가중평균 경로 (밴드 없이 라인 + 수치만)
+  var pv=[];FW.forEach(function(d,i){if(FW_PREV[d[0]]!=null)pv.push([i,FW_PREV[d[0]]]);});
+  if(pv.length){
+    var pl='';pv.forEach(function(p,k){pl+=(k?'L':'M')+xAt(p[0])+' '+yAt(p[1])+' ';});
+    s+='<path d="'+pl+'" fill="none" stroke="'+COL.faint+'" stroke-width="1.8" stroke-dasharray="4,3" opacity="0.9"/>';
+    pv.forEach(function(p){var x=xAt(p[0]),y=yAt(p[1]);
+      s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+FW[p[0]][0]+' 1주일 전 가중: '+p[1].toFixed(3)+'%</title></circle>';
+      s+='<text x="'+x+'" y="'+(y+15)+'" fill="'+COL.faint+'" font-size="11" text-anchor="middle" font-family="monospace">'+p[1].toFixed(2)+'</text>';
+    });
+  }
   var ml='';FW.forEach(function(d,i){ml+=(i?'L':'M')+xAt(i)+' '+yAt(d[1])+' ';});
   s+='<path d="'+ml+'" fill="none" stroke="'+COL.brand+'" stroke-width="2.4"/>';
   var pk=0;FW.forEach(function(d,i){if(d[1]>FW[pk][1])pk=i;});
