@@ -318,7 +318,7 @@ function chart(){
   }
   THRESHOLDS.forEach(function(t){if(t.y<yMin||t.y>yMax)return;var y=yAt(t.y);var c=COL[t.t]||COL.faint;
     s+='<line x1="'+xL+'" y1="'+y+'" x2="'+xR+'" y2="'+y+'" stroke="'+c+'" stroke-width="1.4" stroke-dasharray="2,3" opacity="0.85"/>';
-    s+='<text x="'+(xR+4)+'" y="'+(y+3.5)+'" fill="'+c+'" font-size="12" font-family="monospace">'+t.lab+'</text>';
+    s+='<text x="'+(xR+4)+'" y="'+(y+3.5)+'" fill="'+c+'" font-size="14" font-family="monospace">'+t.lab+'</text>';
   });
   var top='';
   xs.forEach(function(m,i){var x=xAt(i);var hi=(i===0)?ANCHOR.y:m.hawk.y;top+=(i?'L':'M')+x+' '+yAt(hi)+' ';});
@@ -340,7 +340,7 @@ function chart(){
     s+='<path d="'+pl+'" fill="none" stroke="'+COL.faint+'" stroke-width="1.8" stroke-dasharray="4,3" opacity="0.9"/>';
     pPath.forEach(function(v,i){var x=xAt(i);
       s+='<circle cx="'+x+'" cy="'+yAt(v)+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+((i===0)?'현재':pst[i-1].label)+' 1주일 전 가중: '+f2(v)+'%</title></circle>';
-      s+='<text x="'+x+'" y="'+(yAt(v)+18)+'" fill="'+COL.faint+'" font-size="12" text-anchor="middle" font-family="monospace">'+f2(v)+'</text>';
+      s+='<text x="'+x+'" y="'+(yAt(v)+18)+'" fill="'+COL.faint+'" font-size="14" text-anchor="middle" font-family="monospace">'+f2(v)+'</text>';
     });
   }
   var wl='';
@@ -362,6 +362,7 @@ function chart(){
 }
 function npc(mk,scen,fld,v){return '<input class="np'+(fld==='y'?' ny':'')+'" type="number" step="'+(fld==='y'?'0.01':'1')+'" data-m="'+mk+'" data-s="'+scen+'" data-f="'+fld+'" value="'+v+'">';}
 function renderTable(){
+  if(!el('tbody'))return;
   var h='';
   state.forEach(function(m){
     var s=wsum(m),w=weighted(m);
@@ -502,7 +503,7 @@ function fwChart(){
   }
   var yc=yAt(FWCUR);
   s+='<line x1="'+xL+'" y1="'+yc+'" x2="'+xR+'" y2="'+yc+'" stroke="'+COL.faint+'" stroke-width="1.4" stroke-dasharray="3,3"/>';
-  s+='<text x="'+(xR-2)+'" y="'+(yc-5)+'" fill="'+COL.axis+'" font-size="12" text-anchor="end" font-family="monospace">현재 3.625</text>';
+  s+='<text x="'+(xR-2)+'" y="'+(yc-5)+'" fill="'+COL.axis+'" font-size="14" text-anchor="end" font-family="monospace">현재 3.625</text>';
   var top='',bot='';
   FW.forEach(function(d,i){top+=(i?'L':'M')+xAt(i)+' '+yAt(d[1]+d[2])+' ';});
   for(var i=FW.length-1;i>=0;i--){bot+='L'+xAt(i)+' '+yAt(FW[i][1]-FW[i][2])+' ';}
@@ -514,7 +515,7 @@ function fwChart(){
     s+='<path d="'+pl+'" fill="none" stroke="'+COL.faint+'" stroke-width="1.8" stroke-dasharray="4,3" opacity="0.9"/>';
     pv.forEach(function(p){var x=xAt(p[0]),y=yAt(p[1]);
       s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+FW[p[0]][0]+' 1주일 전 가중: '+p[1].toFixed(3)+'%</title></circle>';
-      s+='<text x="'+x+'" y="'+(y+15)+'" fill="'+COL.faint+'" font-size="11" text-anchor="middle" font-family="monospace">'+p[1].toFixed(2)+'</text>';
+      s+='<text x="'+x+'" y="'+(y+15)+'" fill="'+COL.faint+'" font-size="14" text-anchor="middle" font-family="monospace">'+p[1].toFixed(2)+'</text>';
     });
   }
   var ml='';FW.forEach(function(d,i){ml+=(i?'L':'M')+xAt(i)+' '+yAt(d[1])+' ';});
@@ -522,7 +523,7 @@ function fwChart(){
   var pk=0;FW.forEach(function(d,i){if(d[1]>FW[pk][1])pk=i;});
   FW.forEach(function(d,i){var x=xAt(i),y=yAt(d[1]);
     s+='<circle cx="'+x+'" cy="'+y+'" r="3.4" fill="'+COL.cardbg+'" stroke="'+COL.brand+'" stroke-width="2"><title>'+d[0]+': '+d[1].toFixed(3)+'% (±'+Math.round(d[2]*100)+'bp)</title></circle>';
-    s+='<text x="'+x+'" y="'+(yB+15)+'" fill="'+COL.axis+'" font-size="11" text-anchor="end" font-family="monospace" transform="rotate(-42 '+x+' '+(yB+15)+')">'+d[0]+'</text>';
+    s+='<text x="'+x+'" y="'+(yB+15)+'" fill="'+COL.axis+'" font-size="14" text-anchor="end" font-family="monospace" transform="rotate(-42 '+x+' '+(yB+15)+')">'+d[0]+'</text>';
   });
   var px=xAt(pk),py=yAt(FW[pk][1]);
   s+='<text x="'+px+'" y="'+(py-10)+'" fill="'+COL.txt+'" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">피크 '+FW[pk][1].toFixed(2)+'</text>';
