@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-05T22:36:06Z",
+  "last_updated": "2026-06-06T22:18:13Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -1075,6 +1075,56 @@
       ],
       "trigger_today": "노동시장 강세 데이터가 유가 하락을 압도하며 Fed 연말 인상 확률 85%로 상승, 10Y +6bp 급등",
       "bear_steelman": "유가가 $90대 초반까지 하락한 것은 호르무즈 부분 재개 기대를 반영하며, 연말까지 추가 하락 시 인플레 압력 완화로 Fed 인상 회피 가능."
+    },
+    {
+      "date": "2026-06-07",
+      "markets": {
+        "ten_year": 4.54,
+        "thirty_year": 5.0,
+        "brent": 93.09,
+        "wti": 90.54,
+        "fed_funds_implied": 3.622
+      },
+      "probabilities": {
+        "bull": 6,
+        "base": 30,
+        "bear": 64
+      },
+      "summary": "호르무즈 협상 교착·이란 드론 공격 재개, 강한 고용 지표로 Fed 연내 인상 가능성 부각되며 Bear 시나리오 강화",
+      "key_drivers": [
+        {
+          "name": "호르무즈 해협",
+          "value": "<cite index=\"1-1,4-3,4-8\">이란 협상 중단 발표(6/1) 후 드론 공격 재개(6/5), 미군 4대 격추·이란 레이더 타격</cite>; <cite index=\"2-20\">물류 정상화 Q4까지 걸릴 전망</cite>",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "<cite index=\"20-2,22-3\">주간 +4~6% 상승(협상 교착·충돌)</cite>, <cite index=\"20-1,22-11\">6/5 전일비 -2.8~3.1% 하락(협상 진전 기대)</cite>; <cite index=\"22-25\">中 원유 수입 10년래 최저</cite>로 수요 우려 공존",
+          "direction": "bear"
+        },
+        {
+          "name": "5월 NFP",
+          "value": "<cite index=\"39-4\">172k(예상 85k 상회), 3·4월 상향 수정</cite>; <cite index=\"39-5\">실업률 4.3% 불변, 시급 +0.3% M/M</cite>; <cite index=\"39-3,39-7\">연내 인상 거의 완전 반영(nearly fully priced)</cite>",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.622% (-3bp) → 현재 IORB 3.65% 대비 slightly 낮지만 6월 동결 확실; <cite index=\"30-2,30-6\">CME 6월 FOMC 동결 99.4% (5/31 as-of)</cite>. <cite index=\"39-3,39-16\">12월 인상(Oct부터) 가능성 시장이 반영 중</cite>. 함의금리 하락 폭 작고 NFP 강세로 장기 커브 bearish → 6월 동결 압도적, 연말은 인상 쪽",
+          "direction": "bear"
+        },
+        {
+          "name": "4월 FOMC 의사록",
+          "value": "<cite index=\"13-28,13-30\">인플레 2.8% PCE, 중동 갈등이 유가·인플레 주요 변수</cite>; <cite index=\"13-10\">2Y·10Y 수익률 상승, 인플레 보상 확대</cite>; <cite index=\"18-11\">4명 위원 반대(1명 인하, 3명 완화 편향 반대)</cite>",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y yield",
+          "value": "<cite index=\"43-2,44-2\">6/5 종가 4.55%, 2Y 4.17%(2025.2 이후 최고)</cite>; <cite index=\"39-3,39-8\">고용 강세로 +6bp(10Y), +10bp(2Y)</cite>; 연말 4.3~4.6% Base 레인지 상단",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "<cite index=\"39-3,39-4\">5월 NFP 172k(예상 85k 초과)·과거 수정 상향, 시장 연내 인상 거의 완전 반영 → 10Y +6bp → 4.55%</cite>",
+      "bear_steelman": "<cite index=\"5-3,5-4\">트럼프 '협상 질서 있게 진행 중, 서두르지 말라' 발언과 IAEA 핵 잠정 합의 기미</cite>는 단기 유가 급락·Bull 전환 가능성 시사하나, <cite index=\"6-13,7-2\">이란 '협상 교착' 재확인 및 레바논 휴전 거부</cite>로 실현 불투명"
     }
   ]
 }
