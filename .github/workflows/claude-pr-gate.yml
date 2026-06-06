@@ -43,6 +43,6 @@ jobs:
     steps:
       - run: gh pr merge "$PR" --squash --delete-branch
         env:
-          GH_TOKEN: ${{ secrets.AUTO_MERGE_TOKEN }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           PR: ${{ github.event.pull_request.number }}
           GH_REPO: ${{ github.repository }}
