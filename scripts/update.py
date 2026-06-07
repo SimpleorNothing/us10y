@@ -34,6 +34,26 @@ TICKERS = {
                                     # This is the same primitive CME FedWatch builds from.
 }
 
+# FOMC 회의 → 프록시 ZQ 계약 (회의 다음 달 30-Day Fed Funds 선물).
+# 회의 직후 한 달 평균금리 ≈ post-meeting 정책금리이므로 100 - 선물가가
+# CME FedWatch '회의별 가중평균 내재금리'의 근사치. 차트(fwchart)의 일별 시드용.
+# 월코드: F=1 G=2 H=3 J=4 K=5 M=6 N=7 Q=8 U=9 V=10 X=11 Z=12
+FOMC_PROXY = {
+    "6/26":  "ZQN26.CBT",   # 2026-06-16/17 → Jul26
+    "7/26":  "ZQQ26.CBT",   # 2026-07-28/29 → Aug26
+    "9/26":  "ZQV26.CBT",   # 2026-09-15/16 → Oct26
+    "10/26": "ZQX26.CBT",   # 2026-10-27/28 → Nov26
+    "12/26": "ZQF27.CBT",   # 2026-12-08/09 → Jan27
+    "1/27":  "ZQG27.CBT",   # 2027-01 말 → Feb27
+    "3/27":  "ZQJ27.CBT",   # 2027-03 중 → Apr27
+    "4/27":  "ZQK27.CBT",   # 2027-04 말 → May27
+    "6/27":  "ZQN27.CBT",
+    "7/27":  "ZQQ27.CBT",
+    "9/27":  "ZQV27.CBT",
+    "10/27": "ZQX27.CBT",
+    "12/27": "ZQF28.CBT",
+}
+
 SYSTEM_PROMPT = """당신은 미국 10년 국채금리 연말 시나리오 확률을 매일 추정하는 전문 트래커입니다. 투자적정성판단 에이전트 가이드 v0.2의 원칙을 따릅니다.
 
 # 원칙
@@ -52,7 +72,7 @@ SYSTEM_PROMPT = """당신은 미국 10년 국채금리 연말 시나리오 확�
 
 # 시나리오 정의 (연말 10Y 기준)
 - Bull: 3.75-4.0% (호르무즈 완전 재개 + 유가 $70대 + Fed 인하)
-- Base: 4.3-4.6% (점진적 정상화, Fed 동결, 인플레 끈적)
+- Base: 4.3-4.6% (점진적 정상화, Fed 동결, 인플레 끝적)
 - Bear: 5.0%+ (호르무즈 분쟁 지속/재격화 + Fed 인상 재개)
 
 # 출력 형식 (반드시 JSON만, 마크다운 백틱 없이)
@@ -115,6 +135,59 @@ def fetch_market_data() -> dict:
             print(f"⚠️  Failed to fetch {ticker}: {e}", file=sys.stderr)
             result[key] = None
     return result
+
+
+def fetch_fedwatch_path() -> dict:
+    """ZQ 선물 스트립에서 회의별 post-meeting 내재금리(100-선물가)를 수집.
+    실패한 계약은 생략 — app.js가 하드코딩 폴백과 병합."""
+    path = {}
+    for label, ticker in FOMC_PROXY.items():
+        try:
+            hist = yf.Ticker(ticker).history(period="5d", auto_adjust=False)
+            if hist.empty:
+                continue
+            path[label] = round(100 - float(hist["Close"].iloc[-1]), 3)
+        except Exception as e:
+            print(f"⚠️  fedwatch {ticker}: {e}", file=sys.stderr)
+    if path:
+        print(f"✓ fedwatch_path: {len(path)}/{len(FOMC_PROXY)} meetings")
+    else:
+        print("⚠️  fedwatch_path: no contracts fetched", file=sys.stderr)
+    return path
+
+
+def backfill_fedwatch_history(data: dict) -> int:
+    """과거 history 항목 중 fedwatch_path가 없는 날짜를 ZQ 과거 종가로 백필.
+    한 번 채워지면 이후 실행에서는 no-op. 1주일 전 비교선이 즉시 동적화되도록 함."""
+    history = data.get("history", [])
+    missing = [h for h in history if "fedwatch_path" not in h]
+    if not missing:
+        return 0
+    closes: dict[str, dict[str, float]] = {}
+    for label, ticker in FOMC_PROXY.items():
+        try:
+            hist = yf.Ticker(ticker).history(period="90d", auto_adjust=False)
+            if hist.empty:
+                continue
+            closes[label] = {
+                idx.strftime("%Y-%m-%d"): round(100 - float(c), 3)
+                for idx, c in hist["Close"].items()
+            }
+        except Exception:
+            continue
+    filled = 0
+    for h in missing:
+        fp = {}
+        for label, ser in closes.items():
+            prior = [k for k in ser if k <= h["date"]]
+            if prior:
+                fp[label] = ser[max(prior)]  # 해당일 또는 직전 영업일 종가
+        if fp:
+            h["fedwatch_path"] = fp
+            filled += 1
+    if filled:
+        print(f"✓ fedwatch_path backfilled for {filled} past dates")
+    return filled
 
 
 def fmt_delta(today, yesterday, kind="price"):
@@ -201,7 +274,7 @@ def call_claude(markets: dict, prev_snapshot: dict | None) -> dict:
     return parsed
 
 
-def update_data_file(markets: dict, analysis: dict) -> None:
+def update_data_file(markets: dict, analysis: dict, fedwatch_path: dict | None = None) -> None:
     """Append today's snapshot to data.json."""
     today = datetime.now(KST).strftime("%Y-%m-%d")
     now_utc_iso = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -225,9 +298,12 @@ def update_data_file(markets: dict, analysis: dict) -> None:
         "trigger_today": analysis.get("trigger_today", ""),
         "bear_steelman": analysis.get("bear_steelman", ""),
     }
+    if fedwatch_path:
+        snapshot["fedwatch_path"] = fedwatch_path
     history.append(snapshot)
 
     data["history"] = history
+    backfill_fedwatch_history(data)  # 과거 항목 누락분 1회성 백필 (이후 no-op)
     data["last_updated"] = now_utc_iso
 
     with DATA_FILE.open("w", encoding="utf-8") as f:
@@ -259,8 +335,9 @@ def main() -> int:
                 prev_snapshot = history[-1]
 
     markets = fetch_market_data()
+    fedwatch_path = fetch_fedwatch_path()
     analysis = call_claude(markets, prev_snapshot)
-    update_data_file(markets, analysis)
+    update_data_file(markets, analysis, fedwatch_path)
     print("=== Done ===")
     return 0
 

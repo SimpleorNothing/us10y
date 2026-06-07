@@ -500,8 +500,8 @@ function bindLevers(){
 }
 /* ----- CME FedWatch 내재 정책금리 경로 ----- */
 var FW=[["6/26",3.621,0.031],["7/26",3.643,0.076],["9/26",3.694,0.126],["10/26",3.733,0.156],["12/26",3.813,0.195],["1/27",3.853,0.215],["3/27",3.918,0.241],["4/27",3.950,0.256],["6/27",3.953,0.257],["7/27",3.953,0.257],["9/27",3.929,0.267],["10/27",3.904,0.276],["12/27",3.838,0.297]];
-// 1주일 전(2026-05-28) 회의별 가중평균 내재금리 — CME FedWatch History 분포 기반.
-// 9 Jun 2027(6/27) 이후 회의는 당시 분포 데이터가 없어 라인 미표시.
+// 1주일 전 회의별 가중평균 내재금리 — 폴백값(2026-05-28 CME FedWatch History 기반).
+// data.json history에 fedwatch_path(ZQ 스트립 일별 시드)가 있으면 init()에서 동적 대체됨.
 var FW_PREV={"6/26":3.626,"7/26":3.643,"9/26":3.690,"10/26":3.713,"12/26":3.775,"1/27":3.798,"3/27":3.851,"4/27":3.873,"6/27":3.873};
 var FWCUR=3.625;
 function fwChart(){
@@ -530,7 +530,10 @@ function fwChart(){
     var pl='';pv.forEach(function(p,k){pl+=(k?'L':'M')+xAt(p[0])+' '+yAt(p[1])+' ';});
     s+='<path d="'+pl+'" fill="none" stroke="'+COL.faint+'" stroke-width="1.8" stroke-dasharray="4,3" opacity="0.9"/>';
     pv.forEach(function(p){var x=xAt(p[0]),y=yAt(p[1]);
-      s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+FW[p[0]][0]+' 1주일 전 가중: '+p[1].toFixed(3)+'%</title></circle>';
+      var cur=FW[p[0]][1];
+      var dlt=Math.round((cur-p[1])*100);
+      var dtx=(dlt>=0?'+':'')+dlt+'bp';
+      s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+FW[p[0]][0]+' 1주일 전 가중: '+p[1].toFixed(3)+'% (現 대비 '+dtx+')</title></circle>';
       s+='<text x="'+x+'" y="'+(y+15)+'" fill="'+COL.faint+'" font-size="14" text-anchor="middle" font-family="monospace">'+p[1].toFixed(2)+'</text>';
     });
   }
@@ -552,7 +555,7 @@ function fwReadout(){
   var cur=FW[0][1],peak=FW[pk][1],last=FW[FW.length-1][1];
   el('fwout').innerHTML=
     '현재 <b>'+cur.toFixed(2)+'%</b> → 피크 <b>'+peak.toFixed(2)+'%</b> ('+FW[pk][0]+', '+Math.round((peak-cur)*100)+'bp) → \'27말 <b>'+last.toFixed(2)+'%</b><br>'
-    +'<span style="font-size:11.5px">시장은 향후 ~1회 인상을 2027 중반까지 가격화 후 소폭 되돌림. σ 0.03→0.30%로 확산(불확실성 콘).</span>';
+    +'<span style="font-size:11.5px">시장은 향후 ~1회 인상을 2027 중반까지 가격화 후 소폭 되돌림. σ 0.03→0.30%로 확산(불확실성 콘). σ 밴드는 정적 추정치, 라인·1주전 점선은 data.json 일별 시드(있을 경우).</span>';
 }
 function renderAll(){renderStats();chart();renderTable();renderGate();}
 
@@ -575,7 +578,7 @@ function bind(){
   if(applyBtn)applyBtn.addEventListener('click',applyGate);
   if(resetBtn)resetBtn.addEventListener('click',function(){state=clone(DEFAULTS);if(seedApplied)reapplySeed();renderAll();});
   var foot=el('foot');
-  if(foot)foot.innerHTML='출처: FRED(DGS10·DFII10·T10YIE·ACMTP10) · NY Fed ACM term premium · CME FedWatch · US Treasury 분기 리펀딩(2026-05) · FOMC SEP · Dallas Fed Trimmed-Mean PCE · BLS CPI · BEA PCE · Bloomberg/Reuters/CNBC/CNN · Moody\'s · Yale Budget Lab. 현재 10Y·연말 시나리오 확률은 이 사이트의 data.json에서 시드됩니다.<br>※ 이 페이지는 추정 보조도구이며 방향 처방이 아닌 조건부 리스크사이징 입력값입니다. 시나리오 입력값은 새로고침 시 기본값으로 초기화됩니다.';
+  if(foot)foot.innerHTML='출처: FRED(DGS10·DFII10·T10YIE·ACMTP10) · NY Fed ACM term premium · CME FedWatch · ZQ 30-Day Fed Funds 선물 스트립(일별) · US Treasury 분기 리펀딩(2026-05) · FOMC SEP · Dallas Fed Trimmed-Mean PCE · BLS CPI · BEA PCE · Bloomberg/Reuters/CNBC/CNN · Moody\'s · Yale Budget Lab. 현재 10Y·연말 시나리오 확률·FedWatch 경로는 이 사이트의 data.json에서 시드됩니다.<br>※ 이 페이지는 추정 보조도구이며 방향 처방이 아닌 조건부 리스크사이징 입력값입니다. 시나리오 입력값은 새로고침 시 기본값으로 초기화됩니다.';
   if(window.matchMedia){
     try{window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change',function(){loadColors();renderAll();fwChart();});}catch(e){}
   }
@@ -592,11 +595,21 @@ function init(){
       var h=d.history[d.history.length-1];
       _seed={y10:(h.markets&&h.markets.ten_year),p:h.probabilities,date:h.date};
       reapplySeed();seedApplied=true;
-      // 1주일 전(7일 영업기준) 스냅샷 — 가중 경로 비교용
+      var fwDirty=false;
+      // FedWatch 현재 경로 동적 시드 (ZQ 스트립 일별 캐처)
+      if(h.fedwatch_path){
+        FW.forEach(function(fd){if(typeof h.fedwatch_path[fd[0]]==='number'){fd[1]=h.fedwatch_path[fd[0]];fwDirty=true;}});
+      }
+      // 1주일 전(7일 영업기준) 스냅샷 — 팬차트·FedWatch 양쪽 비교용
       if(d.history.length>=8){
         var hp=d.history[d.history.length-8];
         _prevSeed={y10:(hp.markets&&hp.markets.ten_year),p:hp.probabilities,date:hp.date};
+        if(hp.fedwatch_path){
+          var np={};for(var k in hp.fedwatch_path){if(typeof hp.fedwatch_path[k]==='number')np[k]=hp.fedwatch_path[k];}
+          if(Object.keys(np).length){FW_PREV=np;fwDirty=true;}
+        }
       }
+      if(fwDirty){fwChart();fwReadout();}
       var us=el('updStat');if(us)us.textContent='data.json '+h.date+' · 현재10Y·연말확률 시드';
     }
     renderAll();
