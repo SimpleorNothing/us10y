@@ -67,7 +67,7 @@
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
+      .replace(/\"/g, "&quot;")
       .replace(/'/g, "&#39;");
   }
 
@@ -275,6 +275,23 @@ var gateHz = 'fragile', gateHk = 'mid';
 var seedApplied = false, _seed = null;
 var _prevSeed = null; // 1주일 전 스냅샷(현재10Y·연말확률)
 
+/* 연말(12월) 시드 확률을 전 월에 비례 전파 — 7월 1/6 → 12월 6/6(=시드값 그대로).
+   현재 경로·1주일 전 경로가 같은 함수를 사용하므로 월별 비교가 정합. */
+var DEC_DEF = DEFAULTS[DEFAULTS.length-1];
+function seedMonths(st,p){
+  if(!p)return;
+  var dB=(typeof p.base==='number')?(p.base-DEC_DEF.base.p):0;
+  var dH=(typeof p.bear==='number')?(p.bear-DEC_DEF.hawk.p):0;
+  var dD=(typeof p.bull==='number')?(p.bull-DEC_DEF.dove.p):0;
+  var N=st.length;
+  st.forEach(function(m,i){
+    var f=(i+1)/N;
+    m.base.p=Math.max(0,Math.round(DEFAULTS[i].base.p+f*dB));
+    m.hawk.p=Math.max(0,Math.round(DEFAULTS[i].hawk.p+f*dH));
+    m.dove.p=Math.max(0,Math.round(DEFAULTS[i].dove.p+f*dD));
+  });
+}
+
 function wsum(m){return m.base.p+m.hawk.p+m.dove.p;}
 function weighted(m){var s=wsum(m);if(s<=0)return 0;return (m.base.p*m.base.y+m.hawk.p*m.hawk.y+m.dove.p*m.dove.y)/s;}
 function f2(v){return v.toFixed(2);}
@@ -325,21 +342,20 @@ function chart(){
   var bot='';
   for(var i=xs.length-1;i>=0;i--){var m=xs[i],x=xAt(i);var lo=(i===0)?ANCHOR.y:m.dove.y;bot+='L'+x+' '+yAt(lo)+' ';}
   s+='<path d="'+top+bot+'Z" fill="'+COL.txt+'" opacity="0.07"/>';
-  // 1주일 전 가중 경로 (밴드 없이 가중평균 수치만)
+  // 1주일 전 가중 경로 — 전 월에 1주일 전 연말 확률을 동일 방식(seedMonths)으로 전파해 월별 비교 가능
   if(_prevSeed){
-    var pst=clone(DEFAULTS), pdec=pst[pst.length-1];
-    if(_prevSeed.p){
-      if(typeof _prevSeed.p.bull==='number')pdec.dove.p=_prevSeed.p.bull;
-      if(typeof _prevSeed.p.base==='number')pdec.base.p=_prevSeed.p.base;
-      if(typeof _prevSeed.p.bear==='number')pdec.hawk.p=_prevSeed.p.bear;
-    }
+    var pst=clone(DEFAULTS);
+    seedMonths(pst,_prevSeed.p);
     var pAnchor=(typeof _prevSeed.y10==='number')?_prevSeed.y10:ANCHOR.y;
     var pPath=[pAnchor].concat(pst.map(weighted));
     var pl='';
     pPath.forEach(function(v,i){pl+=(i?'L':'M')+xAt(i)+' '+yAt(v)+' ';});
     s+='<path d="'+pl+'" fill="none" stroke="'+COL.faint+'" stroke-width="1.8" stroke-dasharray="4,3" opacity="0.9"/>';
     pPath.forEach(function(v,i){var x=xAt(i);
-      s+='<circle cx="'+x+'" cy="'+yAt(v)+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+((i===0)?'현재':pst[i-1].label)+' 1주일 전 가중: '+f2(v)+'%</title></circle>';
+      var cur=(i===0)?ANCHOR.y:weighted(xs[i]);
+      var dlt=Math.round((cur-v)*100);
+      var dtx=(dlt>=0?'+':'')+dlt+'bp';
+      s+='<circle cx="'+x+'" cy="'+yAt(v)+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+((i===0)?'현재':pst[i-1].label)+' 1주일 전 가중: '+f2(v)+'% (現 대비 '+dtx+')</title></circle>';
       s+='<text x="'+x+'" y="'+(yAt(v)+18)+'" fill="'+COL.faint+'" font-size="14" text-anchor="middle" font-family="monospace">'+f2(v)+'</text>';
     });
   }
@@ -355,7 +371,7 @@ function chart(){
     var wv=(i===0)?ANCHOR.y:weighted(m);
     s+='<circle cx="'+x+'" cy="'+yAt(wv)+'" r="4.5" fill="'+COL.cardbg+'" stroke="'+COL.txt+'" stroke-width="2.2"><title>'+((i===0)?'현재':m.label)+' 가중: '+f2(wv)+'%</title></circle>';
     s+='<text x="'+x+'" y="'+(yAt(wv)-12)+'" fill="'+COL.txt+'" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">'+f2(wv)+'</text>';
-    s+='<text x="'+x+'" y="'+(yB+20)+'" fill="'+COL.axis+'" font-size="13" text-anchor="middle">'+((i===0)?'현재':m.label)+'</text>';
+    s+='<text x="'+x+'" y="'+(yB+20)+'" fill="'+COL.axis+'" font-size="14" text-anchor="middle">'+((i===0)?'현재':m.label)+'</text>';
   });
   s+='</svg>';
   el('chart').innerHTML=s;
@@ -543,12 +559,7 @@ function renderAll(){renderStats();chart();renderTable();renderGate();}
 function reapplySeed(){
   if(!_seed)return;
   if(typeof _seed.y10==='number'){ANCHOR.y=_seed.y10;ANCHOR.d='data.json '+(_seed.date||'');}
-  var dec=state[state.length-1];
-  if(_seed.p){
-    if(typeof _seed.p.bull==='number')dec.dove.p=_seed.p.bull;
-    if(typeof _seed.p.base==='number')dec.base.p=_seed.p.base;
-    if(typeof _seed.p.bear==='number')dec.hawk.p=_seed.p.bear;
-  }
+  seedMonths(state,_seed.p); // 연말 확률을 7~12월 전 월에 비례 전파
 }
 
 function bind(){
