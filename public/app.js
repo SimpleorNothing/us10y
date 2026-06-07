@@ -519,7 +519,7 @@ function fwChart(){
   }
   var yc=yAt(FWCUR);
   s+='<line x1="'+xL+'" y1="'+yc+'" x2="'+xR+'" y2="'+yc+'" stroke="'+COL.faint+'" stroke-width="1.4" stroke-dasharray="3,3"/>';
-  s+='<text x="'+(xR-2)+'" y="'+(yc-5)+'" fill="'+COL.axis+'" font-size="14" text-anchor="end" font-family="monospace">현재 3.625</text>';
+  s+='<text x="'+(xR-2)+'" y="'+(yc-5)+'" fill="'+COL.axis+'" font-size="13" text-anchor="end">현재 3.625</text>';
   var top='',bot='';
   FW.forEach(function(d,i){top+=(i?'L':'M')+xAt(i)+' '+yAt(d[1]+d[2])+' ';});
   for(var i=FW.length-1;i>=0;i--){bot+='L'+xAt(i)+' '+yAt(FW[i][1]-FW[i][2])+' ';}
@@ -534,7 +534,7 @@ function fwChart(){
       var dlt=Math.round((cur-p[1])*100);
       var dtx=(dlt>=0?'+':'')+dlt+'bp';
       s+='<circle cx="'+x+'" cy="'+y+'" r="3" fill="'+COL.cardbg+'" stroke="'+COL.faint+'" stroke-width="1.6"><title>'+FW[p[0]][0]+' 1주일 전 가중: '+p[1].toFixed(3)+'% (現 대비 '+dtx+')</title></circle>';
-      s+='<text x="'+x+'" y="'+(y+15)+'" fill="'+COL.faint+'" font-size="14" text-anchor="middle" font-family="monospace">'+p[1].toFixed(2)+'</text>';
+      s+='<text x="'+x+'" y="'+(y+15)+'" fill="'+COL.faint+'" font-size="13" text-anchor="middle">'+p[1].toFixed(2)+'</text>';
     });
   }
   var ml='';FW.forEach(function(d,i){ml+=(i?'L':'M')+xAt(i)+' '+yAt(d[1])+' ';});
@@ -545,7 +545,7 @@ function fwChart(){
     s+='<text x="'+x+'" y="'+(yB+15)+'" fill="'+COL.axis+'" font-size="14" text-anchor="end" font-family="monospace" transform="rotate(-42 '+x+' '+(yB+15)+')">'+d[0]+'</text>';
   });
   var px=xAt(pk),py=yAt(FW[pk][1]);
-  s+='<text x="'+px+'" y="'+(py-10)+'" fill="'+COL.txt+'" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">피크 '+FW[pk][1].toFixed(2)+'</text>';
+  s+='<text x="'+px+'" y="'+(py-10)+'" fill="'+COL.txt+'" font-size="13" text-anchor="middle" font-weight="700">피크 '+FW[pk][1].toFixed(2)+'</text>';
   s+='</svg>';
   el('fwchart').innerHTML=s;
 }
