@@ -355,7 +355,7 @@ function chart(){
     var wv=(i===0)?ANCHOR.y:weighted(m);
     s+='<circle cx="'+x+'" cy="'+yAt(wv)+'" r="4.5" fill="'+COL.cardbg+'" stroke="'+COL.txt+'" stroke-width="2.2"><title>'+((i===0)?'현재':m.label)+' 가중: '+f2(wv)+'%</title></circle>';
     s+='<text x="'+x+'" y="'+(yAt(wv)-12)+'" fill="'+COL.txt+'" font-size="14" text-anchor="middle" font-family="monospace" font-weight="700">'+f2(wv)+'</text>';
-    s+='<text x="'+x+'" y="'+(yB+20)+'" fill="'+COL.axis+'" font-size="14" text-anchor="middle" font-family="monospace">'+((i===0)?'현재':m.label)+'</text>';
+    s+='<text x="'+x+'" y="'+(yB+20)+'" fill="'+COL.axis+'" font-size="13" text-anchor="middle">'+((i===0)?'현재':m.label)+'</text>';
   });
   s+='</svg>';
   el('chart').innerHTML=s;
