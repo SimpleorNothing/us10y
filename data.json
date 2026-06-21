@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-20T22:35:53Z",
+  "last_updated": "2026-06-21T23:55:46Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -2302,6 +2302,65 @@
         "6/27": 4.11,
         "7/27": 4.055,
         "9/27": 4.015,
+        "10/27": 3.985
+      }
+    },
+    {
+      "date": "2026-06-22",
+      "markets": {
+        "ten_year": 4.45,
+        "thirty_year": 4.9,
+        "brent": 81.57,
+        "wti": 77.64,
+        "fed_funds_implied": 3.74
+      },
+      "probabilities": {
+        "bull": 35,
+        "base": 40,
+        "bear": 25
+      },
+      "summary": "<cite index=\"1-7,2-6\">VP Vance는 스위스 협상에서 '상당한 진전'을 언급했으나</cite> <cite index=\"1-8,1-12,1-14\">이란이 이스라엘-레바논 충돌과 제재 면제 요구를 이유로 재차 호르무즈 폐쇄 주장</cite>하며 유가 +$1 반등. <cite index=\"12-10,16-8\">6월 FOMC 점도표(median)가 2026년 추가 인하 제거·잠재 인상 시사</cite>로 Bear 시나리오 무게↑",
+      "key_drivers": [
+        {
+          "name": "호르무즈 협상",
+          "value": "<cite index=\"1-9\">Vance '어제 1600만 배럴 통과·기록적 수준'</cite> vs. <cite index=\"1-12,1-13\">이란 측 '레바논 휴전·제재 면제 전 폐쇄 유지'</cite> 병립, 불확실성 지속",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent/WTI 유가",
+          "value": "<cite index=\"19-11,21-9\">주간 -8.5~10% 급락 이후 반등 +$0.98/+$1.10</cite>, <cite index=\"19-6,21-5\">스위스 회담 연기·레바논 폭격 지속</cite>이 상승 촉발",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.74% (+1bp). <cite index=\"10-3,10-11\">6/17 FOMC는 3.50~3.75% 동결(12:0)</cite>, <cite index=\"12-10,16-8\">3월 median은 2026년 추가 2회 인하·6월 median은 1회 인상 가능</cite> 시사. <cite index=\"32-1,32-6\">6/13 시점 CME FedWatch: 6월 회의 동결 88.8%</cite>(오늘자 정확한 수치는 확인 못 함, 함의금리 1bp 상승은 인하 기대 소폭 축소 반영)",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y/30Y yield",
+          "value": "4.45%/4.9% 변동 없음. <cite index=\"38-7\">시장은 10월까지 인상을 완전 가격 반영(fully priced)</cite>, <cite index=\"40-13,40-25\">유가·글로벌 금리·term premium 상승압력 지속</cite>",
+          "direction": "base"
+        },
+        {
+          "name": "신임 Warsh 의장",
+          "value": "<cite index=\"17-5,17-16,17-23\">성명서 축소·포워드 가이던스 폐기·'불확실성' 강조</cite>, <cite index=\"44-11\">2Y yield +16bp (2008년 3월 이후 FOMC일 최대 상승)</cite>로 hawkish 전환 확인",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "<cite index=\"1-3,1-8,1-14\">이란이 '레바논 이스라엘 공습·미국 악의' 이유로 호르무즈 재폐쇄 선언하며 유가 반등, 협상 지속 불투명</cite>",
+      "bear_steelman": "<cite index=\"1-9,2-26\">미 CENTCOM은 '호르무즈는 여전히 개방, 교역 흐름 지속'이라 반박하고 Vance는 '기록적 물량 통과'를 강조—실제 차단 능력보다 이란의 협상 레버리지 과시일 수 있으며, 60일 틀 안에 최종 합의 시 유가 급락·Bull 시나리오 복귀 가능</cite>",
+      "fedwatch_path": {
+        "6/26": 3.64,
+        "7/26": 3.74,
+        "9/26": 3.895,
+        "10/26": 3.96,
+        "12/26": 4.055,
+        "1/27": 4.115,
+        "3/27": 4.155,
+        "4/27": 4.14,
+        "6/27": 4.125,
+        "7/27": 4.055,
+        "9/27": 4.025,
         "10/27": 3.985
       }
     }
