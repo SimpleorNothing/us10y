@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-26T22:38:01Z",
+  "last_updated": "2026-06-27T22:16:54Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -2672,6 +2672,65 @@
         "7/27": 3.925,
         "9/27": 3.915,
         "10/27": 3.885
+      }
+    },
+    {
+      "date": "2026-06-28",
+      "markets": {
+        "ten_year": 4.37,
+        "thirty_year": 4.86,
+        "brent": 71.99,
+        "wti": 69.23,
+        "fed_funds_implied": 3.628
+      },
+      "probabilities": {
+        "bull": 65,
+        "base": 25,
+        "bear": 10
+      },
+      "summary": "호르무즈 해협 75% 재개·유가 급락에도 Fed 연내 인상 시사로 Bull 소폭 확대, Bear 상승",
+      "key_drivers": [
+        {
+          "name": "Brent 유가",
+          "value": "$71.99 (-1.58, 주간 -10%+)",
+          "direction": "bull"
+        },
+        {
+          "name": "호르무즈 물동량",
+          "value": "전쟁 前 75% 회복, 사우디 라스타누라 출하 재개",
+          "direction": "bull"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.628% (-7bp) — CME FedWatch 오늘자 수치 미확인. 6/17 FOMC: 금리 동결(3.50-3.75%), 2026 중간 전망치 상향→연내 인상 1회 가능성 시사(Wells Fargo 6/10, FXStreet 6/18)",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y yield",
+          "value": "4.37% (변동 없음), Schwab·U.S.Bank 4.0-4.5% 밴드 전망",
+          "direction": "base"
+        },
+        {
+          "name": "美-이란 MOU",
+          "value": "6/17 서명, 스위스 후속협상 연기·레바논 이스라엘 공습 지속",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "호르무즈 물동량 75% 회복·사우디 출하 본격화로 유가 2월 이래 최저, 하지만 6/17 FOMC dot plot 인상 전환으로 Bull/Bear 동시 부각",
+      "bear_steelman": "Iran 통행료 부과 가능성·레바논 긴장·Fed 3.6% PCE 전망 감안 시 유가 반등·연내 인상으로 10Y 4.8%+ 재상승 시나리오 배제 불가",
+      "fedwatch_path": {
+        "6/26": 3.635,
+        "7/26": 3.705,
+        "9/26": 3.815,
+        "10/26": 3.86,
+        "12/26": 3.935,
+        "1/27": 3.95,
+        "3/27": 3.98,
+        "4/27": 3.975,
+        "6/27": 3.945,
+        "7/27": 3.92,
+        "9/27": 3.88,
+        "10/27": 3.85
       }
     }
   ]
