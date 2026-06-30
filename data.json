@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-29T22:21:15Z",
+  "last_updated": "2026-06-30T22:41:00Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -2849,6 +2849,80 @@
         "7/27": 3.94,
         "9/27": 3.88,
         "10/27": 3.85
+      }
+    },
+    {
+      "date": "2026-07-01",
+      "markets": {
+        "ten_year": 4.42,
+        "thirty_year": 4.9,
+        "brent": 73.34,
+        "wti": 69.94,
+        "fed_funds_implied": 3.71
+      },
+      "probabilities": {
+        "bull": 38,
+        "base": 44,
+        "bear": 18
+      },
+      "summary": "10Y +5bp 상승하며 4.42% 기록. Fed Funds 함의금리 +8bp로 9월 인상 시나리오 고조되나, 유가는 -0.3달러로 US-Iran 협상 재개 기대 반영.",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.42% (+5bp)",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield",
+          "value": "4.9% (+4bp)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent",
+          "value": "$73.34 (-0.26)",
+          "direction": "bull"
+        },
+        {
+          "name": "WTI",
+          "value": "$69.94 (-0.39)",
+          "direction": "bull"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.71% (+8bp) — CME FedWatch 6/29 기준 다음 회의(7월) 동결 70.1%, 9월 인상 ~60% 시장 가격 중; 6월 FOMC는 dot-plot 중간값 3.8%로 연내 인상 시사",
+          "direction": "bear"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "US-Iran 6/30 도하 협상 예정하나 이란 참석 거부, 6월 유통량 여전히 전쟁 전 대비 ~75% 감소",
+          "direction": "base"
+        },
+        {
+          "name": "Fed 의장 Warsh",
+          "value": "6/17 FOMC서 인하 편향 삭제, 성명 130단어로 축소, dot-plot 제출 거부 — 시장은 인상 기대 상향",
+          "direction": "bear"
+        },
+        {
+          "name": "PCE core",
+          "value": "4.1% 헤드라인/3.4% 코어(6월 추정) — 2023년 이후 최고, Fed 2% 목표 훨씬 상회",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "Fed Funds 30D 함의금리 +8bp 급등 & 이란 협상 참석 거부로 bear 시나리오 확률 +4%p 상향, 단 유가 하락으로 bull도 생명력 유지",
+      "bear_steelman": "유가가 6월 -21% 폭락하며 전쟁 전 수준 회복 중이고 Hormuz 선박 통행 재개 시 인플레 급락 → Fed 동결 유지 가능성 여전히 높음",
+      "fedwatch_path": {
+        "6/26": 3.632,
+        "7/26": 3.71,
+        "9/26": 3.85,
+        "10/26": 3.905,
+        "12/26": 4.005,
+        "1/27": 4.03,
+        "3/27": 4.07,
+        "4/27": 4.075,
+        "6/27": 4.045,
+        "7/27": 4.015,
+        "9/27": 3.905,
+        "10/27": 3.875
       }
     }
   ]
