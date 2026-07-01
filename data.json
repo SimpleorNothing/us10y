@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-06-30T22:41:00Z",
+  "last_updated": "2026-07-01T22:40:38Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -2923,6 +2923,70 @@
         "7/27": 4.015,
         "9/27": 3.905,
         "10/27": 3.875
+      }
+    },
+    {
+      "date": "2026-07-02",
+      "markets": {
+        "ten_year": 4.47,
+        "thirty_year": 4.97,
+        "brent": 71.09,
+        "wti": 67.98,
+        "fed_funds_implied": 3.7
+      },
+      "probabilities": {
+        "bull": 45,
+        "base": 40,
+        "bear": 15
+      },
+      "summary": "<cite index=\"2-18,5-31\">미-이란 60일 MOU 이행 협의가 7/1 도하에서 재개되었으나 Iran은 호르무즈 통제권 고수</cite>하고 <cite index=\"21-8\">유출입 급증으로 유가 Q2에 30% 급락</cite>. <cite index=\"11-3,17-8\">6/17 FOMC는 3.5~3.75% 동결, 하지만 median dot이 3.8% 인상 시사하며 매파 전환</cite>.",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.47% (+5bp)",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield",
+          "value": "4.97% (+7bp)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent crude",
+          "value": "$71.09 (-$2.25, Q2 -30%)",
+          "direction": "bull"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.7% (-1bp). CME FedWatch(6/29 기준): 7월 FOMC 동결 70.1%. 연말 인상 확률 확인 안 됨; 6/17 median dot 3.8%(현 3.625% 대비 +17.5bp)로 매파 이동.",
+          "direction": "base"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "60일 MoU 이행 중이나 Iran 통제권·통행료 주장, 선박 충돌 재발로 traffic 감소",
+          "direction": "base"
+        },
+        {
+          "name": "Fed 인사발언",
+          "value": "6/17 Warsh 신임 의장: easing bias 삭제, core PCE 전망 3.3%로 상향, '일부 위원 인상 지지'",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "<cite index=\"2-18,21-5,21-7\">7/1 도하 간접 협상 재개 + Q2 유가 30% 급락 충격파가 10Y +5bp 상승(매파 dot vs 디플레 유가 긴장)</cite>",
+      "bear_steelman": "<cite index=\"19-6,21-8\">Iran 40mn bbl 수출·러시아 record 출하로 공급 glut 우려가 확산되면 장기 인플레 2%대 복귀, Fed는 더 이상 인상할 명분이 없어 연말 10Y는 오히려 3.75% 아래로 재하락할 수 있다.</cite>",
+      "fedwatch_path": {
+        "6/26": 3.632,
+        "7/26": 3.7,
+        "9/26": 3.83,
+        "10/26": 3.89,
+        "12/26": 4.0,
+        "1/27": 4.03,
+        "3/27": 4.075,
+        "4/27": 4.085,
+        "6/27": 4.06,
+        "7/27": 4.03,
+        "9/27": 3.94,
+        "10/27": 3.91
       }
     }
   ]
