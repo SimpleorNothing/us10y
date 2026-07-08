@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-07T22:32:14Z",
+  "last_updated": "2026-07-08T22:17:49Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -3396,6 +3396,75 @@
         "7/27": 4.03,
         "9/27": 3.915,
         "10/27": 3.89
+      }
+    },
+    {
+      "date": "2026-07-09",
+      "markets": {
+        "ten_year": 4.57,
+        "thirty_year": 5.07,
+        "brent": 79.18,
+        "wti": 74.65,
+        "fed_funds_implied": 3.7
+      },
+      "probabilities": {
+        "bull": 20,
+        "base": 45,
+        "bear": 35
+      },
+      "summary": "<cite index=\"6-8,6-9,6-10\">Trump declared Iran ceasefire 'over' after 3 ship attacks July 6-7, US launched new strikes July 7-8</cite>; <cite index=\"24-2\">Brent surged 5.2% to $78.02</cite> but <cite index=\"24-10,24-11\">Trump later said he did not believe full-scale war would resume</cite>. <cite index=\"29-1,29-7\">CME FedWatch (7/8) shows 70.1% hold at 3.50-3.75% for July 29 FOMC</cite>, 함의금리 7bp 급등은 인상 가능성 pricing 시사.",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.57% +4bp",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield",
+          "value": "5.07% +3bp",
+          "direction": "bear"
+        },
+        {
+          "name": "Hormuz 재격화",
+          "value": "US-Iran ceasefire 붕괴 선언→수정 (Trump '전면전 회의적')",
+          "direction": "bear"
+        },
+        {
+          "name": "유가 급등",
+          "value": "Brent $79.18 (+3.09), WTI $74.65 (+2.36) — 船舶공격+유류수출 waiver 취소",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.7% +7bp; CME 7/29 동결 70.1%, 인하(325-350) 29.9%; 12월 확률 확인 안 됨 (as of 7/8)",
+          "direction": "bear"
+        },
+        {
+          "name": "FOMC 의사록 (6/17)",
+          "value": "Released 7/8 2pm; '인플레 끈적, 동결 유지' 재확인",
+          "direction": "base"
+        },
+        {
+          "name": "June SEP median",
+          "value": "연말 3.75-4.0% 함의 (잠재 인상 1회)",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "<cite index=\"6-8,18-3,18-9\">July 6-7 3척 공격→Trump 7/7 ceasefire 종료 선언+재공습+유류 waiver 취소</cite>, but <cite index=\"24-10,24-11\">곧 '전면전 재개 안 믿는다' 발언으로 후퇴</cite> → 10Y +4bp, Brent +4%, 함의금리 +7bp jumps",
+      "bear_steelman": "<cite index=\"3-2,4-1,5-11\">Hormuz 선박통행 일부 재개·Qatar 중재 '긍정적 진전'</cite>, <cite index=\"46-11\">oil retreating to pre-conflict levels</cite> 및 <cite index=\"46-10,46-12\">softer jobs data → 9월 인하 확률 56%로 재상승</cite>으로 Bear 시나리오 과대 평가 가능",
+      "fedwatch_path": {
+        "6/26": 3.63,
+        "7/26": 3.7,
+        "9/26": 3.845,
+        "10/26": 3.905,
+        "12/26": 4.01,
+        "1/27": 4.05,
+        "3/27": 4.095,
+        "4/27": 4.105,
+        "6/27": 4.09,
+        "7/27": 4.06,
+        "9/27": 3.99,
+        "10/27": 3.94
       }
     }
   ]
