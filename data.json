@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-09T22:44:17Z",
+  "last_updated": "2026-07-10T22:16:27Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -3529,6 +3529,85 @@
         "7/27": 4.02,
         "9/27": 3.985,
         "10/27": 3.98
+      }
+    },
+    {
+      "date": "2026-07-11",
+      "markets": {
+        "ten_year": 4.57,
+        "thirty_year": 5.07,
+        "brent": 76.0,
+        "wti": 71.51,
+        "fed_funds_implied": 3.71
+      },
+      "probabilities": {
+        "bull": 12,
+        "base": 35,
+        "bear": 53
+      },
+      "summary": "호르무즈 교전 재발에도 협상 지속으로 유가 상승 제한되나, Fed Funds 30D 함의금리 +8bp·FOMC 의사록 '연말 인상 시사' 가능성 언급으로 Bear 시나리오 확률 8%p 상승",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.57% (+3bp)",
+          "direction": "bear"
+        },
+        {
+          "name": "30Y yield",
+          "value": "5.07% (+2bp)",
+          "direction": "bear"
+        },
+        {
+          "name": "Brent",
+          "value": "$76.0 (+0.02), 주간 +6% 후 반납",
+          "direction": "base"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "7/8-9 미·이란 교전 재개, 교통량 급감, 협상 지속 중",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.71% (+8bp, 현재금리 3.5-3.75% 대비 -4~9bp) — 다음회의(7/29) 동결 70.1% (CME 7/8), 12월 회의 인상 가능성 시장이 가격에 반영 중(확인 못함, 함의금리 상승 정합)",
+          "direction": "bear"
+        },
+        {
+          "name": "6월 FOMC 의사록(7/8)",
+          "value": "분열: 일부는 인하 시나리오, '많은' 위원은 연말 인상 필요(many assessed rate above current by year-end)",
+          "direction": "bear"
+        },
+        {
+          "name": "Waller 발언(7/6)",
+          "value": "포워드가이던스 축소, 2020-21 경직 가이던스 비판, 상황 의존 강조",
+          "direction": "base"
+        },
+        {
+          "name": "Wells Fargo 전망(7월)",
+          "value": "연말 SEP median 인상 1회 함의(3.75-4.0%), 10Y 4.0-4.5% 레인지 유지",
+          "direction": "bear"
+        },
+        {
+          "name": "Schwab 전망",
+          "value": "10Y 4.0-4.5% 유지, 4% 하향은 경기침체 필요, duration 벤치 이하 권고",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "Fed Funds 30D 함의금리 +8bp 급등 + 6월 FOMC 의사록 '많은 위원 연말 인상 평가' 공개 + 호르무즈 교전 재발에도 협상 지속 신호로 유가 급등 제한",
+      "bear_steelman": "함의금리 3.71%는 현재 목표금리 하단(3.50%)보다 21bp 높지만 상단(3.75%) 대비는 -4bp로, 시장이 연말까지 동결 또는 소폭 인상(~25bp)을 60-70% 수준으로 가격하는 중이며, 호르무즈 협상 타결·유가 재하락 시 Bear 확률은 일주일 내 40% 이하로 복귀 가능",
+      "fedwatch_path": {
+        "6/26": 3.628,
+        "7/26": 3.71,
+        "9/26": 3.85,
+        "10/26": 3.9,
+        "12/26": 4.0,
+        "1/27": 4.035,
+        "3/27": 4.085,
+        "4/27": 4.095,
+        "6/27": 4.07,
+        "7/27": 4.055,
+        "9/27": 4.005,
+        "10/27": 3.945
       }
     }
   ]
