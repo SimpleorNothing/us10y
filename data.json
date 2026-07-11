@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-10T22:16:27Z",
+  "last_updated": "2026-07-11T22:09:04Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -3608,6 +3608,75 @@
         "7/27": 4.055,
         "9/27": 4.005,
         "10/27": 3.945
+      }
+    },
+    {
+      "date": "2026-07-12",
+      "markets": {
+        "ten_year": 4.57,
+        "thirty_year": 5.07,
+        "brent": 76.01,
+        "wti": 71.41,
+        "fed_funds_implied": 3.63
+      },
+      "probabilities": {
+        "bull": 10,
+        "base": 30,
+        "bear": 60
+      },
+      "summary": "<cite index=\"1-13,4-7\">호르무즈 해협 선박 통행량 급감하며 미-이란 협상 지속에도 불구 전투 재개</cite>. <cite index=\"12-7\">6월 FOMC SEP 인상 시사, Fed 연말 인상 시나리오 강화</cite>",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.57% (변동 없음)",
+          "direction": "base"
+        },
+        {
+          "name": "Brent 유가",
+          "value": "$76.01 (+0.01), <cite index=\"17-3\">주간 +5%</cite>",
+          "direction": "bear"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "<cite index=\"4-3,4-7\">7/8 이후 통행량 급감, UN 승인 오만 경로 특히 심각</cite>",
+          "direction": "bear"
+        },
+        {
+          "name": "미-이란 협상",
+          "value": "<cite index=\"4-8,4-9\">기술 협상 지속 중이나 트럼프 '휴전 끝났다' 반복 발언</cite>",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.63% (-8bp). <cite index=\"29-6,29-7\">CME FedWatch 7/8 기준, 7/29 FOMC 동결 70.1%</cite>; <cite index=\"12-7\">6월 SEP 중위값 연말 1회 인상 함의</cite>; <cite index=\"41-14\">9월 인상 확률 ~64%</cite>. 함의금리 -8bp 하락은 단기 동결 기대 상승이나 중기 인상 경로(9월·12월) 가격 반영 중",
+          "direction": "bear"
+        },
+        {
+          "name": "FOMC 의사록 (7/8 공개)",
+          "value": "<cite index=\"41-13,41-18\">소수만 인상 선호했으나 인플레 우려 확대</cite>",
+          "direction": "bear"
+        },
+        {
+          "name": "IEA 경고",
+          "value": "<cite index=\"17-7,17-11\">분쟁 장기화 시 재고 재건 지연·공급 차질</cite>",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "<cite index=\"4-3,6-7,6-21\">호르무즈 통행량 7/8 이후 급감, 7/10 34척(6/28 이후 최저), 오만 남쪽 경로 사실상 중단</cite>하며 유가 반등·Bear 확률 60%로 확대",
+      "bear_steelman": "<cite index=\"17-4,17-8\">미·이란 기술 협상 진행 중이며 시장은 제한적 분쟁 예상</cite>하므로, 호르무즈 조속 재개 시 유가 $70대 복귀와 Fed 동결·연말 Bull 3.75~4.0% 가능",
+      "fedwatch_path": {
+        "6/26": 3.63,
+        "7/26": 3.71,
+        "9/26": 3.85,
+        "10/26": 3.9,
+        "12/26": 4.0,
+        "1/27": 4.03,
+        "3/27": 4.085,
+        "4/27": 4.095,
+        "6/27": 4.075,
+        "7/27": 4.055,
+        "9/27": 4.02,
+        "10/27": 3.995
       }
     }
   ]
