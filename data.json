@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-11T22:09:04Z",
+  "last_updated": "2026-07-12T22:08:34Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -3664,6 +3664,65 @@
       ],
       "trigger_today": "<cite index=\"4-3,6-7,6-21\">호르무즈 통행량 7/8 이후 급감, 7/10 34척(6/28 이후 최저), 오만 남쪽 경로 사실상 중단</cite>하며 유가 반등·Bear 확률 60%로 확대",
       "bear_steelman": "<cite index=\"17-4,17-8\">미·이란 기술 협상 진행 중이며 시장은 제한적 분쟁 예상</cite>하므로, 호르무즈 조속 재개 시 유가 $70대 복귀와 Fed 동결·연말 Bull 3.75~4.0% 가능",
+      "fedwatch_path": {
+        "6/26": 3.63,
+        "7/26": 3.71,
+        "9/26": 3.85,
+        "10/26": 3.9,
+        "12/26": 4.0,
+        "1/27": 4.03,
+        "3/27": 4.085,
+        "4/27": 4.095,
+        "6/27": 4.075,
+        "7/27": 4.055,
+        "9/27": 4.02,
+        "10/27": 3.995
+      }
+    },
+    {
+      "date": "2026-07-13",
+      "markets": {
+        "ten_year": 4.57,
+        "thirty_year": 5.07,
+        "brent": 76.01,
+        "wti": 71.41,
+        "fed_funds_implied": 3.71
+      },
+      "probabilities": {
+        "bull": 10,
+        "base": 40,
+        "bear": 50
+      },
+      "summary": "호르무즈 교착 지속 및 FOMC 점진적 매파 전환으로 Base 시나리오 비중 확대; 10Y는 4.57% 고착",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.57% (변동 없음)",
+          "direction": "base"
+        },
+        {
+          "name": "Brent",
+          "value": "$76.01 (주간 +5%, 호르무즈 위험 프리미엄)",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.71% (+8bp); 7월 FOMC 70.1% 동결 확률 (CME 7/8), 9/18 위원 연말 인상 전망 (6월 SEP)",
+          "direction": "bear"
+        },
+        {
+          "name": "US-이란",
+          "value": "7/11 이란 해협 재폐쇄·공격, 미 보복; 오만 이중 항로안 협의 중",
+          "direction": "bear"
+        },
+        {
+          "name": "인플레",
+          "value": "5월 PCE 4.1% YoY, Fed 2026 전망 3.6%로 상향 (6월 SEP)",
+          "direction": "bear"
+        }
+      ],
+      "trigger_today": "Fed Funds 30D +8bp 및 FOMC 의사록 매파 톤 확인되었으나 10Y·유가 무반응, 시장은 점진적 긴축 시나리오로 수렴",
+      "bear_steelman": "오만 중재 이중항로안이 타결되고 Iran이 남부 통로 공격 중단 시 유가 급락, Fed 인하 기대 복원 가능",
       "fedwatch_path": {
         "6/26": 3.63,
         "7/26": 3.71,
