@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-14T22:13:24Z",
+  "last_updated": "2026-07-15T22:13:26Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -3864,6 +3864,65 @@
         "7/27": 4.045,
         "9/27": 4.025,
         "10/27": 4.06
+      }
+    },
+    {
+      "date": "2026-07-16",
+      "markets": {
+        "ten_year": 4.55,
+        "thirty_year": 5.08,
+        "brent": 85.34,
+        "wti": 80.11,
+        "fed_funds_implied": 3.65
+      },
+      "probabilities": {
+        "bull": 5,
+        "base": 25,
+        "bear": 70
+      },
+      "summary": "10Y 4bp 하락했으나 美-이란 긴장 재격화·유가 3일 연속 상승·Fed 인플레 경고로 Bear 시나리오 지배적 유지",
+      "key_drivers": [
+        {
+          "name": "10Y yield",
+          "value": "4.55% (-4bp)",
+          "direction": "base"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "$85.3/$80.1, 3일 연속 상승·美 이란 재공습",
+          "direction": "bear"
+        },
+        {
+          "name": "호르무즈 해협",
+          "value": "美, 이란항 봉쇄 재개·Trump MoU '끝' 선언·협상 지속 중",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed 인플레 경고",
+          "value": "Cook: '인플레 너무 높음', 2023년 이후 최고 수준 근접",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D",
+          "value": "3.65% (-2bp). CME FedWatch 7월29일 FOMC: 동결 70.1% (as of 7/8). 연말 확률 확인 안 됨",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "美, 이란 연안 군사자산 7시간 공습 + 봉쇄 재개로 유가 3일 상승, 인플레 우려 재점화",
+      "bear_steelman": "10Y -4bp·함의금리 -2bp는 시장이 여전히 연내 소폭 인하 가능성을 배제하지 않으며, CPI 둔화 시 Bear→Base 전환 가능",
+      "fedwatch_path": {
+        "6/26": 3.628,
+        "7/26": 3.65,
+        "9/26": 3.765,
+        "10/26": 3.805,
+        "12/26": 3.885,
+        "1/27": 3.915,
+        "3/27": 3.97,
+        "4/27": 3.99,
+        "6/27": 3.995,
+        "7/27": 3.985,
+        "9/27": 3.96,
+        "10/27": 3.995
       }
     }
   ]
