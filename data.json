@@ -1,5 +1,5 @@
 {
-  "last_updated": "2026-07-25T22:11:24Z",
+  "last_updated": "2026-07-26T22:13:17Z",
   "scenarios": {
     "bull": {
       "label": "Bull",
@@ -4569,6 +4569,70 @@
         "6/26": 3.632,
         "7/26": 3.72,
         "9/26": 3.905,
+        "10/26": 3.97,
+        "12/26": 4.075,
+        "1/27": 4.115,
+        "3/27": 4.18,
+        "4/27": 4.205,
+        "6/27": 4.2,
+        "7/27": 4.19,
+        "9/27": 4.155,
+        "10/27": 4.135
+      }
+    },
+    {
+      "date": "2026-07-27",
+      "markets": {
+        "ten_year": 4.68,
+        "thirty_year": 5.16,
+        "brent": 96.78,
+        "wti": 89.31,
+        "fed_funds_implied": 3.72
+      },
+      "probabilities": {
+        "bull": 10,
+        "base": 32,
+        "bear": 58
+      },
+      "summary": "Fed Funds 30D 함의금리 3.72%(+9bp) 급등으로 7월 인상 확률 재부상, 호르무즈 협상 진전에도 Brent $96대 유지하며 Bear 우위 지속",
+      "key_drivers": [
+        {
+          "name": "호르무즈 해협 협상",
+          "value": "오만 중재 협상 진전, 美공습 2일째 중단 but 합의 미도달(CBS/CNN 7/26)",
+          "direction": "base"
+        },
+        {
+          "name": "Brent/WTI",
+          "value": "Brent $96.78(변동 없음), WTI $89.31(변동 없음) — 주간 +10~12% 유지, 협상 중에도 높은 수준",
+          "direction": "bear"
+        },
+        {
+          "name": "Fed Funds 30D 함의금리",
+          "value": "3.72% (+9bp) — CME 7/23 기준 7월 FOMC(7/29) 동결 63.5%, 인상 36.5%; 12월 동결 확률 다수, 인하 0% 근접(CME/CentralBank.watch 7/22~25)",
+          "direction": "bear"
+        },
+        {
+          "name": "FOMC 6월 의사록(7/8)",
+          "value": "일부 위원 인상 검토, 연말 경로 양분 — 현행 유지 vs 인상 가능성(CoingabBar)",
+          "direction": "bear"
+        },
+        {
+          "name": "10Y yield",
+          "value": "4.68% (-2bp) — 단기 반락도 주간 상승 추세 지속",
+          "direction": "bear"
+        },
+        {
+          "name": "IB 전망",
+          "value": "Transamerica 연말 3.75%, 함의금리 3.7대와 괴리 확대; LongForecast 월말 4.85% 예상",
+          "direction": "base"
+        }
+      ],
+      "trigger_today": "Fed Funds 30D 함의금리 +9bp 급등 — 7월 인상 확률 36.5%까지 상승하며 Bear 시나리오 지배력 강화",
+      "bear_steelman": "협상 진전 시 유가가 $70대로 급락할 수 있고, Fed가 7월에도 동결하면 함의금리 하락 → 금리 상승 압력 완화 가능",
+      "fedwatch_path": {
+        "6/26": 3.632,
+        "7/26": 3.72,
+        "9/26": 3.865,
         "10/26": 3.97,
         "12/26": 4.075,
         "1/27": 4.115,
